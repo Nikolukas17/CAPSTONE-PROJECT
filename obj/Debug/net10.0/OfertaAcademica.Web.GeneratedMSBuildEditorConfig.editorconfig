@@ -27,10 +27,6 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nicog/OneDrive/Documentos/CAPSTONE/OfertaAcademica/OfertaAcademica.Web/Views/Conflictos/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmxpY3Rvc1xJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/nicog/OneDrive/Documentos/CAPSTONE/OfertaAcademica/OfertaAcademica.Web/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -49,10 +45,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/nicog/OneDrive/Documentos/CAPSTONE/OfertaAcademica/OfertaAcademica.Web/Views/Profesores/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmVzb3Jlc1xJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/nicog/OneDrive/Documentos/CAPSTONE/OfertaAcademica/OfertaAcademica.Web/Views/Proyeccion/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJveWVjY2lvblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/nicog/OneDrive/Documentos/CAPSTONE/OfertaAcademica/OfertaAcademica.Web/Views/Salones/Index.cshtml]
