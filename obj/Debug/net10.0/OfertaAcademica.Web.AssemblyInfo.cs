@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OfertaAcademica.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a516cef450d0b940fdc891851780bd8541465057")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd556be9f3e5d2e58170cd234158e16d5d3e0108")]
 [assembly: System.Reflection.AssemblyProductAttribute("OfertaAcademica.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OfertaAcademica.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
