@@ -1,0 +1,54 @@
+@using OfertaAcademica.Web.Models.Entities
+@using OfertaAcademica.Web.ViewModels.Shared
+@model DisponibilidadGridViewModel
+@{
+    string Etiqueta(EstadoFranja e) => e switch
+    {
+        EstadoFranja.Disponible => "Disponible",
+        EstadoFranja.Ocupado => "Ocupado",
+        _ => "No disponible"
+    };
+}
+<div class="ur-slots-wrap">
+    <table class="ur-slots" @(Model.Editable ? "data-grid-editable" : null)>
+        <caption class="visually-hidden">Disponibilidad semanal por franja horaria</caption>
+        <thead>
+            <tr>
+                <th scope="col" class="text-start">Horario</th>
+                @foreach (var dia in DisponibilidadSemanal.Dias)
+                {
+                    <th scope="col">@dia</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (var f = 0; f < DisponibilidadSemanal.Franjas.Length; f++)
+            {
+                <tr>
+                    <th scope="row">@DisponibilidadSemanal.Franjas[f]</th>
+                    @for (var d = 0; d < DisponibilidadSemanal.Dias.Length; d++)
+                    {
+                        var idx = DisponibilidadSemanal.Indice(f, d);
+                        var estado = idx < Model.Estados.Count ? Model.Estados[idx] : EstadoFranja.NoDisponible;
+                        var etiqueta = $"{DisponibilidadSemanal.Dias[d]} {DisponibilidadSemanal.Franjas[f]}: {Etiqueta(estado)}";
+                        <td>
+                            @if (Model.Editable)
+                            {
+                                <input type="hidden" name="@($"{Model.NombreCampo}[{idx}]")" value="@estado" />
+                            }
+                            @if (Model.Editable && estado != EstadoFranja.Ocupado)
+                            {
+                                <button type="button" class="ur-slot" data-estado="@estado" aria-label="@etiqueta"
+                                        data-dia="@DisponibilidadSemanal.Dias[d]" data-franja="@DisponibilidadSemanal.Franjas[f]">@Etiqueta(estado)</button>
+                            }
+                            else
+                            {
+                                <span class="ur-slot" data-estado="@estado" role="img" aria-label="@etiqueta">@Etiqueta(estado)</span>
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

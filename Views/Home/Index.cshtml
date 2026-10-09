@@ -1,8 +1,20 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Sistema de Gestión de Horarios";
+    Layout = "_LayoutPublico";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="ur-hero">
+    <div class="ur-hero__txt">
+        <h1 class="ur-h1">Generando una oferta académica más eficiente</h1>
+        <p>Proyecto de Capstone que apoya la creación de la oferta académica de la Escuela de Ciencias e Ingeniería, integrando asignaturas, profesores, estudiantes y salones para facilitar la planeación de cada semestre.</p>
+        <div class="ur-hero__cta">
+            <a asp-controller="Account" asp-action="Login" class="ur-btn ur-btn--primary">Iniciar sesión</a>
+            <a asp-controller="Account" asp-action="Registro" class="ur-btn ur-btn--ghost">Crear cuenta</a>
+        </div>
+    </div>
+    <div class="ur-hero__arte" role="img" aria-label="Arcos del claustro de la Universidad del Rosario">
+        <p>Horarios sin cruces, hechos para la comunidad rosarista.</p>
+    </div>
+</section>
+
+<partial name="_ComoFunciona" />

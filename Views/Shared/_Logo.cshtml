@@ -1,37 +1,9 @@
-<aside class="sidebar">
-    <div class="sidebar-logo">
-        Sistema de Gestión de Horarios
-    </div>
-
-    <nav class="sidebar-nav">
-        <a asp-controller="Inicio"
-           asp-action="Index"
-           class="sidebar-link">
-            Inicio
-        </a>
-
-        <a asp-controller="OfertaAcademica"
-           asp-action="Index"
-           class="sidebar-link">
-            Oferta Académica
-        </a>
-
-        <a asp-controller="Salones"
-           asp-action="Index"
-           class="sidebar-link">
-            Salones
-        </a>
-
-        <a asp-controller="Asignaturas"
-           asp-action="Index"
-           class="sidebar-link">
-            Asignaturas
-        </a>
-
-        <a asp-controller="Profesores"
-           asp-action="Index"
-           class="sidebar-link">
-            Profesores
-        </a>
-    </nav>
-</aside>
+@* Marca provisional. Para usar el logo oficial, reemplaza este contenido por <img src="~/img/logo-rosario.svg" alt="Universidad del Rosario" />. *@
+@model bool
+<span class="ur-logo @(Model ? "ur-logo--claro" : "")">
+    <svg viewBox="0 0 24 30" aria-hidden="true"><path d="M3 29V12a9 9 0 0 1 18 0v17" /><path d="M8 29V13a4 4 0 0 1 8 0v16" /></svg>
+    <span class="ur-logo__txt">
+        <span class="ur-logo__top">Universidad del</span>
+        <span class="ur-logo__name">Rosario</span>
+    </span>
+</span>

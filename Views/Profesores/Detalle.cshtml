@@ -1,0 +1,75 @@
+@model OfertaAcademica.Web.Models.Entities.Profesor
+@{
+    ViewData["Title"] = Model.Nombre;
+}
+
+<div class="ur-page">
+    <nav class="ur-crumbs" aria-label="Ruta de navegación">
+        <a asp-action="Index">Profesores</a><span aria-hidden="true">/</span><span aria-current="page">@Model.Nombre</span>
+    </nav>
+
+    <section class="ur-card ur-prof" aria-label="Datos del profesor">
+        <span class="ur-avatar ur-avatar--lg" aria-hidden="true">@Model.Nombre[0]</span>
+        <div class="ur-prof__datos">
+            <h1>@Model.Nombre</h1> <span class="ur-badge ur-badge--activo" style="margin-left:.5rem">Activo</span>
+            <p>Teléfono: @Model.Telefono</p>
+            <p>Profesor de @Model.Tipo</p>
+            <p>@Model.Perfil</p>
+        </div>
+        <button type="button" class="ur-btn ur-btn--outline" data-bs-toggle="modal" data-bs-target="#modalInactivarProfesor">Inactivar profesor</button>
+    </section>
+
+    <section class="ur-card" aria-labelledby="tituloMaterias">
+        <div class="ur-card__head"><h2 class="ur-h2" id="tituloMaterias">Materias que puede dictar</h2></div>
+        <div class="ur-card__body" style="padding-left:0;padding-right:0;padding-bottom:0">
+            @if (Model.Materias.Count == 0)
+            {
+                <div class="ur-vacio" style="padding-top:1rem"><p>Este profesor aún no tiene materias asignadas.</p></div>
+            }
+            else
+            {
+                <div class="ur-table-wrap">
+                    <table class="ur-table">
+                        <thead><tr><th scope="col">Código</th><th scope="col">Nivel</th><th scope="col">Materia</th></tr></thead>
+                        <tbody>
+                            @foreach (var m in Model.Materias)
+                            {
+                                <tr><td class="ur-num">@m.Codigo</td><td class="ur-num">@m.Nivel</td><td><strong>@m.Nombre</strong></td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="ur-card" aria-labelledby="tituloDispProf">
+        <div class="ur-card__head">
+            <h2 class="ur-h2" id="tituloDispProf">Disponibilidad semanal</h2>
+            <div class="ur-leyenda" aria-hidden="true">
+                <span class="l-disp"><i></i>Disponible</span><span class="l-ocup"><i></i>Ocupado</span><span class="l-nodisp"><i></i>No disponible</span>
+            </div>
+        </div>
+        <div class="ur-card__body">
+            <partial name="_DisponibilidadGrid" model="new DisponibilidadGridViewModel { Estados = Model.Disponibilidad, Editable = false }" />
+        </div>
+    </section>
+</div>
+
+<div class="modal fade ur-modal" id="modalInactivarProfesor" tabindex="-1" aria-labelledby="tituloInactivarProfesor" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 440px;">
+        <div class="modal-content">
+            <form method="post" asp-action="Inactivar" asp-route-id="@Model.Id">
+                <div class="modal-body">
+                    <div class="ur-modal__icono"><svg class="ur-icon"><use href="#i-alert" /></svg></div>
+                    <h2 id="tituloInactivarProfesor">¿Inactivar a @Model.Nombre?</h2>
+                    <p>Dejará de estar disponible para asignar asignaturas en la oferta académica. Sus registros y su historial se conservan.</p>
+                    <div class="ur-modal__botones">
+                        <button type="button" class="ur-btn ur-btn--ghost" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="ur-btn ur-btn--primary">Sí, inactivar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

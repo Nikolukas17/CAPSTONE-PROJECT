@@ -1,0 +1,18 @@
+<div class="ur-toasts" id="urToasts" aria-live="polite">
+    @if (TempData["Exito"] is string exito)
+    {
+        <div class="ur-toast" role="status">
+            <svg class="ur-icon"><use href="#i-check" /></svg>
+            <p>@exito</p>
+            <button type="button" aria-label="Cerrar aviso" data-cerrar-toast>&times;</button>
+        </div>
+    }
+    @if (TempData["Error"] is string error)
+    {
+        <div class="ur-toast ur-toast--error" role="alert">
+            <svg class="ur-icon"><use href="#i-alert" /></svg>
+            <p>@error</p>
+            <button type="button" aria-label="Cerrar aviso" data-cerrar-toast>&times;</button>
+        </div>
+    }
+</div>

@@ -1,0 +1,134 @@
+@model AsignaturaFormViewModel
+@using OfertaAcademica.Web.ViewModels.Asignaturas
+@{
+    var titulo = Model.EsNueva ? "Nueva asignatura" : Model.Nombre;
+    ViewData["Title"] = titulo;
+}
+
+<div class="ur-page">
+    <nav class="ur-crumbs" aria-label="Ruta de navegación">
+        <a asp-action="Index">Asignaturas</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">@titulo</span>
+    </nav>
+
+    <form asp-action="Guardar" method="post" id="formAsignatura" class="ur-form" data-modo="@(Model.ModoEdicion ? "editar" : "ver")">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="ur-cabecera-detalle">
+            <h1 class="ur-h1">@titulo</h1>
+            <div class="ur-fila">
+                <button type="button" class="ur-btn ur-btn--outline solo-lectura" data-accion="editar">
+                    <svg class="ur-icon"><use href="#i-pencil" /></svg> Editar
+                </button>
+                @if (Model.EsNueva)
+                {
+                    <a asp-action="Index" class="ur-btn ur-btn--ghost solo-edicion">Cancelar</a>
+                }
+                else
+                {
+                    <a asp-action="Detalle" asp-route-id="@Model.Id" class="ur-btn ur-btn--ghost solo-edicion">Cancelar</a>
+                }
+                <button type="submit" class="ur-btn ur-btn--primary solo-edicion">
+                    <svg class="ur-icon"><use href="#i-check" /></svg> @(Model.EsNueva ? "Crear asignatura" : "Guardar cambios")
+                </button>
+            </div>
+        </div>
+
+        <fieldset class="ur-fieldset" disabled="@(Model.ModoEdicion ? null : "disabled")" data-campos>
+            <section class="ur-card" aria-labelledby="tituloDatos">
+                <div class="ur-card__head"><h2 class="ur-h2" id="tituloDatos">Datos de la asignatura</h2></div>
+                <div class="ur-card__body" style="padding-left:0;padding-right:0;padding-bottom:0">
+                    <div class="ur-table-wrap">
+                        <table class="ur-table ur-table--campos">
+                            <thead>
+                                <tr><th scope="col">Campo</th><th scope="col">Valor</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row"><label asp-for="Codigo"></label></th>
+                                    <td>
+                                        <input asp-for="Codigo" class="ur-input" inputmode="numeric" autocomplete="off" />
+                                        <span asp-validation-for="Codigo" class="ur-error"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label asp-for="CodigoCompartido"></label></th>
+                                    <td>
+                                        <input asp-for="CodigoCompartido" class="ur-input" inputmode="numeric" autocomplete="off" placeholder="Opcional" />
+                                        <span asp-validation-for="CodigoCompartido" class="ur-error"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label asp-for="Nombre"></label></th>
+                                    <td>
+                                        <input asp-for="Nombre" class="ur-input" autocomplete="off" />
+                                        <span asp-validation-for="Nombre" class="ur-error"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label asp-for="Tipologia"></label></th>
+                                    <td>
+                                        <select asp-for="Tipologia" asp-items="Model.Tipologias" class="ur-select"></select>
+                                        <span asp-validation-for="Tipologia" class="ur-error"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label asp-for="ProgramaCodigo"></label></th>
+                                    <td>
+                                        <select asp-for="ProgramaCodigo" asp-items="Model.Programas" class="ur-select">
+                                            <option value="">Selecciona un programa</option>
+                                        </select>
+                                        <span asp-validation-for="ProgramaCodigo" class="ur-error"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label asp-for="Creditos"></label></th>
+                                    <td>
+                                        <div class="ur-stepper" data-stepper>
+                                            <button type="button" data-paso="-1" aria-label="Restar un crédito"><svg class="ur-icon"><use href="#i-minus" /></svg></button>
+                                            <input asp-for="Creditos" type="number" min="1" max="12" inputmode="numeric" />
+                                            <button type="button" data-paso="1" aria-label="Sumar un crédito"><svg class="ur-icon"><use href="#i-plus" /></svg></button>
+                                        </div>
+                                        <div><span asp-validation-for="Creditos" class="ur-error"></span></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><label asp-for="IntensidadHoraria"></label></th>
+                                    <td>
+                                        <div class="ur-stepper" data-stepper>
+                                            <button type="button" data-paso="-1" aria-label="Restar una hora"><svg class="ur-icon"><use href="#i-minus" /></svg></button>
+                                            <input asp-for="IntensidadHoraria" type="number" min="1" max="20" inputmode="numeric" />
+                                            <button type="button" data-paso="1" aria-label="Sumar una hora"><svg class="ur-icon"><use href="#i-plus" /></svg></button>
+                                        </div>
+                                        <div><span asp-validation-for="IntensidadHoraria" class="ur-error"></span></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section class="ur-card" aria-labelledby="tituloDisp">
+                <div class="ur-card__head">
+                    <h2 class="ur-h2" id="tituloDisp">Disponibilidad semanal</h2>
+                    <div class="ur-leyenda" aria-hidden="true">
+                        <span class="l-disp"><i></i>Disponible</span>
+                        <span class="l-ocup"><i></i>Ocupado</span>
+                        <span class="l-nodisp"><i></i>No disponible</span>
+                    </div>
+                </div>
+                <div class="ur-card__body">
+                    <partial name="_DisponibilidadGrid" model="new DisponibilidadGridViewModel { NombreCampo = nameof(Model.Disponibilidad), Estados = Model.Disponibilidad, Editable = true }" />
+                    <p class="ur-nota solo-edicion">Toca una franja para alternarla entre disponible y no disponible. Las franjas ocupadas ya están en la oferta académica y no se pueden cambiar aquí.</p>
+                </div>
+            </section>
+        </fieldset>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/asignaturas.js" asp-append-version="true"></script>
+}

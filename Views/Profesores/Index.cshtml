@@ -1,7 +1,71 @@
+@model OfertaAcademica.Web.ViewModels.Profesores.ProfesorListaViewModel
 @{
     ViewData["Title"] = "Profesores";
+    var pag = Model.Paginacion;
+    var hayBusqueda = !string.IsNullOrWhiteSpace(pag.Busqueda);
 }
 
-<h1>Profesores</h1>
+<div class="ur-page">
+    <header class="ur-page__head">
+        <h1 class="ur-h1">Profesores</h1>
+        <p class="ur-lead">Docentes de la Escuela, las materias que pueden dictar y su disponibilidad semanal.</p>
+    </header>
 
-<p>Sistema de apoyo a la construcción de la Oferta Académica.<p>
+    <section class="ur-card" aria-label="Listado de profesores">
+        <div class="ur-toolbar">
+            <form method="get" asp-action="Index" class="ur-search" role="search">
+                <svg class="ur-icon"><use href="#i-search" /></svg>
+                <input type="search" name="q" value="@pag.Busqueda" placeholder="Buscar por profesor..." aria-label="Buscar profesores" autocomplete="off" />
+                @if (hayBusqueda) { <a asp-action="Index" class="ur-search__clear" aria-label="Limpiar búsqueda">&times;</a> }
+            </form>
+            <button type="button" class="ur-btn ur-btn--primary" data-demo="Crear profesores estará disponible cuando se conecte la base de datos.">
+                <svg class="ur-icon"><use href="#i-plus" /></svg> Nuevo profesor
+            </button>
+        </div>
+
+        @if (Model.Items.Count == 0)
+        {
+            <div class="ur-vacio">
+                <h2>No encontramos profesores para “@pag.Busqueda”</h2>
+                <p>Revisa el nombre o prueba con el correo institucional.</p>
+                <a asp-action="Index" class="ur-btn ur-btn--ghost">Ver todos los profesores</a>
+            </div>
+        }
+        else
+        {
+            <div class="ur-table-wrap">
+                <table class="ur-table">
+                    <caption class="visually-hidden">Profesores de la Escuela de Ciencias e Ingeniería</caption>
+                    <thead>
+                        <tr><th scope="col">Nombre</th><th scope="col">Correo electrónico</th><th scope="col">Tipo</th><th scope="col" class="text-end">Acciones</th></tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var p in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    <span class="ur-fila" style="flex-wrap:nowrap">
+                                        <span class="ur-avatar ur-avatar--sm" aria-hidden="true">@p.Nombre[0]</span>
+                                        <a asp-action="Detalle" asp-route-id="@p.Id" class="ur-nombre">@p.Nombre</a>
+                                    </span>
+                                </td>
+                                <td class="ur-num">@p.Correo</td>
+                                <td>@p.Tipo</td>
+                                <td class="text-end">
+                                    <span class="ur-acciones">
+                                        <a asp-action="Detalle" asp-route-id="@p.Id" class="ur-icon-btn" title="Ver detalle" aria-label="Ver detalle de @p.Nombre"><svg class="ur-icon"><use href="#i-eye" /></svg></a>
+                                        <button type="button" class="ur-icon-btn" title="Editar" aria-label="Editar @p.Nombre" data-demo="Editar profesores estará disponible cuando se conecte la base de datos."><svg class="ur-icon"><use href="#i-pencil" /></svg></button>
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="ur-table-foot">
+                <p>Mostrando @pag.Desde–@pag.Hasta de @pag.TotalResultados resultados</p>
+                <partial name="_Paginacion" model="pag" />
+            </div>
+        }
+    </section>
+</div>

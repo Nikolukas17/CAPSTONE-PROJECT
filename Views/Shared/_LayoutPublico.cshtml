@@ -1,0 +1,12 @@
+@* Layout de la página pública (antes de iniciar sesión). *@
+@{ Layout = "_LayoutBase"; }
+
+<partial name="_NavbarPublico" />
+<main id="contenido" class="ur-main">
+    @RenderBody()
+</main>
+<partial name="_Footer" />
+
+@section Scripts {
+    @await RenderSectionAsync("Scripts", required: false)
+}

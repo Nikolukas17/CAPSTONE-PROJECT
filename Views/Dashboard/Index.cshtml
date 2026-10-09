@@ -1,7 +1,20 @@
 @{
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "Inicio";
+    var nombre = "Jeimy Alexandra"; // TODO: tomar del usuario autenticado
 }
 
-<h1>Dashboard</h1>
+<section class="ur-hero">
+    <div class="ur-hero__txt">
+        <h1 class="ur-h1">¡Bienvenida, @nombre!</h1>
+        <p>Desde aquí puedes armar la oferta académica del semestre, revisar la disponibilidad de salones y profesores, y mantener al día el catálogo de asignaturas.</p>
+        <div class="ur-hero__cta">
+            <a asp-controller="OfertaAcademica" asp-action="Index" class="ur-btn ur-btn--primary">Ver oferta académica</a>
+            <a asp-controller="Asignaturas" asp-action="Index" class="ur-btn ur-btn--ghost">Ir a asignaturas</a>
+        </div>
+    </div>
+    <div class="ur-hero__arte" role="img" aria-label="Arcos del claustro de la Universidad del Rosario">
+        <p>Semestre en planeación: revisa los cruces antes de publicar.</p>
+    </div>
+</section>
 
-<p>Sistema de apoyo a la construcción de la Oferta Académica.<p>
+<partial name="_ComoFunciona" />

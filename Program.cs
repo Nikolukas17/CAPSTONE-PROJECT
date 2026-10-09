@@ -1,7 +1,12 @@
+using OfertaAcademica.Web.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Datos de ejemplo en memoria. Cuando exista la base de datos, cambia esta línea por la implementación real.
+builder.Services.AddSingleton<IAsignaturaService, AsignaturaServiceEnMemoria>();
 
 var app = builder.Build();
 
@@ -22,7 +27,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Inicio}/{action=Index}/{id?}")
+    pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

@@ -2,10 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OfertaAcademica.Web.Controllers;
 
-public class InicioController : Controller
+public class DashboardController : Controller
 {
-    public IActionResult Index()
-    {
-        return View();
-    }
+    public IActionResult Index() => View();
 }

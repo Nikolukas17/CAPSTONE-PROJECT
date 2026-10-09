@@ -1,2 +1,35 @@
-﻿<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+﻿@{
+    var actual = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
+    var items = new (string Texto, string Controlador)[]
+    {
+        ("Inicio", "Dashboard"),
+        ("Oferta Académica", "OfertaAcademica"),
+        ("Salones", "Salones"),
+        ("Asignaturas", "Asignaturas"),
+        ("Profesores", "Profesores")
+    };
+}
+<header class="ur-nav">
+    <div class="ur-nav__inner">
+        <a class="ur-nav__brand" asp-controller="Dashboard" asp-action="Index" aria-label="Universidad del Rosario, ir al inicio">
+            <partial name="_Logo" model="false" />
+        </a>
+
+        <nav id="menuPrincipal" class="ur-nav__links" aria-label="Principal">
+            @foreach (var (texto, controlador) in items)
+            {
+                var activo = string.Equals(actual, controlador, StringComparison.OrdinalIgnoreCase);
+                <a asp-controller="@controlador" asp-action="Index"
+                   class="ur-nav__link @(activo ? "is-active" : "")"
+                   aria-current="@(activo ? "page" : null)">@texto</a>
+            }
+        </nav>
+
+        @* Inicial del usuario: reemplazar por los claims cuando exista autenticación. *@
+        <a class="ur-avatar" asp-controller="Account" asp-action="Perfil" aria-label="Mi perfil">J</a>
+
+        <button class="ur-nav__toggle" type="button" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
+            <svg class="ur-icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
+        </button>
+    </div>
+</header>

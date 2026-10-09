@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = "Mi perfil";
+}
+
+<div class="ur-page">
+    <section class="ur-card ur-perfil" aria-label="Datos del perfil">
+        <span class="ur-avatar ur-avatar--lg" aria-hidden="true">J</span>
+        <div class="ur-perfil__datos">
+            <h1>Jeimy Alexandra Saenz Marulanda</h1>
+            <dl>
+                <dt>Teléfono</dt><dd>+57 318 311 2441</dd>
+                <dt>Correo</dt><dd>jeimy.saenz@urosario.edu.co</dd>
+                <dt>Cargo</dt><dd>Coordinador de programas · Escuela de Ciencias e Ingeniería</dd>
+            </dl>
+        </div>
+        <form asp-action="CerrarSesion" method="post">
+            <button type="submit" class="ur-btn ur-btn--outline"><svg class="ur-icon"><use href="#i-logout" /></svg> Cerrar sesión</button>
+        </form>
+    </section>
+</div>

@@ -1,33 +1,12 @@
-﻿<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0" />
+﻿@* Layout de la aplicación (usuario con sesión): barra de navegación + contenido + pie. *@
+@{ Layout = "_LayoutBase"; }
 
-    <title>@ViewData["Title"] - Sistema de Gestión de Horarios</title>
+<partial name="_Navbar" />
+<main id="contenido" class="ur-main">
+    @RenderBody()
+</main>
+<partial name="_Footer" />
 
-    ~/css/site.css
-</head>
-
-<body>
-    <div class="app-container">
-
-        <partial name="_Sidebar" />
-
-        <div class="app-content">
-
-            <partial name="_Header" />
-
-            <main class="main-content">
-                @RenderBody()
-            </main>
-
-            <partial name="_Footer" />
-
-        </div>
-    </div>
-
+@section Scripts {
     @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
+}

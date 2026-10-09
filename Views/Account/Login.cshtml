@@ -1,0 +1,34 @@
+@model OfertaAcademica.Web.ViewModels.Account.LoginViewModel
+@{
+    ViewData["Title"] = "Iniciar sesión";
+    Layout = "_LayoutAuth";
+}
+
+<h1>Bienvenido</h1>
+<p class="ur-sub">Al Sistema de Gestión Académica de la Escuela de Ciencias e Ingeniería</p>
+
+@if (TempData["Exito"] is string ok)
+{
+    <div class="ur-alert ur-alert--ok" role="status">@ok</div>
+}
+
+<form asp-action="Login" method="post">
+    <div class="ur-field">
+        <label asp-for="Correo"></label>
+        <input asp-for="Correo" class="ur-input" type="email" placeholder="nombre@urosario.edu.co" autocomplete="username" />
+        <span asp-validation-for="Correo" class="ur-error"></span>
+    </div>
+    <div class="ur-field">
+        <label asp-for="Contrasena"></label>
+        <div class="ur-pass">
+            <input asp-for="Contrasena" class="ur-input" autocomplete="current-password" />
+            <button type="button" data-ver-clave aria-label="Mostrar contraseña"><svg class="ur-icon"><use href="#i-eye" /></svg></button>
+        </div>
+        <span asp-validation-for="Contrasena" class="ur-error"></span>
+        <a asp-action="Olvide" class="ur-hint" style="align-self:flex-end">¿Olvidaste tu contraseña?</a>
+    </div>
+    <button type="submit" class="ur-btn ur-btn--primary ur-btn--block">Iniciar sesión</button>
+</form>
+<p class="ur-auth__pie">¿No tienes cuenta? <a asp-action="Registro">Regístrate</a></p>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
