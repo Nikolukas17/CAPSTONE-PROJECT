@@ -1,31 +1,30 @@
-﻿@using OfertaAcademica.Web.ViewModels.Shared
+@using OfertaAcademica.Web.ViewModels.Shared
 @model PaginacionViewModel
 @if (Model.TotalPaginas > 1)
 {
-    <nav class="ur-pager" aria-label="Paginación">
+    <nav class="paginacion" aria-label="Paginación">
         @if (Model.Pagina > 1)
         {
-            <a class="ur-pager__btn" asp-route-pagina="@(Model.Pagina - 1)" asp-route-q="@Model.Busqueda" aria-label="Página anterior"><svg class="ur-icon"><use href="#i-left" /></svg></a>
+            <a asp-route-pagina="@(Model.Pagina - 1)" asp-route-q="@Model.Busqueda" aria-label="Página anterior"><i class="bi bi-chevron-left"></i></a>
         }
         else
         {
-            <span class="ur-pager__btn is-disabled" aria-hidden="true"><svg class="ur-icon"><use href="#i-left" /></svg></span>
+            <span class="is-disabled" aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
         }
 
         @foreach (var p in Model.PaginasVisibles)
         {
-            <a class="ur-pager__btn @(p == Model.Pagina ? "is-current" : "")"
-               asp-route-pagina="@p" asp-route-q="@Model.Busqueda"
+            <a class="@(p == Model.Pagina ? "is-active" : "")" asp-route-pagina="@p" asp-route-q="@Model.Busqueda"
                aria-label="Página @p" aria-current="@(p == Model.Pagina ? "page" : null)">@p</a>
         }
 
         @if (Model.Pagina < Model.TotalPaginas)
         {
-            <a class="ur-pager__btn" asp-route-pagina="@(Model.Pagina + 1)" asp-route-q="@Model.Busqueda" aria-label="Página siguiente"><svg class="ur-icon"><use href="#i-right" /></svg></a>
+            <a asp-route-pagina="@(Model.Pagina + 1)" asp-route-q="@Model.Busqueda" aria-label="Página siguiente"><i class="bi bi-chevron-right"></i></a>
         }
         else
         {
-            <span class="ur-pager__btn is-disabled" aria-hidden="true"><svg class="ur-icon"><use href="#i-right" /></svg></span>
+            <span class="is-disabled" aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
         }
     </nav>
 }

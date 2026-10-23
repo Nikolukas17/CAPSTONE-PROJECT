@@ -1,39 +1,44 @@
-@model OfertaAcademica.Web.ViewModels.Account.RegistroViewModel
+﻿@model OfertaAcademica.Web.ViewModels.Account.RegistroViewModel
 @{
-    ViewData["Title"] = "Crear cuenta";
-    Layout = "_LayoutAuth";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+    ViewData["Title"] = "Regístrate";
 }
+<div class="auth auth--invertido">
+    <aside class="auth__foto"><img src="~/img/logo-rosario-blanco.svg" alt="Universidad del Rosario" /></aside>
+    <section class="auth__panel">
+        <form class="auth__card" asp-action="Registro" method="post" novalidate>
+            <h1>Regístrate</h1>
+            <p class="auth__sub">El Sistema de Gestión Académica<br />Escuela de Ciencias e Ingeniería</p>
 
-<h1>Regístrate</h1>
-<p class="ur-sub">Al Sistema de Gestión Académica de la Escuela de Ciencias e Ingeniería</p>
+            <div asp-validation-summary="ModelOnly" class="alerta"></div>
 
-<form asp-action="Registro" method="post">
-    <div class="ur-field">
-        <label asp-for="NombreCompleto"></label>
-        <input asp-for="NombreCompleto" class="ur-input" placeholder="Ana Pérez" autocomplete="name" />
-        <span asp-validation-for="NombreCompleto" class="ur-error"></span>
-    </div>
-    <div class="ur-field">
-        <label asp-for="Cargo"></label>
-        <input asp-for="Cargo" class="ur-input" placeholder="Auxiliar académica" autocomplete="organization-title" />
-        <span asp-validation-for="Cargo" class="ur-error"></span>
-    </div>
-    <div class="ur-field">
-        <label asp-for="Correo"></label>
-        <input asp-for="Correo" class="ur-input" type="email" placeholder="nombre@urosario.edu.co" autocomplete="username" />
-        <span asp-validation-for="Correo" class="ur-error"></span>
-    </div>
-    <div class="ur-field">
-        <label asp-for="Contrasena"></label>
-        <div class="ur-pass">
-            <input asp-for="Contrasena" class="ur-input" autocomplete="new-password" />
-            <button type="button" data-ver-clave aria-label="Mostrar contraseña"><svg class="ur-icon"><use href="#i-eye" /></svg></button>
-        </div>
-        <span asp-validation-for="Contrasena" class="ur-error"></span>
-        <span class="ur-hint">Mínimo 8 caracteres.</span>
-    </div>
-    <button type="submit" class="ur-btn ur-btn--primary ur-btn--block">Crear cuenta</button>
-</form>
-<p class="ur-auth__pie">¿Ya tienes cuenta? <a asp-action="Login">Inicia sesión</a></p>
+            <div class="campo">
+                <label asp-for="NombreCompleto"></label>
+                <input asp-for="NombreCompleto" placeholder="Ana Pérez" autocomplete="name" />
+                <span asp-validation-for="NombreCompleto" class="campo__error"></span>
+            </div>
+            <div class="campo">
+                <label asp-for="Cargo"></label>
+                <input asp-for="Cargo" placeholder="Auxiliar académico" />
+                <span asp-validation-for="Cargo" class="campo__error"></span>
+            </div>
+            <div class="campo">
+                <label asp-for="Correo"></label>
+                <input asp-for="Correo" type="Correo" placeholder="nombre@urosario.edu.co" autocomplete="username" />
+                <span asp-validation-for="Correo" class="campo__error"></span>
+            </div>
+            <div class="campo">
+                <label asp-for="Contrasena"></label>
+                <div class="campo__pass">
+                    <input asp-for="Contrasena" placeholder="Mínimo 8 caracteres" autocomplete="new-password" />
+                    <button type="button" class="campo__ojo" data-toggle-pass="Contrasena" aria-label="Mostrar contraseña"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+                <span asp-validation-for="Contrasena" class="campo__error"></span>
+            </div>
 
-@section Scripts { <partial name="_ValidationScriptsPartial" /> }
+            <button type="submit" class="btn btn--primario auth__enviar">Registrarse</button>
+            <p class="auth__pie">¿Ya tienes cuenta? <a asp-action="Login">Inicia Sesión</a></p>
+        </form>
+    </section>
+</div>
+

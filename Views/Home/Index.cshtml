@@ -1,20 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Sistema de Gestión de Horarios";
-    Layout = "_LayoutPublico";
+@{
+    Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+    ViewData["Title"] = "Inicio";
+    var pasos = new[]
+    {
+        (Icono: "bi-database",  Tono: "tono-rojo",    Titulo: "El sistema utiliza la información académica", Desc: "En la Facultad de Ciencias e Ingeniería para gestionar la oferta académica."),
+        (Icono: "bi-people",    Tono: "tono-naranja", Titulo: "Se alimenta con datos",                        Desc: "Profesores, estudiantes y salones disponibles como fuente de información."),
+        (Icono: "bi-gear",      Tono: "tono-azul",    Titulo: "Procesa la información",                       Desc: "Aplica reglas y restricciones para generar horarios optimizados y sin conflictos."),
+        (Icono: "bi-book",      Tono: "tono-verde",   Titulo: "Genera la oferta académica",                   Desc: "Organiza y publica la programación de cursos por semestre de forma automática."),
+        (Icono: "bi-bar-chart", Tono: "tono-rojo",    Titulo: "Facilita la toma de decisiones",               Desc: "Ofrece reportes y análisis para optimizar recursos y planeación académica."),
+    };
 }
 
-<section class="ur-hero">
-    <div class="ur-hero__txt">
-        <h1 class="ur-h1">Generando una oferta académica más eficiente</h1>
-        <p>Proyecto de Capstone que apoya la creación de la oferta académica de la Escuela de Ciencias e Ingeniería, integrando asignaturas, profesores, estudiantes y salones para facilitar la planeación de cada semestre.</p>
-        <div class="ur-hero__cta">
-            <a asp-controller="Account" asp-action="Login" class="ur-btn ur-btn--primary">Iniciar sesión</a>
-            <a asp-controller="Account" asp-action="Registro" class="ur-btn ur-btn--ghost">Crear cuenta</a>
-        </div>
+<section class="hero">
+    <div class="hero__texto">
+        <span class="hero__etiqueta">SISTEMA DE GESTIÓN DE HORARIOS</span>
+        <h1>Generando una Oferta Académica <strong>más eficiente</strong></h1>
+        <p>Proyecto de Capstone que apoya la creación de la oferta académica de la Escuela de Ciencias e Ingeniería, a partir de la integración de información de asignaturas, profesores, estudiantes y salones, facilitando la planeación cada semestre.</p>
     </div>
-    <div class="ur-hero__arte" role="img" aria-label="Arcos del claustro de la Universidad del Rosario">
-        <p>Horarios sin cruces, hechos para la comunidad rosarista.</p>
-    </div>
+    <div class="hero__imagen" role="img" aria-label="Claustro de la Universidad del Rosario"></div>
 </section>
 
-<partial name="_ComoFunciona" />
+<section class="funciona">
+    <h2>¿Cómo funciona?</h2>
+    <div class="pasos">
+        @foreach (var p in pasos)
+        {
+            <article class="paso">
+                <div class="paso__icono @p.Tono"><i class="bi @p.Icono"></i></div>
+                <strong>@p.Titulo</strong>
+                <span>@p.Desc</span>
+            </article>
+        }
+    </div>
+</section>

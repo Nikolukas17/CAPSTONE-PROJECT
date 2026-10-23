@@ -9,12 +9,12 @@
         _ => "No disponible"
     };
 }
-<div class="ur-slots-wrap">
-    <table class="ur-slots" @(Model.Editable ? "data-grid-editable" : null)>
-        <caption class="visually-hidden">Disponibilidad semanal por franja horaria</caption>
+<div class="slots-wrap">
+    <table class="slots" @(Model.Editable ? "data-grid-editable" : null)>
+        <caption class="sr-only">Disponibilidad semanal por franja horaria</caption>
         <thead>
             <tr>
-                <th scope="col" class="text-start">Horario</th>
+                <th scope="col">Horario</th>
                 @foreach (var dia in DisponibilidadSemanal.Dias)
                 {
                     <th scope="col">@dia</th>
@@ -38,12 +38,12 @@
                             }
                             @if (Model.Editable && estado != EstadoFranja.Ocupado)
                             {
-                                <button type="button" class="ur-slot" data-estado="@estado" aria-label="@etiqueta"
+                                <button type="button" class="slot" data-estado="@estado" aria-label="@etiqueta"
                                         data-dia="@DisponibilidadSemanal.Dias[d]" data-franja="@DisponibilidadSemanal.Franjas[f]">@Etiqueta(estado)</button>
                             }
                             else
                             {
-                                <span class="ur-slot" data-estado="@estado" role="img" aria-label="@etiqueta">@Etiqueta(estado)</span>
+                                <span class="slot" data-estado="@estado" role="img" aria-label="@etiqueta">@Etiqueta(estado)</span>
                             }
                         </td>
                     }

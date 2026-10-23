@@ -1,71 +1,74 @@
-@model OfertaAcademica.Web.ViewModels.Profesores.ProfesorListaViewModel
+@model OfertaAcademica.Web.ViewModels.Profesores.ProfesoresIndexViewModel
 @{
     ViewData["Title"] = "Profesores";
-    var pag = Model.Paginacion;
-    var hayBusqueda = !string.IsNullOrWhiteSpace(pag.Busqueda);
+    @if (TempData["Mensaje"] is string msg) { <div class="alerta alerta--ok" role="status">@msg</div> }
+    @if (TempData["Exito"] is string ok) { <div class="alerta alerta--ok" role="status">@ok</div> }
 }
 
-<div class="ur-page">
-    <header class="ur-page__head">
-        <h1 class="ur-h1">Profesores</h1>
-        <p class="ur-lead">Docentes de la Escuela, las materias que pueden dictar y su disponibilidad semanal.</p>
-    </header>
+<h1 class="titulo-pagina">Profesores</h1>
 
-    <section class="ur-card" aria-label="Listado de profesores">
-        <div class="ur-toolbar">
-            <form method="get" asp-action="Index" class="ur-search" role="search">
-                <svg class="ur-icon"><use href="#i-search" /></svg>
-                <input type="search" name="q" value="@pag.Busqueda" placeholder="Buscar por profesor..." aria-label="Buscar profesores" autocomplete="off" />
-                @if (hayBusqueda) { <a asp-action="Index" class="ur-search__clear" aria-label="Limpiar búsqueda">&times;</a> }
-            </form>
-            <button type="button" class="ur-btn ur-btn--primary" data-demo="Crear profesores estará disponible cuando se conecte la base de datos.">
-                <svg class="ur-icon"><use href="#i-plus" /></svg> Nuevo profesor
-            </button>
-        </div>
+<div class="barra">
+    <form method="get" class="buscador" role="search">
+        <i class="bi bi-search"></i>
+        <input type="search" name="q" value="@Model.Busqueda" placeholder="Buscar por profesor..." aria-label="Buscar por profesor" />
+    </form>
+    <a asp-action="Crear" class="btn btn--primario"><i class="bi bi-plus-lg"></i> Nuevo profesor</a>
+</div>
 
-        @if (Model.Items.Count == 0)
+<div class="card">
+    <table class="tabla">
+        <thead>
+            <tr>
+                <th>NOMBRE</th>
+                <th>CORREO ELECTRÓNICO</th>
+                <th>TIPO</th>
+                <th class="col-acciones">ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var p in Model.Items)
         {
-            <div class="ur-vacio">
-                <h2>No encontramos profesores para “@pag.Busqueda”</h2>
-                <p>Revisa el nombre o prueba con el correo institucional.</p>
-                <a asp-action="Index" class="ur-btn ur-btn--ghost">Ver todos los profesores</a>
-            </div>
+            <tr>
+                <td>
+                    <div class="persona">
+                        <span class="avatar">
+                            @if (!string.IsNullOrEmpty(p.FotoUrl)) { <img src="@p.FotoUrl" alt="" /> }
+                            else { <i class="bi bi-person"></i> }
+                        </span>
+                        @p.Nombre
+                    </div>
+                </td>
+                <td><a href="mailto:@p.Correo">@p.Correo</a></td>
+                <td>@p.Tipo</td>
+                <td class="col-acciones">
+                    <span class="acciones">
+                        <a asp-action="Detalle" asp-route-id="@p.Id" aria-label="Ver @p.Nombre" title="Ver"><i class="bi bi-eye"></i></a>
+                        <a asp-action="Editar" asp-route-id="@p.Id" aria-label="Editar @p.Nombre" title="Editar"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="Detalle" asp-route-id="@p.Id" asp-route-inactivar="true" aria-label="Inactivar @p.Nombre" title="Inactivar"><i class="bi bi-trash3"></i></a>
+                    </span>
+                </td>
+            </tr>
         }
-        else
+        @if (!Model.Items.Any())
         {
-            <div class="ur-table-wrap">
-                <table class="ur-table">
-                    <caption class="visually-hidden">Profesores de la Escuela de Ciencias e Ingeniería</caption>
-                    <thead>
-                        <tr><th scope="col">Nombre</th><th scope="col">Correo electrónico</th><th scope="col">Tipo</th><th scope="col" class="text-end">Acciones</th></tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var p in Model.Items)
-                        {
-                            <tr>
-                                <td>
-                                    <span class="ur-fila" style="flex-wrap:nowrap">
-                                        <span class="ur-avatar ur-avatar--sm" aria-hidden="true">@p.Nombre[0]</span>
-                                        <a asp-action="Detalle" asp-route-id="@p.Id" class="ur-nombre">@p.Nombre</a>
-                                    </span>
-                                </td>
-                                <td class="ur-num">@p.Correo</td>
-                                <td>@p.Tipo</td>
-                                <td class="text-end">
-                                    <span class="ur-acciones">
-                                        <a asp-action="Detalle" asp-route-id="@p.Id" class="ur-icon-btn" title="Ver detalle" aria-label="Ver detalle de @p.Nombre"><svg class="ur-icon"><use href="#i-eye" /></svg></a>
-                                        <button type="button" class="ur-icon-btn" title="Editar" aria-label="Editar @p.Nombre" data-demo="Editar profesores estará disponible cuando se conecte la base de datos."><svg class="ur-icon"><use href="#i-pencil" /></svg></button>
-                                    </span>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="ur-table-foot">
-                <p>Mostrando @pag.Desde–@pag.Hasta de @pag.TotalResultados resultados</p>
-                <partial name="_Paginacion" model="pag" />
-            </div>
+            <tr><td colspan="4" class="muted" style="text-align:center;padding:32px">No encontramos profesores con esa búsqueda. Prueba con otro nombre o correo.</td></tr>
         }
-    </section>
+        </tbody>
+    </table>
+
+    <div class="pie-tabla">
+        <span>Mostrando @Model.Desde-@Model.Hasta de @Model.Total resultados</span>
+        <nav class="paginacion" aria-label="Paginación">
+            <a asp-action="Index" asp-route-q="@Model.Busqueda" asp-route-pagina="@(Model.PaginaActual - 1)"
+               class="@(Model.PaginaActual <= 1 ? "is-disabled" : "")" aria-label="Anterior"><i class="bi bi-chevron-left"></i></a>
+            @for (var i = 1; i <= Model.TotalPaginas; i++)
+            {
+                <a asp-action="Index" asp-route-q="@Model.Busqueda" asp-route-pagina="@i"
+                   class="@(i == Model.PaginaActual ? "is-active" : "")"
+                   aria-current="@(i == Model.PaginaActual ? "page" : null)">@i</a>
+            }
+            <a asp-action="Index" asp-route-q="@Model.Busqueda" asp-route-pagina="@(Model.PaginaActual + 1)"
+               class="@(Model.PaginaActual >= Model.TotalPaginas ? "is-disabled" : "")" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></a>
+        </nav>
+    </div>
 </div>

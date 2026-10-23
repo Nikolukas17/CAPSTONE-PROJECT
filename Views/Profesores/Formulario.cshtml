@@ -1,0 +1,143 @@
+@using OfertaAcademica.Web.ViewModels.Profesores
+@using OfertaAcademica.Web.ViewModels.Shared
+@model ProfesorFormViewModel
+@{
+    var titulo = Model.EsNuevo ? "Nuevo profesor" : "Editar profesor";
+    ViewData["Title"] = titulo;
+}
+
+<nav class="migas" aria-label="Ruta de navegación">
+    <a asp-action="Index">Profesores</a>
+    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+    @if (!Model.EsNuevo && !string.IsNullOrWhiteSpace(Model.Nombre))
+    {
+        <a asp-action="Detalle" asp-route-id="@Model.Id">@Model.Nombre</a>
+        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+    }
+    <span aria-current="page">@titulo</span>
+</nav>
+
+<form asp-action="Guardar" method="post" id="formProfesor" class="form-asig" data-modo="editar">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="cabecera-detalle">
+        <h1 class="titulo-pagina">@titulo</h1>
+        <div class="fila-botones">
+            @if (Model.EsNuevo)
+            {
+                <a asp-action="Index" class="btn btn--secundario">Cancelar</a>
+            }
+            else
+            {
+                <a asp-action="Detalle" asp-route-id="@Model.Id" class="btn btn--secundario">Cancelar</a>
+            }
+            <button type="submit" class="btn btn--primario"><i class="bi bi-check-lg"></i> @(Model.EsNuevo ? "Crear profesor" : "Guardar cambios")</button>
+        </div>
+    </div>
+
+    <div asp-validation-summary="ModelOnly" class="alerta"></div>
+
+    <section class="card seccion" aria-labelledby="tituloDatos">
+        <div class="card__cab"><h2 id="tituloDatos">Datos del profesor</h2></div>
+        <table class="tabla tabla--cat tabla--campos">
+            <thead><tr><th scope="col">Campo</th><th scope="col">Valores</th></tr></thead>
+            <tbody>
+                <tr>
+                    <th scope="row"><label asp-for="Nombre"></label></th>
+                    <td>
+                        <input asp-for="Nombre" class="input" autocomplete="off" />
+                        <span asp-validation-for="Nombre" class="campo__error"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label asp-for="Correo"></label></th>
+                    <td>
+                        <input asp-for="Correo" type="email" class="input" autocomplete="off" placeholder="nombre@urosario.edu.co" />
+                        <span asp-validation-for="Correo" class="campo__error"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label asp-for="Telefono"></label></th>
+                    <td>
+                        <input asp-for="Telefono" type="tel" class="input" autocomplete="off" placeholder="Opcional" />
+                        <span asp-validation-for="Telefono" class="campo__error"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label asp-for="Tipo"></label></th>
+                    <td>
+                        <select asp-for="Tipo" asp-items="Model.Tipos" class="input">
+                            <option value="">Selecciona un tipo</option>
+                        </select>
+                        <span asp-validation-for="Tipo" class="campo__error"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label asp-for="Descripcion"></label></th>
+                    <td>
+                        <textarea asp-for="Descripcion" class="input" rows="3" placeholder="Opcional"></textarea>
+                        <span asp-validation-for="Descripcion" class="campo__error"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label asp-for="FotoUrl"></label></th>
+                    <td>
+                        <input asp-for="FotoUrl" type="url" class="input" autocomplete="off" placeholder="Opcional" />
+                        <span asp-validation-for="FotoUrl" class="campo__error"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="card seccion" aria-labelledby="tituloMaterias">
+        <div class="card__cab">
+            <h2 id="tituloMaterias">Materias que puede dictar</h2>
+            <span class="contador"><span data-contador-materias>@Model.MateriasSeleccionadas.Count</span> seleccionadas</span>
+        </div>
+        <div class="materias-barra">
+            <div class="buscador buscador--sm">
+                <i class="bi bi-search"></i>
+                <input type="search" data-filtro-materias placeholder="Filtrar por código o nombre..." aria-label="Filtrar materias" autocomplete="off" />
+            </div>
+        </div>
+        @if (Model.MateriasDisponibles.Count == 0)
+        {
+            <p class="vacio muted">Aún no hay asignaturas creadas para asignar.</p>
+        }
+        else
+        {
+            <ul class="materias-lista">
+                @foreach (var m in Model.MateriasDisponibles)
+                {
+                    <li class="materia-item" data-texto="@($"{m.Codigo} {m.Nombre}".ToLowerInvariant())">
+                        <label>
+                            <input type="checkbox" name="MateriasSeleccionadas" value="@m.Id" checked="@(Model.MateriasSeleccionadas.Contains(m.Id) ? "checked" : null)" />
+                            <span class="codigo">@m.Codigo</span>
+                            <strong>@m.Nombre</strong>
+                        </label>
+                    </li>
+                }
+            </ul>
+        }
+    </section>
+
+    <section class="card seccion" aria-labelledby="tituloDisp">
+        <div class="card__cab">
+            <h2 id="tituloDisp">Disponibilidad semanal</h2>
+            <div class="leyenda" aria-hidden="true">
+                <span class="l-disp"><i></i>Disponible</span>
+                <span class="l-ocup"><i></i>Ocupado</span>
+                <span class="l-nodisp"><i></i>No disponible</span>
+            </div>
+        </div>
+        <div class="card__cuerpo">
+            <partial name="_DisponibilidadGrid" model="new DisponibilidadGridViewModel { NombreCampo = nameof(Model.Disponibilidad), Estados = Model.Disponibilidad, Editable = true }" />
+            <p class="nota">Toca una franja para alternarla entre disponible y no disponible. Las franjas ocupadas ya están en la oferta académica y no se pueden cambiar aquí.</p>
+        </div>
+    </section>
+</form>
+
+@section Scripts {
+    <script src="~/js/catalogos.js" asp-append-version="true"></script>
+}

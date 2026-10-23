@@ -1,107 +1,100 @@
-@model OfertaAcademica.Web.ViewModels.Oferta.OfertaSemanaViewModel
-@using OfertaAcademica.Web.Services
+@using System.Globalization
+@model OfertaAcademica.Web.ViewModels.Oferta.OfertaAcademicaViewModel
 @{
     ViewData["Title"] = "Oferta Académica";
-    string[] dias = ["Lun", "Mar", "Mié", "Jue", "Vie"];
+    var es = new CultureInfo("es-CO");
+    var dias = new[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday };
+    DateTime Fecha(DayOfWeek d) => Model.InicioSemana.AddDays(((int)d + 6) % 7);
 }
 
-<div class="ur-page">
-    <header class="ur-page__head">
-        <h1 class="ur-h1">Oferta Académica</h1>
-        <p class="ur-lead">Revisa cómo quedó la programación de la semana. Toca una asignatura para ver su detalle o “más asignaturas” para ver todo lo que ocurre en esa franja.</p>
-    </header>
+<section>
+    <h1 class="titulo-pagina">Oferta Académica</h1>
 
-    <section class="ur-card" aria-labelledby="tituloVista">
-        <div class="ur-cal-bar">
+    <div class="card cal-card">
+        <header class="cal-head">
             <div>
-                <h2 class="ur-h2" id="tituloVista">Vista rápida de horarios</h2>
-                <span class="ur-muted">@Model.Titulo</span>
+                <h2>Vista rápida de horarios</h2>
+                <p>Semana @Model.Semana - Del @Model.InicioSemana.Day al @Fecha(DayOfWeek.Saturday).ToString("d 'de' MMMM, yyyy", es)</p>
             </div>
-            <button type="button" class="ur-btn ur-btn--outline" data-demo="La exportación a Excel se conectará cuando esté lista la base de datos.">
-                <svg class="ur-icon"><use href="#i-download" /></svg> Generar Excel
-            </button>
-        </div>
+            <div class="cal-semana">
+                <a class="cal-nav @(Model.Semana <= 1 ? "is-disabled" : "")" asp-action="Index" asp-route-semana="@(Model.Semana - 1)" aria-label="Semana anterior"><i class="bi bi-chevron-left"></i></a>
+                <span>Semana @Model.Semana</span>
+                <a class="cal-nav @(Model.Semana >= Model.TotalSemanas ? "is-disabled" : "")" asp-action="Index" asp-route-semana="@(Model.Semana + 1)" aria-label="Semana siguiente"><i class="bi bi-chevron-right"></i></a>
+            </div>
+        </header>
 
-        <div class="ur-leyenda" style="padding:.9rem 1.5rem 0" aria-label="Programas">
-            <span><i style="background:#fbe9ec;border-color:#c4344d"></i>MACC</span>
-            <span><i style="background:#fff3d9;border-color:#d9a021"></i>MA02</span>
-            <span><i style="background:#e3f4ea;border-color:#3a9a68"></i>IS01</span>
-            <span><i style="background:#e8eefb;border-color:#4f73c4"></i>IM01</span>
-        </div>
-
-        <div class="ur-cal-scroll">
-            <div class="ur-cal" id="calendario" data-url-detalle="@Url.Action("Detalle", "Asignaturas")">
-                <div></div>
-                @for (var d = 0; d < dias.Length; d++)
+        <div class="cal-scroll">
+            <div class="cal">
+                <div class="cal-esquina"></div>
+                @foreach (var d in dias)
                 {
-                    <div class="ur-cal__dia">@dias[d]<small>@Model.NumerosDia[d]</small></div>
+                    <div class="cal-dia"><span>@Fecha(d).ToString("ddd", es)</span><strong>@Fecha(d).Day</strong></div>
                 }
 
-                @foreach (var hora in Model.Horas)
+                @foreach (var h in Model.Franjas)
                 {
-                    <div class="ur-cal__hora">@($"{hora}:00")</div>
-                    @for (var d = 0; d < dias.Length; d++)
+                    <div class="cal-hora">@($"{h}:00")</div>
+                    @foreach (var d in dias)
                     {
-                        var enFranja = Model.Clases.Where(c => c.Dia == d && c.Hora == hora).ToList();
-                        <div class="ur-cal__celda">
-                            @if (enFranja.Count > 0)
+                        var ses = Model.EnFranja(d, h);
+                        <div class="cal-celda">
+                            @if (ses.Count > 0)
                             {
-                                var principal = enFranja[0];
-                                var indice = Model.Clases.IndexOf(principal);
-                                <div class="ur-clase ur-clase--@principal.Programa">
-                                    <button type="button" class="ur-clase__nombre" data-clase="@indice">@principal.Nombre</button>
-                                    <span class="ur-clase__salon">@principal.Salon</span>
-                                    @if (enFranja.Count > 1)
+                                var p = ses[0];
+                                <button type="button" class="franja @p.Color"
+                                        data-dia="@((int)d)" data-hora="@h" data-fecha="@Fecha(d).ToString("yyyy-MM-dd")">
+                                    <strong>@p.Nombre</strong>
+                                    <span>@p.Salon</span>
+                                    @if (ses.Count > 1)
                                     {
-                                        <button type="button" class="ur-clase__mas" data-franja-dia="@d" data-franja-hora="@hora">
-                                            +@(enFranja.Count - 1) asignatura@(enFranja.Count - 1 == 1 ? "" : "s") en esta franja
-                                        </button>
+                                        <small>+@(ses.Count - 1) @(ses.Count - 1 == 1 ? "asignatura" : "asignaturas") en esta franja</small>
                                     }
-                                </div>
+                                </button>
                             }
                         </div>
                     }
                 }
             </div>
         </div>
-    </section>
-</div>
 
-<div class="modal fade ur-modal" id="modalClase" tabindex="-1" aria-labelledby="tituloClase" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="max-width: 520px;">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div data-vista="franja" hidden>
-                    <h2 id="tituloFranja" style="text-align:left"></h2>
-                    <p data-franja-resumen style="text-align:left;margin-bottom:1rem"></p>
-                    <ul class="ur-franja-lista" data-franja-lista></ul>
-                    <div class="ur-modal__botones"><button type="button" class="ur-btn ur-btn--ghost" data-bs-dismiss="modal">Cerrar</button></div>
-                </div>
-                <div data-vista="detalle" hidden>
-                    <button type="button" class="ur-volver" data-volver hidden>
-                        <svg class="ur-icon"><use href="#i-arrow-left" /></svg> <span data-volver-texto></span>
-                    </button>
-                    <h2 id="tituloClase" style="text-align:left" data-det-nombre></h2>
-                    <p style="text-align:left;margin:0" data-det-codigo></p>
-                    <dl class="ur-det">
-                        <div><dt>Horario</dt><dd data-det-horario></dd></div>
-                        <div><dt>Salón</dt><dd data-det-salon></dd></div>
-                        <div><dt>Créditos</dt><dd data-det-creditos></dd></div>
-                        <div><dt>Cupos</dt><dd data-det-cupos></dd></div>
-                        <div><dt>Programa</dt><dd data-det-programa></dd></div>
-                        <div><dt>Profesor</dt><dd data-det-profesor></dd></div>
-                    </dl>
-                    <div class="ur-modal__botones">
-                        <button type="button" class="ur-btn ur-btn--ghost" data-bs-dismiss="modal">Cerrar</button>
-                        <a class="ur-btn ur-btn--primary" data-det-enlace href="#">Ver asignatura completa</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <footer class="cal-foot"><button type="button" class="btn-link">Generar Excel <i class="bi bi-arrow-right"></i></button></footer>
     </div>
-</div>
+</section>
 
+<!-- Franja horaria: lista de asignaturas -->
+<dialog id="dlg-franja" class="dlg dlg--ancho" aria-labelledby="fr-titulo" data-duracion="@Model.DuracionFranja">
+    <header class="fr-head">
+        <div>
+            <small id="fr-fecha" class="fr-fecha"></small>
+            <h3 id="fr-titulo"></h3>
+            <p id="fr-sub" class="fr-sub"></p>
+        </div>
+        <button type="button" class="fr-x" data-close aria-label="Cerrar"><i class="bi bi-x-lg"></i></button>
+    </header>
+    <ul id="fr-lista" class="fr-lista"></ul>
+    <p class="fr-hint">Selecciona una asignatura para ver su detalle.</p>
+</dialog>
+
+<!-- Detalle de asignatura -->
+<dialog id="dlg-detalle" class="dlg" aria-labelledby="det-nombre" data-url-detalle="@Url.Action("Detalle", "Asignaturas", new { id = "__ID__" })">
+    <header><span id="det-horario" class="chip"></span></header>
+    <h3 id="det-nombre"></h3>
+    <div class="det-prof"><span id="det-ini" class="det-avatar"></span><div><small>Profesor</small><strong id="det-prof"></strong></div></div>
+    <dl class="det-grid">
+        <div><dt>Código</dt><dd id="det-cod"></dd></div>
+        <div><dt>Cupo</dt><dd id="det-cupo"></dd></div>
+        <div><dt>Horario</dt><dd id="det-dia"></dd></div>
+        <div><dt>Salón</dt><dd id="det-salon"></dd></div>
+        <div><dt>Grupo</dt><dd id="det-grupo"></dd></div>
+        <div><dt>Programa</dt><dd id="det-prog"></dd></div>
+    </dl>
+    <footer class="dlg-pie">
+        <button type="button" class="btn btn--secundario" data-close>Cerrar</button>
+        <a id="det-link" class="btn btn--primario" href="#">Ver asignatura completa</a>
+    </footer>
+</dialog>
+
+<script type="application/json" id="oferta-data">@Json.Serialize(Model.Sesiones)</script>
 @section Scripts {
-    <script>window.OFERTA_CLASES = @Html.Raw(Json.Serialize(Model.Clases));</script>
-    <script src="~/js/oferta.js" asp-append-version="true"></script>
+    <script src="~/js/oferta-calendario.js" asp-append-version="true"></script>
 }

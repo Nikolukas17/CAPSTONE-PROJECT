@@ -42,7 +42,17 @@ public class AccountController : Controller
     }
 
     [HttpGet]
-    public IActionResult Perfil() => View();
+    public IActionResult Perfil()
+    {
+        return View(new PerfilViewModel
+        {
+            Nombre = "Jeimy Alexandra Saenz Marulanda",
+            Telefono = "+57 318 311 2441",
+            Correo = "jeimy.saenz@urosario.edu.co",
+            Cargo = "COORDINADOR DE PROGRAMAS • ESCUELA CIENCIAS E INGENIERÍA",
+            FotoUrl = null // p. ej. "/img/perfil.jpg"
+        });
+    }
 
     [HttpPost, ValidateAntiForgeryToken]
     public IActionResult CerrarSesion() => RedirectToAction("Index", "Home");

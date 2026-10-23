@@ -1,19 +1,27 @@
-@* Layout de inicio de sesión, registro y recuperación de contraseña. *@
-@{ Layout = "_LayoutBase"; }
-
-<main id="contenido" class="ur-auth">
-    <aside class="ur-auth__marca" aria-hidden="true">
-        <partial name="_Logo" model="true" />
-        <p>Una oferta académica clara, sin cruces y lista a tiempo.</p>
-    </aside>
-    <section class="ur-auth__panel">
-        <div class="ur-auth__caja">
-            <a asp-controller="Home" asp-action="Index" class="ur-auth__logo" aria-label="Volver al inicio"><partial name="_Logo" model="false" /></a>
-            @RenderBody()
-        </div>
-    </section>
-</main>
-
-@section Scripts {
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Universidad del Rosario</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    @RenderBody()
+    <script>
+        document.querySelectorAll('[data-toggle-pass]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var input = document.getElementById(btn.dataset.togglePass);
+                var show = input.type === 'password';
+                input.type = show ? 'text' : 'password';
+                btn.setAttribute('aria-label', show ? 'Ocultar contraseña' : 'Mostrar contraseña');
+            });
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
-}
+</body>
+</html>

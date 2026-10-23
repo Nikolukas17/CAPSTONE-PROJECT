@@ -1,12 +1,71 @@
-﻿@* Layout de la aplicación (usuario con sesión): barra de navegación + contenido + pie. *@
-@{ Layout = "_LayoutBase"; }
-
-<partial name="_Navbar" />
-<main id="contenido" class="ur-main">
-    @RenderBody()
-</main>
-<partial name="_Footer" />
-
-@section Scripts {
-    @await RenderSectionAsync("Scripts", required: false)
+@{
+    var ctrl = (ViewContext.RouteData.Values["controller"]?.ToString() ?? "").ToLowerInvariant();
+    var accion = (ViewContext.RouteData.Values["action"]?.ToString() ?? "").ToLowerInvariant();
+    var enPerfil = ctrl == "account" && accion == "perfil";
+    var items = new[]
+    {
+        (Texto: "Inicio",           Controller: "Dashboard",        Key: "dashboard"),
+        (Texto: "Oferta Académica", Controller: "OfertaAcademica", Key: "ofertaacademica"),
+        (Texto: "Salones",          Controller: "Salones",         Key: "salones"),
+        (Texto: "Asignaturas",      Controller: "Asignaturas",     Key: "asignaturas"),
+        (Texto: "Profesores",       Controller: "Profesores",      Key: "profesores"),
+    };
 }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Sistema de Gestión de Horarios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar__inner">
+            <a asp-controller="Dashboard" asp-action="Index" class="brand">
+                <img src="~/img/logo-rosario.svg" alt="Universidad del Rosario" />
+            </a>
+            <nav class="nav" aria-label="Principal">
+                @foreach (var i in items)
+                {
+                    <a asp-controller="@i.Controller" asp-action="Index"
+                       class="nav__link @(ctrl == i.Key ? "is-active" : "")"
+                       aria-current="@(ctrl == i.Key ? "page" : null)">@i.Texto</a>
+                }
+                <a asp-controller="Account" asp-action="Perfil" class="nav__avatar" aria-label="Mi cuenta">
+                    <i class="bi bi-person"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page @(ViewData["AnchoCompleto"] is true ? "page--flush" : "")">@RenderBody()</main>   
+
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__brand">
+                <img src="~/img/logo-rosario-blanco.svg" alt="Universidad del Rosario" />
+                <div>
+                    <strong>Sistema de Gestión de Horarios</strong>
+                    <span>Escuela de Ciencias e Ingeniería</span>
+                </div>
+            </div>
+            <div class="footer__col">
+                <h4>Síguenos</h4>
+                <div class="footer__social">
+                    <i class="bi bi-facebook"></i><i class="bi bi-twitter"></i><i class="bi bi-instagram"></i>
+                </div>
+                <span>@@urosario.edu.co</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,34 +1,35 @@
-@model OfertaAcademica.Web.ViewModels.Account.LoginViewModel
+﻿@model OfertaAcademica.Web.ViewModels.Account.LoginViewModel
 @{
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
     ViewData["Title"] = "Iniciar sesión";
-    Layout = "_LayoutAuth";
 }
+<div class="auth">
+    <aside class="auth__foto"><img src="~/img/logo-rosario-blanco.svg" alt="Universidad del Rosario" /></aside>
+    <section class="auth__panel">
+        <form class="auth__card" asp-action="Login" method="post" novalidate>
+            <h1>Bienvenido</h1>
+            <p class="auth__sub">El Sistema de Gestión Académica<br />Escuela de Ciencias e Ingeniería</p>
 
-<h1>Bienvenido</h1>
-<p class="ur-sub">Al Sistema de Gestión Académica de la Escuela de Ciencias e Ingeniería</p>
+            <div asp-validation-summary="ModelOnly" class="alerta"></div>
 
-@if (TempData["Exito"] is string ok)
-{
-    <div class="ur-alert ur-alert--ok" role="status">@ok</div>
-}
+            <div class="campo">
+                <label asp-for="Correo"></label>
+                <input asp-for="Correo" type="Correo" placeholder="nombre@urosario.edu.co" autocomplete="username" />
+                <span asp-validation-for="Correo" class="campo__error"></span>
+            </div>
+            <div class="campo">
+                <label asp-for="Contrasena"></label>
+                <div class="campo__pass">
+                    <input asp-for="Contrasena" placeholder="••••••••••••" autocomplete="current-password" />
+                    <button type="button" class="campo__ojo" data-toggle-pass="Contrasena" aria-label="Mostrar contraseña"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+                <span asp-validation-for="Contrasena" class="campo__error"></span>
+            </div>
+            <div class="auth__fila"><a asp-action="Olvide">¿Olvidaste tu contraseña?</a></div>
 
-<form asp-action="Login" method="post">
-    <div class="ur-field">
-        <label asp-for="Correo"></label>
-        <input asp-for="Correo" class="ur-input" type="email" placeholder="nombre@urosario.edu.co" autocomplete="username" />
-        <span asp-validation-for="Correo" class="ur-error"></span>
-    </div>
-    <div class="ur-field">
-        <label asp-for="Contrasena"></label>
-        <div class="ur-pass">
-            <input asp-for="Contrasena" class="ur-input" autocomplete="current-password" />
-            <button type="button" data-ver-clave aria-label="Mostrar contraseña"><svg class="ur-icon"><use href="#i-eye" /></svg></button>
-        </div>
-        <span asp-validation-for="Contrasena" class="ur-error"></span>
-        <a asp-action="Olvide" class="ur-hint" style="align-self:flex-end">¿Olvidaste tu contraseña?</a>
-    </div>
-    <button type="submit" class="ur-btn ur-btn--primary ur-btn--block">Iniciar sesión</button>
-</form>
-<p class="ur-auth__pie">¿No tienes cuenta? <a asp-action="Registro">Regístrate</a></p>
+            <button type="submit" class="btn btn--primario auth__enviar">Iniciar sesión</button>
+            <p class="auth__pie">¿No tienes cuenta? <a asp-action="Registro">Regístrate</a></p>
+        </form>
+    </section>
+</div>
 
-@section Scripts { <partial name="_ValidationScriptsPartial" /> }

@@ -1,20 +1,32 @@
+@using OfertaAcademica.Web.ViewModels.Account
+@model PerfilViewModel
 @{
-    ViewData["Title"] = "Mi perfil";
+    ViewData["Title"] = "Mi cuenta";
 }
 
-<div class="ur-page">
-    <section class="ur-card ur-perfil" aria-label="Datos del perfil">
-        <span class="ur-avatar ur-avatar--lg" aria-hidden="true">J</span>
-        <div class="ur-perfil__datos">
-            <h1>Jeimy Alexandra Saenz Marulanda</h1>
-            <dl>
-                <dt>Teléfono</dt><dd>+57 318 311 2441</dd>
-                <dt>Correo</dt><dd>jeimy.saenz@urosario.edu.co</dd>
-                <dt>Cargo</dt><dd>Coordinador de programas · Escuela de Ciencias e Ingeniería</dd>
-            </dl>
-        </div>
-        <form asp-action="CerrarSesion" method="post">
-            <button type="submit" class="ur-btn ur-btn--outline"><svg class="ur-icon"><use href="#i-logout" /></svg> Cerrar sesión</button>
-        </form>
-    </section>
-</div>
+<section class="card cuenta" aria-labelledby="cuenta-nombre">
+    <div class="cuenta__foto">
+        @if (!string.IsNullOrEmpty(Model.FotoUrl))
+        {
+            <img src="@Model.FotoUrl" alt="Foto de @Model.Nombre" />
+        }
+        else
+        {
+            <i class="bi bi-person" aria-hidden="true"></i>
+        }
+    </div>
+
+    <div class="cuenta__datos">
+        <h1 id="cuenta-nombre">@Model.Nombre</h1>
+        <p><strong>Teléfono:</strong> @Model.Telefono</p>
+        <p><strong>Correo:</strong> <a href="mailto:@Model.Correo">@Model.Correo</a></p>
+        <p><strong>Cargo:</strong> <span class="cuenta__cargo">@Model.Cargo</span></p>
+    </div>
+
+    <form asp-controller="Account" asp-action="CerrarSesion" method="post" class="cuenta__salir-form">
+        <button type="submit" class="cuenta__salir">
+            <span class="cuenta__salir-ico"><i class="bi bi-box-arrow-left" aria-hidden="true"></i></span>
+            Cerrar Sesión
+        </button>
+    </form>
+</section>

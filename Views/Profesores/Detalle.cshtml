@@ -1,75 +1,92 @@
-@model OfertaAcademica.Web.Models.Entities.Profesor
+@using OfertaAcademica.Web.ViewModels.Profesores
+@model ProfesorDetalleViewModel
 @{
     ViewData["Title"] = Model.Nombre;
 }
 
-<div class="ur-page">
-    <nav class="ur-crumbs" aria-label="Ruta de navegación">
-        <a asp-action="Index">Profesores</a><span aria-hidden="true">/</span><span aria-current="page">@Model.Nombre</span>
-    </nav>
+<nav class="migas" aria-label="Ruta de navegación">
+    <a asp-action="Index">Profesores</a>
+    <i class="bi bi-chevron-right"></i>
+    <span>@Model.Nombre</span>
+</nav>
 
-    <section class="ur-card ur-prof" aria-label="Datos del profesor">
-        <span class="ur-avatar ur-avatar--lg" aria-hidden="true">@Model.Nombre[0]</span>
-        <div class="ur-prof__datos">
-            <h1>@Model.Nombre</h1> <span class="ur-badge ur-badge--activo" style="margin-left:.5rem">Activo</span>
+<section class="card perfil">
+    <div class="perfil__foto">
+        @if (!string.IsNullOrEmpty(Model.FotoUrl)) { <img src="@Model.FotoUrl" alt="Foto de @Model.Nombre" /> }
+        else { <i class="bi bi-person"></i> }
+    </div>
+    <div class="perfil__fila">
+        <div>
+            <h1>@Model.Nombre</h1>
             <p>Teléfono: @Model.Telefono</p>
-            <p>Profesor de @Model.Tipo</p>
-            <p>@Model.Perfil</p>
+            <p>@Model.Tipo</p>
+            <p>@Model.Descripcion</p>
         </div>
-        <button type="button" class="ur-btn ur-btn--outline" data-bs-toggle="modal" data-bs-target="#modalInactivarProfesor">Inactivar profesor</button>
-    </section>
-
-    <section class="ur-card" aria-labelledby="tituloMaterias">
-        <div class="ur-card__head"><h2 class="ur-h2" id="tituloMaterias">Materias que puede dictar</h2></div>
-        <div class="ur-card__body" style="padding-left:0;padding-right:0;padding-bottom:0">
-            @if (Model.Materias.Count == 0)
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:12px">
+            <span class="estado @(Model.Activo ? "" : "estado--inactivo")">@(Model.Activo ? "Activo" : "Inactivo")</span>
+            @if (Model.Activo)
             {
-                <div class="ur-vacio" style="padding-top:1rem"><p>Este profesor aún no tiene materias asignadas.</p></div>
+                <button type="button" class="btn btn--secundario" data-dialog-open="dlg-inactivar">Inactivar</button>
+                <a asp-action="Editar" asp-route-id="@Model.Id" class="btn btn--secundario"><i class="bi bi-pencil-square"></i> Editar</a>
             }
-            else
-            {
-                <div class="ur-table-wrap">
-                    <table class="ur-table">
-                        <thead><tr><th scope="col">Código</th><th scope="col">Nivel</th><th scope="col">Materia</th></tr></thead>
-                        <tbody>
-                            @foreach (var m in Model.Materias)
-                            {
-                                <tr><td class="ur-num">@m.Codigo</td><td class="ur-num">@m.Nivel</td><td><strong>@m.Nombre</strong></td></tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            }
-        </div>
-    </section>
-
-    <section class="ur-card" aria-labelledby="tituloDispProf">
-        <div class="ur-card__head">
-            <h2 class="ur-h2" id="tituloDispProf">Disponibilidad semanal</h2>
-            <div class="ur-leyenda" aria-hidden="true">
-                <span class="l-disp"><i></i>Disponible</span><span class="l-ocup"><i></i>Ocupado</span><span class="l-nodisp"><i></i>No disponible</span>
-            </div>
-        </div>
-        <div class="ur-card__body">
-            <partial name="_DisponibilidadGrid" model="new DisponibilidadGridViewModel { Estados = Model.Disponibilidad, Editable = false }" />
-        </div>
-    </section>
-</div>
-
-<div class="modal fade ur-modal" id="modalInactivarProfesor" tabindex="-1" aria-labelledby="tituloInactivarProfesor" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="max-width: 440px;">
-        <div class="modal-content">
-            <form method="post" asp-action="Inactivar" asp-route-id="@Model.Id">
-                <div class="modal-body">
-                    <div class="ur-modal__icono"><svg class="ur-icon"><use href="#i-alert" /></svg></div>
-                    <h2 id="tituloInactivarProfesor">¿Inactivar a @Model.Nombre?</h2>
-                    <p>Dejará de estar disponible para asignar asignaturas en la oferta académica. Sus registros y su historial se conservan.</p>
-                    <div class="ur-modal__botones">
-                        <button type="button" class="ur-btn ur-btn--ghost" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="ur-btn ur-btn--primary">Sí, inactivar</button>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
-</div>
+</section>
+
+<section class="card seccion">
+    <h2 class="card__titulo">Materias que puede dictar</h2>
+    <table class="tabla">
+        <thead><tr><th>CÓDIGO</th><th>NIVEL</th><th>MATERIA</th></tr></thead>
+        <tbody>
+        @foreach (var m in Model.Materias)
+        {
+            <tr>
+                <td class="codigo">@m.Codigo</td>
+                <td class="muted">@(string.IsNullOrEmpty(m.Nivel) ? "N/A" : m.Nivel)</td>
+                <td><strong>@m.Materia</strong></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</section>
+
+<section class="card seccion">
+    <h2 class="card__titulo">Disponibilidad semanal</h2>
+    <div class="disp">
+        <div class="disp__grid">
+            <div class="celda celda--cab">HORARIO</div>
+            @foreach (var d in ProfesorDetalleViewModel.Dias)
+            {
+                <div class="celda celda--cab">@d.ToUpperInvariant()</div>
+            }
+            @for (var f = 0; f < ProfesorDetalleViewModel.Franjas.Length; f++)
+            {
+                <div class="celda celda--cab">@ProfesorDetalleViewModel.Franjas[f]</div>
+                @for (var d = 0; d < ProfesorDetalleViewModel.Dias.Length; d++)
+                {
+                    var ok = Model.Disponibilidad[f][d];
+                    <div class="celda @(ok ? "celda--si" : "")">@(ok ? "Disponible" : "No disponible")</div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<dialog id="dlg-inactivar" class="modal" aria-labelledby="dlg-titulo">
+    <form asp-action="Inactivar" asp-route-id="@Model.Id" method="post">
+        <div class="modal__icono"><i class="bi bi-exclamation"></i></div>
+        <h2 id="dlg-titulo">¿Estás seguro de inactivar a<br />@Model.Nombre?</h2>
+        <p>El profesor dejará de estar disponible para la asignación de asignaturas en la oferta académica. Sus registros e historial previo se mantendrán guardados.</p>
+        <div class="modal__botones">
+            <button type="button" class="btn btn--secundario" data-dialog-close>Cancelar</button>
+            <button type="submit" class="btn btn--primario">Confirmar</button>
+        </div>
+    </form>
+</dialog>
+
+@section Scripts {
+    @if (ViewBag.AbrirInactivar == true)
+    {
+        <script>document.getElementById('dlg-inactivar')?.showModal();</script>
+    }
+}

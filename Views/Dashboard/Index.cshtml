@@ -1,20 +1,28 @@
+@model OfertaAcademica.Web.ViewModels.Dashboard.DashboardViewModel
 @{
     ViewData["Title"] = "Inicio";
-    var nombre = "Jeimy Alexandra"; // TODO: tomar del usuario autenticado
+    ViewData["AnchoCompleto"] = true;
 }
 
-<section class="ur-hero">
-    <div class="ur-hero__txt">
-        <h1 class="ur-h1">¡Bienvenida, @nombre!</h1>
-        <p>Desde aquí puedes armar la oferta académica del semestre, revisar la disponibilidad de salones y profesores, y mantener al día el catálogo de asignaturas.</p>
-        <div class="ur-hero__cta">
-            <a asp-controller="OfertaAcademica" asp-action="Index" class="ur-btn ur-btn--primary">Ver oferta académica</a>
-            <a asp-controller="Asignaturas" asp-action="Index" class="ur-btn ur-btn--ghost">Ir a asignaturas</a>
-        </div>
+<section class="hero">
+    <div class="hero__texto">
+        <span class="hero__etiqueta">SISTEMA DE GESTIÓN DE HORARIOS</span>
+        <h1>¡Bienvenida, <strong>@Model.NombreUsuario!</strong></h1>
+        <p>Proyecto de Capstone que apoya la creación de la oferta académica de la Escuela de Ciencias e Ingeniería, a partir de la integración de información de asignaturas, profesores, estudiantes y salones, facilitando la planeación cada semestre.</p>
     </div>
-    <div class="ur-hero__arte" role="img" aria-label="Arcos del claustro de la Universidad del Rosario">
-        <p>Semestre en planeación: revisa los cruces antes de publicar.</p>
-    </div>
+    <div class="hero__imagen" role="img" aria-label="Claustro de la Universidad del Rosario"></div>
 </section>
 
-<partial name="_ComoFunciona" />
+<section class="funciona">
+    <h2>¿Cómo funciona?</h2>
+    <div class="pasos">
+        @foreach (var p in Model.Pasos)
+        {
+            <article class="paso">
+                <div class="paso__icono @p.Tono"><i class="bi @p.Icono"></i></div>
+                <strong>@p.Titulo</strong>
+                <span>@p.Descripcion</span>
+            </article>
+        }
+    </div>
+</section>

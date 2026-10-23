@@ -1,72 +1,73 @@
-@model OfertaAcademica.Web.ViewModels.Salones.SalonListaViewModel
+@using OfertaAcademica.Web.ViewModels.Salones
+@model SalonListaViewModel
 @{
     ViewData["Title"] = "Salones";
     var pag = Model.Paginacion;
     var hayBusqueda = !string.IsNullOrWhiteSpace(pag.Busqueda);
 }
 
-<div class="ur-page">
-    <header class="ur-page__head">
-        <h1 class="ur-h1">Salones</h1>
-        <p class="ur-lead">Laboratorios y salas disponibles para programar la oferta, con su capacidad y equipos.</p>
-    </header>
+<h1 class="titulo-pagina">Salones</h1>
 
-    <section class="ur-card" aria-label="Listado de salones">
-        <div class="ur-toolbar">
-            <form method="get" asp-action="Index" class="ur-search" role="search">
-                <svg class="ur-icon"><use href="#i-search" /></svg>
-                <input type="search" name="q" value="@pag.Busqueda" placeholder="Buscar código o nombre del salón..." aria-label="Buscar salones" autocomplete="off" />
-                @if (hayBusqueda) { <a asp-action="Index" class="ur-search__clear" aria-label="Limpiar búsqueda">&times;</a> }
-            </form>
-            <button type="button" class="ur-btn ur-btn--primary" data-demo="Crear salones estará disponible cuando se conecte la base de datos.">
-                <svg class="ur-icon"><use href="#i-plus" /></svg> Nuevo salón
-            </button>
-        </div>
-
-        @if (Model.Items.Count == 0)
-        {
-            <div class="ur-vacio">
-                <h2>No encontramos salones para “@pag.Busqueda”</h2>
-                <p>Prueba con el código (por ejemplo L_001) o con parte del nombre.</p>
-                <a asp-action="Index" class="ur-btn ur-btn--ghost">Ver todos los salones</a>
-            </div>
-        }
-        else
-        {
-            <div class="ur-table-wrap">
-                <table class="ur-table">
-                    <caption class="visually-hidden">Salones disponibles</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Código</th><th scope="col">Nombre</th><th scope="col">Tipo</th>
-                            <th scope="col" class="text-center">Equipos</th><th scope="col" class="text-center">Capacidad</th>
-                            <th scope="col" class="text-end">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var s in Model.Items)
-                        {
-                            <tr>
-                                <td class="ur-num">@s.Codigo</td>
-                                <td><strong>@s.Nombre</strong></td>
-                                <td><span class="ur-badge @(s.Tipo == "Laboratorio" ? "ur-badge--electiva" : "ur-badge--complementaria")">@s.Tipo</span></td>
-                                <td class="text-center">@s.Equipos</td>
-                                <td class="text-center">@s.Capacidad</td>
-                                <td class="text-end">
-                                    <span class="ur-acciones">
-                                        <button type="button" class="ur-icon-btn" title="Editar" aria-label="Editar @s.Nombre" data-demo="Editar salones estará disponible cuando se conecte la base de datos."><svg class="ur-icon"><use href="#i-pencil" /></svg></button>
-                                        <button type="button" class="ur-icon-btn ur-icon-btn--peligro" title="Eliminar" aria-label="Eliminar @s.Nombre" data-demo="Eliminar salones estará disponible cuando se conecte la base de datos."><svg class="ur-icon"><use href="#i-trash" /></svg></button>
-                                    </span>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="ur-table-foot">
-                <p>Mostrando @pag.Desde–@pag.Hasta de @pag.TotalResultados resultados</p>
-                <partial name="_Paginacion" model="pag" />
-            </div>
-        }
-    </section>
+<div class="barra">
+    <form method="get" asp-action="Index" class="buscador" role="search">
+        <i class="bi bi-search"></i>
+        <input type="search" name="q" value="@pag.Busqueda" placeholder="Buscar código o nombre del salón..." aria-label="Buscar salones" autocomplete="off" />
+    </form>
+    <button type="button" class="btn btn--primario" data-demo="Crear salones estará disponible cuando se conecte la base de datos.">
+        <i class="bi bi-plus-lg"></i> Nuevo salón
+    </button>
 </div>
+
+<section class="card" aria-label="Listado de salones">
+    @if (Model.Items.Count == 0)
+    {
+        <div class="vacio">
+            <h2>No encontramos salones para “@pag.Busqueda”</h2>
+            <p>Prueba con el código (por ejemplo L_001) o con parte del nombre.</p>
+            <a asp-action="Index" class="btn btn--secundario">Ver todos los salones</a>
+        </div>
+    }
+    else
+    {
+        <table class="tabla tabla--cat">
+            <caption class="sr-only">Salones disponibles</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col" class="tc">Equipos</th>
+                    <th scope="col" class="tc">Capacidad</th>
+                    <th scope="col" class="tc">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model.Items)
+                {
+                    <tr>
+                        <td><strong>@s.Codigo</strong></td>
+                        <td><strong>@s.Nombre</strong></td>
+                        <td>@s.Tipo.ToUpperInvariant()</td>
+                        <td class="tc">@s.Equipos</td>
+                        <td class="tc">@s.Capacidad</td>
+                        <td class="tc">
+                            <span class="acciones">
+                                <button type="button" title="Ver" aria-label="Ver @s.Nombre" data-demo="Ver el detalle del salón estará disponible cuando se conecte la base de datos."><i class="bi bi-eye"></i></button>
+                                <button type="button" title="Editar" aria-label="Editar @s.Nombre" data-demo="Editar salones estará disponible cuando se conecte la base de datos."><i class="bi bi-pencil-square"></i></button>
+                                <button type="button" title="Eliminar" aria-label="Eliminar @s.Nombre" data-demo="Eliminar salones estará disponible cuando se conecte la base de datos."><i class="bi bi-trash"></i></button>
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="pie-tabla">
+            <span>Mostrando @pag.Desde-@pag.Hasta de @pag.TotalResultados resultados</span>
+            <partial name="_Paginacion" model="pag" />
+        </div>
+    }
+</section>
+
+@section Scripts {
+    <script src="~/js/catalogos.js" asp-append-version="true"></script>
+}

@@ -1,26 +1,30 @@
-@model OfertaAcademica.Web.ViewModels.Account.OlvideViewModel
+﻿@model OfertaAcademica.Web.ViewModels.Account.OlvideViewModel
 @{
-    ViewData["Title"] = "Recuperar contraseña";
-    Layout = "_LayoutAuth";
-    var enviado = ViewData["Enviado"] is true;
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+    ViewData["Title"] = "Olvidé mi contraseña";
 }
+<div class="auth">
+    <aside class="auth__foto"><img src="~/img/logo-rosario-blanco.svg" alt="Universidad del Rosario" /></aside>
+    <section class="auth__panel">
+        <form class="auth__card" asp-action="Olvide" method="post" novalidate>
+            <h1>Olvidé mi contraseña</h1>
+            <p class="auth__sub">Escribe tu correo institucional y te enviaremos un enlace para crear una nueva contraseña.</p>
 
-<h1>Olvidé mi contraseña</h1>
-<p class="ur-sub">Escribe tu correo institucional y te enviaremos el enlace para crear una nueva.</p>
+            @if (ViewBag.Enviado == true)
+            {
+                <div class="alerta" role="status">Listo, te enviamos el enlace a tu correo.</div>
+            }
 
-@if (enviado)
-{
-    <div class="ur-alert ur-alert--ok" role="status">Enviamos el enlace a @Model.Correo. Revisa tu bandeja de entrada y la carpeta de spam.</div>
-}
+            <div class="campo">
+                <label asp-for="Correo"></label>
+                <input asp-for="Correo" type="Correo" placeholder="nombre@urosario.edu.co" autocomplete="username" />
+                <span asp-validation-for="Correo" class="campo__error"></span>
+            </div>
 
-<form asp-action="Olvide" method="post">
-    <div class="ur-field">
-        <label asp-for="Correo"></label>
-        <input asp-for="Correo" class="ur-input" type="email" placeholder="nombre@urosario.edu.co" autocomplete="username" />
-        <span asp-validation-for="Correo" class="ur-error"></span>
-    </div>
-    <button type="submit" class="ur-btn ur-btn--primary ur-btn--block">Enviar enlace</button>
-</form>
-<p class="ur-auth__pie"><a asp-action="Login">Volver a iniciar sesión</a></p>
+            <button type="submit" class="btn btn--primario auth__enviar">Enviar</button>
+            <p class="auth__nota">Revisa tu bandeja de entrada o la carpeta de spam.</p>
+            <p class="auth__pie"><a asp-action="Login">Volver a iniciar sesión</a></p>
+        </form>
+    </section>
+</div>
 
-@section Scripts { <partial name="_ValidationScriptsPartial" /> }
