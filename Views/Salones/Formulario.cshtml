@@ -1,0 +1,92 @@
+@using OfertaAcademica.Web.ViewModels.Salones
+@model SalonFormViewModel
+@{
+    var titulo = Model.EsNuevo ? "Nuevo salón" : "Editar salón";
+    ViewData["Title"] = titulo;
+}
+
+<nav class="migas" aria-label="Ruta de navegación">
+    <a asp-action="Index">Salones</a>
+    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+    @if (!Model.EsNuevo)
+    {
+        <a asp-action="Detalle" asp-route-id="@Model.Codigo">@Model.Nombre</a>
+        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+    }
+    <span aria-current="page">@titulo</span>
+</nav>
+
+<form asp-action="Guardar" method="post" id="formSalon" class="form-asig">
+    <input type="hidden" asp-for="EsNuevo" />
+
+    <div class="cabecera-detalle">
+        <h1 class="titulo-pagina">@titulo</h1>
+        <div class="fila-botones">
+            @if (Model.EsNuevo)
+            {
+                <a asp-action="Index" class="btn btn--secundario">Cancelar</a>
+            }
+            else
+            {
+                <a asp-action="Detalle" asp-route-id="@Model.Codigo" class="btn btn--secundario">Cancelar</a>
+            }
+            <button type="submit" class="btn btn--primario"><i class="bi bi-check-lg"></i> @(Model.EsNuevo ? "Crear salón" : "Guardar cambios")</button>
+        </div>
+    </div>
+
+    <div asp-validation-summary="ModelOnly" class="alerta"></div>
+
+    <section class="card seccion" aria-labelledby="tituloDatos">
+        <div class="card__cab"><h2 id="tituloDatos">Datos del salón</h2></div>
+        <table class="tabla tabla--cat tabla--campos">
+            <thead><tr><th scope="col">Campo</th><th scope="col">Valores</th></tr></thead>
+            <tbody>
+                <tr>
+                    <th scope="row"><label asp-for="Codigo"></label></th>
+                    <td>
+                        @if (Model.EsNuevo)
+                        {
+                            <input asp-for="Codigo" class="input" autocomplete="off" placeholder="Por ejemplo L_006" />
+                        }
+                        else
+                        {
+                            <input asp-for="Codigo" class="input" readonly aria-describedby="notaCodigo" />
+                            <small id="notaCodigo" class="muted">El código no se puede cambiar.</small>
+                        }
+                        <span asp-validation-for="Codigo" class="campo__error"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label asp-for="Nombre"></label></th>
+                    <td>
+                        <input asp-for="Nombre" class="input" autocomplete="off" />
+                        <span asp-validation-for="Nombre" class="campo__error"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label asp-for="Tipo"></label></th>
+                    <td>
+                        <select asp-for="Tipo" asp-items="Model.Tipos" class="input">
+                            <option value="">Selecciona un tipo</option>
+                        </select>
+                        <span asp-validation-for="Tipo" class="campo__error"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label asp-for="Equipos"></label></th>
+                    <td>
+                        <input asp-for="Equipos" type="number" min="0" max="500" inputmode="numeric" class="input" />
+                        <span asp-validation-for="Equipos" class="campo__error"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label asp-for="Capacidad"></label></th>
+                    <td>
+                        <input asp-for="Capacidad" type="number" min="1" max="500" inputmode="numeric" class="input" />
+                        <span asp-validation-for="Capacidad" class="campo__error"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</form>
