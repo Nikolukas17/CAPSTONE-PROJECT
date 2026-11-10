@@ -8,14 +8,15 @@
 
 <h1 class="titulo-pagina">Salones</h1>
 
+@if (TempData["Exito"] is string ok) { <div class="alerta alerta--ok" role="status">@ok</div> }
+@if (TempData["Error"] is string err) { <div class="alerta" role="alert">@err</div> }
+
 <div class="barra">
     <form method="get" asp-action="Index" class="buscador" role="search">
         <i class="bi bi-search"></i>
         <input type="search" name="q" value="@pag.Busqueda" placeholder="Buscar código o nombre del salón..." aria-label="Buscar salones" autocomplete="off" />
     </form>
-    <button type="button" class="btn btn--primario" data-demo="Crear salones estará disponible cuando se conecte la base de datos.">
-        <i class="bi bi-plus-lg"></i> Nuevo salón
-    </button>
+    <a asp-action="Crear" class="btn btn--primario"><i class="bi bi-plus-lg"></i> Nuevo salón</a>
 </div>
 
 <section class="card" aria-label="Listado de salones">
@@ -52,9 +53,10 @@
                         <td class="tc">@s.Capacidad</td>
                         <td class="tc">
                             <span class="acciones">
-                                <button type="button" title="Ver" aria-label="Ver @s.Nombre" data-demo="Ver el detalle del salón estará disponible cuando se conecte la base de datos."><i class="bi bi-eye"></i></button>
-                                <button type="button" title="Editar" aria-label="Editar @s.Nombre" data-demo="Editar salones estará disponible cuando se conecte la base de datos."><i class="bi bi-pencil-square"></i></button>
-                                <button type="button" title="Eliminar" aria-label="Eliminar @s.Nombre" data-demo="Eliminar salones estará disponible cuando se conecte la base de datos."><i class="bi bi-trash"></i></button>
+                                <a asp-action="Detalle" asp-route-id="@s.Codigo" title="Ver" aria-label="Ver @s.Nombre"><i class="bi bi-eye"></i></a>
+                                <a asp-action="Editar" asp-route-id="@s.Codigo" title="Editar" aria-label="Editar @s.Nombre"><i class="bi bi-pencil-square"></i></a>
+                                <button type="button" title="Inactivar" aria-label="Inactivar @s.Nombre"
+                                        data-inactivar data-nombre="@s.Nombre" data-action="@Url.Action("Inactivar", new { id = s.Codigo })"><i class="bi bi-trash"></i></button>
                             </span>
                         </td>
                     </tr>
@@ -67,6 +69,18 @@
         </div>
     }
 </section>
+
+<dialog id="modalInactivar" class="modal" aria-labelledby="tituloInactivar">
+    <form id="formInactivar" method="post" asp-action="Inactivar" asp-route-id="0">
+        <div class="modal__icono"><i class="bi bi-exclamation-lg"></i></div>
+        <h2 id="tituloInactivar">¿Inactivar <span data-modal-nombre>este salón</span>?</h2>
+        <p>Dejará de estar disponible para programar la oferta académica. Su información y su historial se conservan.</p>
+        <div class="modal__botones">
+            <button type="button" class="btn btn--secundario" data-cerrar>Cancelar</button>
+            <button type="submit" class="btn btn--primario">Sí, inactivar</button>
+        </div>
+    </form>
+</dialog>
 
 @section Scripts {
     <script src="~/js/catalogos.js" asp-append-version="true"></script>

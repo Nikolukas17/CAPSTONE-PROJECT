@@ -7,4 +7,5 @@ public class Salon
     public string Tipo { get; set; } = "";
     public int Equipos { get; set; }
     public int Capacidad { get; set; }
+    public bool Activo { get; set; } = true;
 }

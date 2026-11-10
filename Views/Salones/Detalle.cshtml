@@ -1,0 +1,48 @@
+@model OfertaAcademica.Web.Models.Entities.Salon
+@{
+    ViewData["Title"] = Model.Nombre;
+}
+
+<nav class="migas" aria-label="Ruta de navegación">
+    <a asp-action="Index">Salones</a>
+    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+    <span aria-current="page">@Model.Nombre</span>
+</nav>
+
+@if (TempData["Exito"] is string ok) { <div class="alerta alerta--ok" role="status">@ok</div> }
+
+<div class="cabecera-detalle">
+    <h1 class="titulo-pagina">@Model.Nombre</h1>
+    <div class="fila-botones">
+        <button type="button" class="btn btn--secundario" data-dialog-open="dlg-inactivar">Inactivar</button>
+        <a asp-action="Editar" asp-route-id="@Model.Codigo" class="btn btn--primario"><i class="bi bi-pencil-square"></i> Editar</a>
+    </div>
+</div>
+
+<section class="card seccion" aria-labelledby="tituloDatos">
+    <div class="card__cab">
+        <h2 id="tituloDatos">Datos del salón</h2>
+        <span class="estado">Activo</span>
+    </div>
+    <table class="tabla tabla--cat tabla--campos">
+        <tbody>
+            <tr><th scope="row">Código</th><td><strong>@Model.Codigo</strong></td></tr>
+            <tr><th scope="row">Nombre</th><td>@Model.Nombre</td></tr>
+            <tr><th scope="row">Tipo</th><td>@Model.Tipo</td></tr>
+            <tr><th scope="row">Equipos</th><td>@Model.Equipos</td></tr>
+            <tr><th scope="row">Capacidad</th><td>@Model.Capacidad personas</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<dialog id="dlg-inactivar" class="modal" aria-labelledby="dlg-titulo">
+    <form asp-action="Inactivar" asp-route-id="@Model.Codigo" method="post">
+        <div class="modal__icono"><i class="bi bi-exclamation-lg"></i></div>
+        <h2 id="dlg-titulo">¿Inactivar el salón @Model.Nombre?</h2>
+        <p>Dejará de estar disponible para programar la oferta académica. Su información y su historial se conservan.</p>
+        <div class="modal__botones">
+            <button type="button" class="btn btn--secundario" data-dialog-close>Cancelar</button>
+            <button type="submit" class="btn btn--primario">Sí, inactivar</button>
+        </div>
+    </form>
+</dialog>
