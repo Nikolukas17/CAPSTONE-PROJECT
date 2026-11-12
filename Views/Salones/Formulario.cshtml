@@ -89,4 +89,19 @@
             </tbody>
         </table>
     </section>
+
+    <section class="card seccion" aria-labelledby="tituloDisponibilidad">
+        <div class="card__cab"><h2 id="tituloDisponibilidad">Disponibilidad semanal</h2></div>
+        <p class="muted">Selecciona las franjas de 30 minutos en las que el salón puede reservarse. Los horarios ocupados por proyecciones se respetan al generar una nueva oferta.</p>
+        @await Html.PartialAsync("_DisponibilidadGrid", new OfertaAcademica.Web.ViewModels.Shared.DisponibilidadGridViewModel
+        {
+            NombreCampo = "Disponibilidad",
+            Estados = Model.Disponibilidad,
+            Editable = true
+        })
+    </section>
 </form>
+
+@section Scripts {
+    <script src="~/js/catalogos.js" asp-append-version="true"></script>
+}

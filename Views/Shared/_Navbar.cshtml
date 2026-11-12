@@ -1,4 +1,4 @@
-﻿@{
+@{
     var actual = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
     var items = new (string Texto, string Controlador)[]
     {
@@ -25,8 +25,7 @@
             }
         </nav>
 
-        @* Inicial del usuario: reemplazar por los claims cuando exista autenticación. *@
-        <a class="ur-avatar" asp-controller="Account" asp-action="Perfil" aria-label="Mi perfil">J</a>
+        <a class="ur-avatar" asp-controller="Account" asp-action="Perfil" aria-label="Mi perfil">@((User.Identity?.Name ?? "U").Trim().FirstOrDefault().ToString().ToUpperInvariant())</a>
 
         <button class="ur-nav__toggle" type="button" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
             <svg class="ur-icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" /></svg>

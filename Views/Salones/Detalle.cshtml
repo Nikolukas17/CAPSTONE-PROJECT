@@ -35,6 +35,16 @@
     </table>
 </section>
 
+<section class="card seccion" aria-labelledby="tituloDisponibilidad">
+    <div class="card__cab"><h2 id="tituloDisponibilidad">Disponibilidad semanal</h2></div>
+    <p class="muted">Franjas de 30 minutos. Las celdas ocupadas corresponden a reservas registradas en las proyecciones guardadas.</p>
+    @await Html.PartialAsync("_DisponibilidadGrid", new OfertaAcademica.Web.ViewModels.Shared.DisponibilidadGridViewModel
+    {
+        Estados = Model.Disponibilidad,
+        Editable = false
+    })
+</section>
+
 <dialog id="dlg-inactivar" class="modal" aria-labelledby="dlg-titulo">
     <form asp-action="Inactivar" asp-route-id="@Model.Codigo" method="post">
         <div class="modal__icono"><i class="bi bi-exclamation-lg"></i></div>

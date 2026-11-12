@@ -1,0 +1,6416 @@
+{
+  "programs": [
+    {
+      "code": "MA02",
+      "name": "Matemáticas Aplicadas y Ciencias de la Computación"
+    },
+    {
+      "code": "MA03",
+      "name": "Matemáticas Aplicadas y Ciencias de la Computación"
+    },
+    {
+      "code": "ISE1",
+      "name": "Ingeniería de Sistemas Energéticos"
+    },
+    {
+      "code": "IIN1",
+      "name": "Ingeniería Industrial"
+    },
+    {
+      "code": "IET1",
+      "name": "Ingeniería Electrónica"
+    }
+  ],
+  "courses": [
+    {
+      "program": "MA02",
+      "code": "11310002",
+      "name": "PROGRAMACIÓN DE COMPUTADORES",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310025",
+      "name": "PENSAMIENTO MATEMÁTICO",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "60110260",
+      "name": "CÁTEDRA ROSARISTA, HISTORIA Y ACTUALIDAD",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "17210004",
+      "name": "ETICA",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "18610031",
+      "name": "ANÁLISIS DE TEXTOS",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310044",
+      "name": "PRECÁLCULO",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310001",
+      "name": "LÓGICA, TEORÍA DE NÚMEROS Y CONJUNTOS",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11210007",
+      "name": "CONSTITUCIÓN POLITICA E INSTRUCCIÓN CIVICA",
+      "semester": "2",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310003",
+      "name": "CÁLCULO 1",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "18610030",
+      "name": "ANÁLISIS DE ARGUMENTOS",
+      "semester": "2",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310011",
+      "name": "FUNDAMENTOS DE SISTEMAS DIGITALES",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310035",
+      "name": "LÓGICA PARA CIENCIAS DE LA COMPUTACIÓN",
+      "semester": "2",
+      "typology": "T",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320001",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310006",
+      "name": "ALGORITMOS Y ESTRUCTURAS DE DATOS",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310004",
+      "name": "CÁLCULO 2",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310017",
+      "name": "INGENIERÍA DE DATOS",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "18610032",
+      "name": "ESCRITURA DE ENSAYOS DE OPINIÓN",
+      "semester": "3",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310031",
+      "name": "PROBABILIDAD Y ESTADÍSTICA 1",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310032",
+      "name": "CORNERSTONE PROJECT",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310030",
+      "name": "ÁLGEBRA LINEAL",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "11310005",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310007",
+      "name": "TEORÍA DE LA COMPUTACIÓN",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310012",
+      "name": "OPTIMIZACIÓN",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310036",
+      "name": "CÁLCULO 3",
+      "semester": "4",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "11320003",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310033",
+      "name": "PROBABILIDAD Y ESTADÍSTICA 2",
+      "semester": "4",
+      "typology": "T",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320006",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310014",
+      "name": "TEORÍA DE GRAFOS",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310010",
+      "name": "ANÁLISIS REAL",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310013",
+      "name": "ANÁLISIS ESTADÍSTICO DE DATOS",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310041",
+      "name": "KEYSTONE PROJECT",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310038",
+      "name": "VARIABLE COMPLEJA",
+      "semester": "5",
+      "typology": "T",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320005",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310034",
+      "name": "ECUACIONES DIFERENCIALES",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "11310008",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310018",
+      "name": "ÁLGEBRA ABSTRACTA Y CODIFICACIÓN",
+      "semester": "6",
+      "typology": "T",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "11320009",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310040",
+      "name": "MODELING OF DYNAMICAL SYSTEMS",
+      "semester": "6",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310015",
+      "name": "ELEMENTOS DE FÍSICA",
+      "semester": "6",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310053",
+      "name": "GEOMETRÍA COMPUTACIONAL Y DIFERENCIAL",
+      "semester": "7",
+      "typology": "T",
+      "credits": 4,
+      "hours": 4,
+      "theory": 3,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310021",
+      "name": "ANÁLISIS NUMÉRICO Y COMPUTACIÓN CIENTÍFICA",
+      "semester": "7",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310020",
+      "name": "TOPOLOGÍA",
+      "semester": "7",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11010040",
+      "name": "MATHEMATICAL MODELING OF SYSTEMS IN NATURAL SCIENCES",
+      "semester": "8",
+      "typology": "T",
+      "credits": 2,
+      "hours": 4,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "11320008",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310028",
+      "name": "SEMINARIO DE GRADO",
+      "semester": "8",
+      "typology": "P",
+      "credits": 1,
+      "hours": 2,
+      "theory": 1,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310029",
+      "name": "CAPSTONE PROJECT",
+      "semester": "8",
+      "typology": "P",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310054",
+      "name": "TRABAJO DE GRADO 1",
+      "semester": "8",
+      "typology": "P",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310055",
+      "name": "TRABAJO DE GRADO 2",
+      "semester": "8",
+      "typology": "P",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310051",
+      "name": "PROCESAMIENTO DE SEÑALES",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310062",
+      "name": "INTELIGENCIA ARTIFICIAL: REPRESENTACIÓN Y SOLUCIÓN DE PROBLEMAS",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310063",
+      "name": "APRENDIZAJE AUTOMÁTICO DE MÁQUINA I",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320018",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310064",
+      "name": "INTRODUCCIÓN AL PROCESAMIENTO DEL LENGUAJE NATURAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320031",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310065",
+      "name": "INTRODUCCIÓN A LA VISIÓN POR COMPUTADORA",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320030",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310068",
+      "name": "COMPUTACIÓN EN LA NUBE",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310052",
+      "name": "REDES DE COMPUTADORES",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320007",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310066",
+      "name": "ANÁLISIS AVANZADO DE DATOS",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320015",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310067",
+      "name": "BIG DATA",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320016",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310061",
+      "name": "SEGURIDAD EN EL CICLO DE DESARROLLO DE SOFTWARE",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310059",
+      "name": "INTRODUCCIÓN A LA CRIPTOGRAFÍA",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310058",
+      "name": "ANÁLISIS FORENSE Y GESTIÓN DE INCIDENTES",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310049",
+      "name": "CIBERSEGURIDAD",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310047",
+      "name": "ELECTIVA HACKING ÉTICO",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "14610039",
+      "name": "MEDICIÓN Y ADMINISTRACIÓN DE RIESGOS",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "15210003",
+      "name": "CONTABILIDAD FINANCIERA",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "65510133",
+      "name": "MATEMÁTICAS Y PLANEACIÓN FINANCIERA",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "83020002",
+      "name": "TERRITORIO Y ESPACIO URBANO",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "32710001",
+      "name": "ENERGÍA Y MEDIO AMBIENTE",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "32610007",
+      "name": "FUNDAMENTOS DE MANUFACTURA DE SISTEMAS MECATRÓNICOS",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310081",
+      "name": "ANÁLISIS FUNCIONAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310080",
+      "name": "REDES DE DISPOSITIVOS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310079",
+      "name": "OPERATING SYSTEMS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 4,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310078",
+      "name": "TEORIA DE NÚMEROS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310077",
+      "name": "SENSORES Y ACTUADORES",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310076",
+      "name": "COMPENSA COMPLEMENTARIA_2 POR COTERMINAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 0,
+      "practice": 4,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310075",
+      "name": "COMPENSA COMPLEMENTARIA_1 POR COTERMINAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 0,
+      "practice": 4,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310073",
+      "name": "DESARROLLO MÓVIL",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320024",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310071",
+      "name": "GEOMETRÍA NO EUCLIDEANA",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310070",
+      "name": "DISEÑO Y ARQUITECTURA DE SOFTWARE",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320022",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310069",
+      "name": "INTRODUCCIÓN A LA COMPUTACIÓN CUÁNTICA",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310026",
+      "name": "INTRODUCCIÓN A BIG DATA",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310027",
+      "name": "CYBER-CO",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310046",
+      "name": "ELECTIVA DESARROLLO WEB",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310050",
+      "name": "COMPUTACIÓN PARALELA, CONCURRENTE Y DISTRIBUIDA",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA02",
+      "code": "11310060",
+      "name": "SEGURIDAD DE REDES",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320014",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA02",
+      "code": "11310023",
+      "name": "FÍSICA DE ONDAS Y VIBRACIONES",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310001",
+      "name": "LÓGICA, TEORÍA DE NÚMEROS Y CONJUNTOS",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310002",
+      "name": "PROGRAMACIÓN DE COMPUTADORES",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11310025",
+      "name": "PENSAMIENTO MATEMÁTICO",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310044",
+      "name": "PRECÁLCULO",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "17210004",
+      "name": "ETICA",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "60110260",
+      "name": "CÁTEDRA ROSARISTA, HISTORIA Y ACTUALIDAD",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "18610031",
+      "name": "ANÁLISIS DE TEXTOS",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "18610302",
+      "name": "LECTURA CRÍTICA PARA INGENIERÍA, CIENCIA Y TECNOLOGÍA",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11210007",
+      "name": "CONSTITUCIÓN POLITICA E INSTRUCCIÓN CIVICA",
+      "semester": "2",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310003",
+      "name": "CÁLCULO 1",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "73210064",
+      "name": "FÍSICA 1",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "11310015",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "18610304",
+      "name": "ESCRITURA ACADÉMICA PARA INGENIERÍA, CIENCIA Y TECNOLOGÍA",
+      "semester": "2",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320001",
+      "name": "LÓGICA PARA CIENCIAS DE LA COMPUTACIÓN",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 4,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "11310035",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11310006",
+      "name": "ALGORITMOS Y ESTRUCTURAS DE DATOS",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310004",
+      "name": "CÁLCULO 2",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310032",
+      "name": "CORNERSTONE PROJECT",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310030",
+      "name": "ÁLGEBRA LINEAL",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "11310005",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310017",
+      "name": "INGENIERÍA DE DATOS",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11310007",
+      "name": "TEORÍA DE LA COMPUTACIÓN",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320002",
+      "name": "ARQUITECTURA DEL COMPUTADOR",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11310012",
+      "name": "OPTIMIZACIÓN",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11320004",
+      "name": "DISEÑO Y ANÁLISIS DE ALGORITMOS",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320003",
+      "name": "CÁLCULO 3",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 2,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "11310036",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310031",
+      "name": "PROBABILIDAD Y ESTADÍSTICA 1",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310014",
+      "name": "TEORÍA DE GRAFOS",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310034",
+      "name": "ECUACIONES DIFERENCIALES",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "11310008",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11310010",
+      "name": "ANÁLISIS REAL",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320005",
+      "name": "VARIABLE COMPLEJA",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 4,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "11310038",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11320006",
+      "name": "PROBABILIDAD Y ESTADÍSTICA 2",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 4,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "11310033",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11320007",
+      "name": "REDES DE COMPUTADORES",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 4,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "11310052",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11310020",
+      "name": "TOPOLOGÍA",
+      "semester": "6",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310013",
+      "name": "ANÁLISIS ESTADÍSTICO DE DATOS",
+      "semester": "6",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11310041",
+      "name": "KEYSTONE PROJECT",
+      "semester": "6",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320008",
+      "name": "MATHEMATICAL MODELLING OF SYSTEMS IN NATURAL SCIENCES",
+      "semester": "6",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310021",
+      "name": "ANÁLISIS NUMÉRICO Y COMPUTACIÓN CIENTÍFICA",
+      "semester": "7",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11310079",
+      "name": "OPERATING SYSTEMS",
+      "semester": "7",
+      "typology": "T",
+      "credits": 3,
+      "hours": 4,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320009",
+      "name": "ÁLGEBRA ABSTRACTA Y CODIFICACIÓN",
+      "semester": "7",
+      "typology": "T",
+      "credits": 3,
+      "hours": 4,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "11310018",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320010",
+      "name": "GEOMETRÍA",
+      "semester": "8",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11310029",
+      "name": "CAPSTONE PROJECT",
+      "semester": "8",
+      "typology": "P",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310028",
+      "name": "SEMINARIO DE GRADO",
+      "semester": "8",
+      "typology": "P",
+      "credits": 1,
+      "hours": 2,
+      "theory": 1,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310054",
+      "name": "TRABAJO DE GRADO 1",
+      "semester": "8",
+      "typology": "P",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310055",
+      "name": "TRABAJO DE GRADO 2",
+      "semester": "8",
+      "typology": "P",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310081",
+      "name": "ANÁLISIS FUNCIONAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320026",
+      "name": "TEORÍA DE LA MEDIDA",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11310078",
+      "name": "TEORIA DE NÚMEROS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320025",
+      "name": "ADVANCED MODELING OF DYNAMIC SYSTEMS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320030",
+      "name": "INTRODUCCIÓN A LA VISIÓN POR COMPUTADORA",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "11310065",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320031",
+      "name": "INTRODUCCIÓN AL PROCESAMIENTO DEL LENGUAJE NATURAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 4,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "11310064",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11320021",
+      "name": "APLICACIONES DE INTELIGENCIA ARTIFICIAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320019",
+      "name": "REPRESENTACIÓN Y SOLUCIÓN AUTOMÁTICA DE PROBLEMAS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320018",
+      "name": "APRENDIZAJE AUTOMÁTICO DE MÁQUINAS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320022",
+      "name": "DISEÑO Y ARQUITECTURA DE SOFTWARE",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "11310070",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320023",
+      "name": "DESARROLLO WEB",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 4,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11320024",
+      "name": "DESARROLLO MÓVIL",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 4,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "11310073",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11320017",
+      "name": "COMPUTACIÓN EN LA NUBE",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 4,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11320015",
+      "name": "ANÁLISIS AVANZADO DE DATOS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 4,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "11310066",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11320016",
+      "name": "BIG DATA",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 4,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "11310067",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11320011",
+      "name": "HACKING ÉTICO",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 4,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11320014",
+      "name": "SEGURIDAD DE REDES",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 4,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "11310060",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11320012",
+      "name": "INTRODUCCIÓN A LA CRIPTOGRAFÍA",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 4,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "MA03",
+      "code": "11320013",
+      "name": "SEGURIDAD EN EL CICLO DE DESARROLLO DE SOFTWARE",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "32510008",
+      "name": "MODELOS MATEMÁTICOS APLICADOS EN CADENAS DE SUMINISTRO",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "MA03",
+      "code": "11320028",
+      "name": "MODELADO CON DINÁMICA DE SISTEMAS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "17210004",
+      "name": "ETICA",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310044",
+      "name": "PRECÁLCULO",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310002",
+      "name": "PROGRAMACIÓN DE COMPUTADORES",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "ISE1",
+      "code": "11010003",
+      "name": "QUÍMICA I",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "18610031",
+      "name": "ANÁLISIS DE TEXTOS",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32510001",
+      "name": "FOUNDATION PROJECT",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 2,
+      "theory": 1,
+      "practice": 2,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "ISE1",
+      "code": "60110260",
+      "name": "CÁTEDRA ROSARISTA, HISTORIA Y ACTUALIDAD",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11210007",
+      "name": "CONSTITUCIÓN POLITICA E INSTRUCCIÓN CIVICA",
+      "semester": "2",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310003",
+      "name": "CÁLCULO 1",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "18610030",
+      "name": "ANÁLISIS DE ARGUMENTOS",
+      "semester": "2",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32610001",
+      "name": "FUNDAMENTOS DE CIRCUITOS",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32710001",
+      "name": "ENERGÍA Y MEDIO AMBIENTE",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "73210064",
+      "name": "FÍSICA 1",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "11310015",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310032",
+      "name": "CORNERSTONE PROJECT",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310031",
+      "name": "PROBABILIDAD Y ESTADÍSTICA 1",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310030",
+      "name": "ÁLGEBRA LINEAL",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "11310005",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310004",
+      "name": "CÁLCULO 2",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32710002",
+      "name": "ELEMENTOS DE SISTEMAS ELÉCTRICOS",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "73210065",
+      "name": "FÍSICA 2",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310036",
+      "name": "CÁLCULO 3",
+      "semester": "4",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "11320003",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310012",
+      "name": "OPTIMIZACIÓN",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "ISE1",
+      "code": "18610032",
+      "name": "ESCRITURA DE ENSAYOS DE OPINIÓN",
+      "semester": "4",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32710003",
+      "name": "FUNDAMENTOS DE ENERGÍAS RENOVABLES",
+      "semester": "4",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "73210067",
+      "name": "FÍSICA 3",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32710004",
+      "name": "ECONOMÍA DE SISTEMAS DE ENERGÍA",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310041",
+      "name": "KEYSTONE PROJECT",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32710005",
+      "name": "MECÁNICA DE FLUIDOS",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "73210066",
+      "name": "ECUACIONES DIFERENCIALES Y SISTEMAS DINÁMICOS",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32710006",
+      "name": "TERMODINÁMICA",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32710007",
+      "name": "ANÁLISIS DE SISTEMAS DE POTENCIA",
+      "semester": "6",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32710009",
+      "name": "TRANSFERENCIA DE CALOR",
+      "semester": "6",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32710008",
+      "name": "CONTROL",
+      "semester": "6",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "32610005",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32710010",
+      "name": "REDES DE TRANSPORTE Y DISTRIBUCIÓN",
+      "semester": "7",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32710011",
+      "name": "SISTEMAS DE CONVERSIÓN DE ENERGÍA",
+      "semester": "7",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310054",
+      "name": "TRABAJO DE GRADO 1",
+      "semester": "8",
+      "typology": "P",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310029",
+      "name": "CAPSTONE PROJECT",
+      "semester": "8",
+      "typology": "P",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310028",
+      "name": "SEMINARIO DE GRADO",
+      "semester": "8",
+      "typology": "P",
+      "credits": 1,
+      "hours": 2,
+      "theory": 1,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310055",
+      "name": "TRABAJO DE GRADO 2",
+      "semester": "8",
+      "typology": "P",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11320028",
+      "name": "MODELADO CON DINÁMICA DE SISTEMAS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32510008",
+      "name": "MODELOS MATEMÁTICOS APLICADOS EN CADENAS DE SUMINISTRO",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32519999",
+      "name": "PROVISIONAL INGENIERIAS FALTAN ASIGNATURAS",
+      "semester": null,
+      "typology": "C",
+      "credits": 18,
+      "hours": 18,
+      "theory": 18,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310073",
+      "name": "DESARROLLO MÓVIL",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "ISE1",
+      "code": "11310075",
+      "name": "COMPENSA COMPLEMENTARIA_1 POR COTERMINAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 0,
+      "practice": 4,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310076",
+      "name": "COMPENSA COMPLEMENTARIA_2 POR COTERMINAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 0,
+      "practice": 4,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310077",
+      "name": "SENSORES Y ACTUADORES",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310078",
+      "name": "TEORIA DE NÚMEROS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310079",
+      "name": "OPERATING SYSTEMS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 4,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310080",
+      "name": "REDES DE DISPOSITIVOS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310081",
+      "name": "ANÁLISIS FUNCIONAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "15210003",
+      "name": "CONTABILIDAD FINANCIERA",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "32610007",
+      "name": "FUNDAMENTOS DE MANUFACTURA DE SISTEMAS MECATRÓNICOS",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "83020002",
+      "name": "TERRITORIO Y ESPACIO URBANO",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310071",
+      "name": "GEOMETRÍA NO EUCLIDEANA",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310070",
+      "name": "DISEÑO Y ARQUITECTURA DE SOFTWARE",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "ISE1",
+      "code": "11310068",
+      "name": "COMPUTACIÓN EN LA NUBE",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "ISE1",
+      "code": "11310060",
+      "name": "SEGURIDAD DE REDES",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "ISE1",
+      "code": "11310052",
+      "name": "REDES DE COMPUTADORES",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320007",
+      "computersRequired": 1
+    },
+    {
+      "program": "ISE1",
+      "code": "11310046",
+      "name": "ELECTIVA DESARROLLO WEB",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310044",
+      "name": "PRECÁLCULO",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310002",
+      "name": "PROGRAMACIÓN DE COMPUTADORES",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "11010003",
+      "name": "QUÍMICA I",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "17210004",
+      "name": "ETICA",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "18610031",
+      "name": "ANÁLISIS DE TEXTOS",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "32510001",
+      "name": "FOUNDATION PROJECT",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 2,
+      "theory": 1,
+      "practice": 2,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "60110260",
+      "name": "CÁTEDRA ROSARISTA, HISTORIA Y ACTUALIDAD",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11210007",
+      "name": "CONSTITUCIÓN POLITICA E INSTRUCCIÓN CIVICA",
+      "semester": "2",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310003",
+      "name": "CÁLCULO 1",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "18610030",
+      "name": "ANÁLISIS DE ARGUMENTOS",
+      "semester": "2",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "32510002",
+      "name": "CONTABILIDAD Y MATEMÁTICAS FINANCIERAS",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "32510003",
+      "name": "SISTEMAS DE PRODUCCIÓN Y SERVICIOS",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "73210064",
+      "name": "FÍSICA 1",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "11310015",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310031",
+      "name": "PROBABILIDAD Y ESTADÍSTICA 1",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310030",
+      "name": "ÁLGEBRA LINEAL",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "11310005",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310004",
+      "name": "CÁLCULO 2",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310032",
+      "name": "CORNERSTONE PROJECT",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "73210065",
+      "name": "FÍSICA 2",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "13210175",
+      "name": "MICROECONOMÍA",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "18610032",
+      "name": "ESCRITURA DE ENSAYOS DE OPINIÓN",
+      "semester": "4",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310012",
+      "name": "OPTIMIZACIÓN",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "11310036",
+      "name": "CÁLCULO 3",
+      "semester": "4",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "11320003",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310033",
+      "name": "PROBABILIDAD Y ESTADÍSTICA 2",
+      "semester": "4",
+      "typology": "T",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320006",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "11310017",
+      "name": "INGENIERÍA DE DATOS",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "32510004",
+      "name": "LOGÍSTICA",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "73210066",
+      "name": "ECUACIONES DIFERENCIALES Y SISTEMAS DINÁMICOS",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310013",
+      "name": "ANÁLISIS ESTADÍSTICO DE DATOS",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "11310041",
+      "name": "KEYSTONE PROJECT",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "32510006",
+      "name": "SIMULACIÓN",
+      "semester": "6",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "32510005",
+      "name": "FINANZAS",
+      "semester": "6",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "32510007",
+      "name": "ESTRATEGIA Y TRANSFORMACIÓN ORGANIZACIONAL",
+      "semester": "7",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310028",
+      "name": "SEMINARIO DE GRADO",
+      "semester": "8",
+      "typology": "P",
+      "credits": 1,
+      "hours": 2,
+      "theory": 1,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310029",
+      "name": "CAPSTONE PROJECT",
+      "semester": "8",
+      "typology": "P",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310054",
+      "name": "TRABAJO DE GRADO 1",
+      "semester": "8",
+      "typology": "P",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310055",
+      "name": "TRABAJO DE GRADO 2",
+      "semester": "8",
+      "typology": "P",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "32510009",
+      "name": "CADENAS DE SUMINISTRO SOSTENIBLES",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "32510008",
+      "name": "MODELOS MATEMÁTICOS APLICADOS EN CADENAS DE SUMINISTRO",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11320028",
+      "name": "MODELADO CON DINÁMICA DE SISTEMAS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "32519999",
+      "name": "PROVISIONAL INGENIERIAS FALTAN ASIGNATURAS",
+      "semester": null,
+      "typology": "C",
+      "credits": 18,
+      "hours": 18,
+      "theory": 18,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310067",
+      "name": "BIG DATA",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "11310066",
+      "name": "ANÁLISIS AVANZADO DE DATOS",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "11310063",
+      "name": "APRENDIZAJE AUTOMÁTICO DE MÁQUINA I",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320018",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "11310077",
+      "name": "SENSORES Y ACTUADORES",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310078",
+      "name": "TEORIA DE NÚMEROS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310079",
+      "name": "OPERATING SYSTEMS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 4,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310080",
+      "name": "REDES DE DISPOSITIVOS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310081",
+      "name": "ANÁLISIS FUNCIONAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "15210003",
+      "name": "CONTABILIDAD FINANCIERA",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "32610007",
+      "name": "FUNDAMENTOS DE MANUFACTURA DE SISTEMAS MECATRÓNICOS",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "32710001",
+      "name": "ENERGÍA Y MEDIO AMBIENTE",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "83020002",
+      "name": "TERRITORIO Y ESPACIO URBANO",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310076",
+      "name": "COMPENSA COMPLEMENTARIA_2 POR COTERMINAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 0,
+      "practice": 4,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310075",
+      "name": "COMPENSA COMPLEMENTARIA_1 POR COTERMINAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 0,
+      "practice": 4,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310073",
+      "name": "DESARROLLO MÓVIL",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "11310071",
+      "name": "GEOMETRÍA NO EUCLIDEANA",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310070",
+      "name": "DISEÑO Y ARQUITECTURA DE SOFTWARE",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310068",
+      "name": "COMPUTACIÓN EN LA NUBE",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "11310060",
+      "name": "SEGURIDAD DE REDES",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "11310052",
+      "name": "REDES DE COMPUTADORES",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320007",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "11310046",
+      "name": "ELECTIVA DESARROLLO WEB",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310038",
+      "name": "VARIABLE COMPLEJA",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IIN1",
+      "code": "11310018",
+      "name": "ÁLGEBRA ABSTRACTA Y CODIFICACIÓN",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IIN1",
+      "code": "11310014",
+      "name": "TEORÍA DE GRAFOS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310044",
+      "name": "PRECÁLCULO",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310002",
+      "name": "PROGRAMACIÓN DE COMPUTADORES",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IET1",
+      "code": "11010003",
+      "name": "QUÍMICA I",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "17210004",
+      "name": "ETICA",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "18610031",
+      "name": "ANÁLISIS DE TEXTOS",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "32510001",
+      "name": "FOUNDATION PROJECT",
+      "semester": "1",
+      "typology": "T",
+      "credits": 3,
+      "hours": 2,
+      "theory": 1,
+      "practice": 2,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IET1",
+      "code": "60110260",
+      "name": "CÁTEDRA ROSARISTA, HISTORIA Y ACTUALIDAD",
+      "semester": "1",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11210007",
+      "name": "CONSTITUCIÓN POLITICA E INSTRUCCIÓN CIVICA",
+      "semester": "2",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310003",
+      "name": "CÁLCULO 1",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310011",
+      "name": "FUNDAMENTOS DE SISTEMAS DIGITALES",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "18610030",
+      "name": "ANÁLISIS DE ARGUMENTOS",
+      "semester": "2",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "32610001",
+      "name": "FUNDAMENTOS DE CIRCUITOS",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "73210064",
+      "name": "FÍSICA 1",
+      "semester": "2",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "11310015",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310031",
+      "name": "PROBABILIDAD Y ESTADÍSTICA 1",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310030",
+      "name": "ÁLGEBRA LINEAL",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "11310005",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310004",
+      "name": "CÁLCULO 2",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310032",
+      "name": "CORNERSTONE PROJECT",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "73210065",
+      "name": "FÍSICA 2",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "32610002",
+      "name": "FUNDAMENTOS DE ELECTRÓNICA ANÁLOGA",
+      "semester": "3",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310012",
+      "name": "OPTIMIZACIÓN",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IET1",
+      "code": "11310036",
+      "name": "CÁLCULO 3",
+      "semester": "4",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "11320003",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310052",
+      "name": "REDES DE COMPUTADORES",
+      "semester": "4",
+      "typology": "T",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320007",
+      "computersRequired": 1
+    },
+    {
+      "program": "IET1",
+      "code": "18610032",
+      "name": "ESCRITURA DE ENSAYOS DE OPINIÓN",
+      "semester": "4",
+      "typology": "T",
+      "credits": 2,
+      "hours": 2,
+      "theory": 2,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "32610003",
+      "name": "DISEÑO DE SISTEMAS DIGITALES",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "73210067",
+      "name": "FÍSICA 3",
+      "semester": "4",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310038",
+      "name": "VARIABLE COMPLEJA",
+      "semester": "5",
+      "typology": "T",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "11320005",
+      "computersRequired": 1
+    },
+    {
+      "program": "IET1",
+      "code": "73210066",
+      "name": "ECUACIONES DIFERENCIALES Y SISTEMAS DINÁMICOS",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "32610005",
+      "name": "CONTROL",
+      "semester": "6",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310041",
+      "name": "KEYSTONE PROJECT",
+      "semester": "5",
+      "typology": "T",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310051",
+      "name": "PROCESAMIENTO DE SEÑALES",
+      "semester": "6",
+      "typology": "T",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IET1",
+      "code": "32610004",
+      "name": "INSTRUMENTACIÓN",
+      "semester": "5",
+      "typology": "T",
+      "credits": 1,
+      "hours": 3,
+      "theory": 0,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "32610006",
+      "name": "SISTEMAS EMBEBIDOS",
+      "semester": "7",
+      "typology": "T",
+      "credits": 3,
+      "hours": 5,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310054",
+      "name": "TRABAJO DE GRADO 1",
+      "semester": "8",
+      "typology": "P",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310029",
+      "name": "CAPSTONE PROJECT",
+      "semester": "8",
+      "typology": "P",
+      "credits": 3,
+      "hours": 3,
+      "theory": 0,
+      "practice": 3,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310028",
+      "name": "SEMINARIO DE GRADO",
+      "semester": "8",
+      "typology": "P",
+      "credits": 1,
+      "hours": 2,
+      "theory": 1,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310055",
+      "name": "TRABAJO DE GRADO 2",
+      "semester": "8",
+      "typology": "P",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "32519999",
+      "name": "PROVISIONAL INGENIERIAS FALTAN ASIGNATURAS",
+      "semester": null,
+      "typology": "C",
+      "credits": 18,
+      "hours": 18,
+      "theory": 18,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310073",
+      "name": "DESARROLLO MÓVIL",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IET1",
+      "code": "11310077",
+      "name": "SENSORES Y ACTUADORES",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310078",
+      "name": "TEORIA DE NÚMEROS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310079",
+      "name": "OPERATING SYSTEMS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 4,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310080",
+      "name": "REDES DE DISPOSITIVOS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310081",
+      "name": "ANÁLISIS FUNCIONAL",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11320028",
+      "name": "MODELADO CON DINÁMICA DE SISTEMAS",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "15210003",
+      "name": "CONTABILIDAD FINANCIERA",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "32510008",
+      "name": "MODELOS MATEMÁTICOS APLICADOS EN CADENAS DE SUMINISTRO",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 2,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "32610007",
+      "name": "FUNDAMENTOS DE MANUFACTURA DE SISTEMAS MECATRÓNICOS",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "32710001",
+      "name": "ENERGÍA Y MEDIO AMBIENTE",
+      "semester": null,
+      "typology": "C",
+      "credits": 3,
+      "hours": 3,
+      "theory": 3,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "83020002",
+      "name": "TERRITORIO Y ESPACIO URBANO",
+      "semester": null,
+      "typology": "C",
+      "credits": 4,
+      "hours": 4,
+      "theory": 4,
+      "practice": 0,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310071",
+      "name": "GEOMETRÍA NO EUCLIDEANA",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310070",
+      "name": "DISEÑO Y ARQUITECTURA DE SOFTWARE",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    },
+    {
+      "program": "IET1",
+      "code": "11310068",
+      "name": "COMPUTACIÓN EN LA NUBE",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IET1",
+      "code": "11310060",
+      "name": "SEGURIDAD DE REDES",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 4,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 1
+    },
+    {
+      "program": "IET1",
+      "code": "11310046",
+      "name": "ELECTIVA DESARROLLO WEB",
+      "semester": null,
+      "typology": "C",
+      "credits": 2,
+      "hours": 2,
+      "theory": 1,
+      "practice": 1,
+      "sharedCode": "",
+      "computersRequired": 0
+    }
+  ],
+  "teachers": [
+    {
+      "name": "Alejandro Castañeda",
+      "category": "Carrera",
+      "subjects": [
+        "analisis numerico y computacion cientifica",
+        "fundamentos de circuitos",
+        "fundamentos de electronica analoga",
+        "procesamiento de senales"
+      ]
+    },
+    {
+      "name": "Andrés Mauricio Pérez Gordillo",
+      "category": "Carrera",
+      "subjects": [
+        "diseno y arquitectura de software",
+        "mecanica de fluidos",
+        "sistemas de produccion y servicios",
+        "transferencia de calor"
+      ]
+    },
+    {
+      "name": "Cristian Mauricio Martínez Esparza",
+      "category": "Carrera",
+      "subjects": [
+        "algebra lineal",
+        "sistemas de produccion y servicios",
+        "topologia",
+        "variable compleja"
+      ]
+    },
+    {
+      "name": "Daniel Alfonso Bojacá Torres",
+      "category": "Docencia",
+      "subjects": [
+        "calculo 1",
+        "ciberseguridad",
+        "optimizacion",
+        "pensamiento matematico",
+        "programacion de computadores",
+        "teoria de grafos",
+        "topologia"
+      ]
+    },
+    {
+      "name": "Daniel Orlando Dïaz",
+      "category": "Carrera",
+      "subjects": [
+        "calculo 1",
+        "ciberseguridad",
+        "optimizacion",
+        "pensamiento matematico",
+        "programacion de computadores",
+        "teoria de grafos",
+        "topologia"
+      ]
+    },
+    {
+      "name": "David Eugenio Andrade Pérez",
+      "category": "Carrera",
+      "subjects": [
+        "analisis de sistemas de potencia",
+        "analisis real",
+        "calculo 2",
+        "economia de sistemas de energia",
+        "foundation project",
+        "logica para ciencias de la computacion",
+        "mathematical modeling of systems in natural sciences teorica",
+        "mecanica de fluidos",
+        "termodinamica",
+        "transferencia de calor"
+      ]
+    },
+    {
+      "name": "David Felipe González Rodríguez",
+      "category": "Carrera",
+      "subjects": [
+        "analisis de sistemas de potencia",
+        "analisis real",
+        "calculo 2",
+        "economia de sistemas de energia",
+        "foundation project",
+        "logica teoria de numeros y conjuntos",
+        "mathematical modeling of systems in natural sciences teorica",
+        "probabilidad y estadistica 2",
+        "termodinamica"
+      ]
+    },
+    {
+      "name": "David Nicolás Castiblanco",
+      "category": "Docencia",
+      "subjects": [
+        "analisis de sistemas de potencia",
+        "analisis real",
+        "calculo 2",
+        "economia de sistemas de energia",
+        "foundation project",
+        "geometria",
+        "geometria diferencial y computacional",
+        "mathematical modeling of systems in natural sciences teorica",
+        "termodinamica"
+      ]
+    },
+    {
+      "name": "Diana Guzmán",
+      "category": "Carrera",
+      "subjects": [
+        "logistica",
+        "modelado con dinamica de sistemas",
+        "simulacion"
+      ]
+    },
+    {
+      "name": "Edgar José Andrade Lotero",
+      "category": "Carrera",
+      "subjects": [
+        "analisis numerico y computacion cientifica",
+        "analisis real",
+        "calculo 2",
+        "fisica 2 lab",
+        "fisica 2 mg",
+        "fisica 3 lab",
+        "fisica 3 mg",
+        "instrumentacion",
+        "logica para ciencias de la computacion",
+        "mathematical modeling of systems in natural sciences teorica",
+        "procesamiento de senales"
+      ]
+    },
+    {
+      "name": "Edwin Camilo Cubides Garzón",
+      "category": "Docencia",
+      "subjects": [
+        "logica para ciencias de la computacion",
+        "logica teoria de numeros y conjuntos",
+        "probabilidad y estadistica 1",
+        "teoria de la computacion"
+      ]
+    },
+    {
+      "name": "Fabián Sánchez Salazar",
+      "category": "Carrera",
+      "subjects": [
+        "introduccion al procesamiento del lenguaje natural"
+      ]
+    },
+    {
+      "name": "Jesús Antonio Vega Uribe",
+      "category": "Docencia",
+      "subjects": [
+        "elementos de sistemas electricos"
+      ]
+    },
+    {
+      "name": "José Alejandro Guerrero Vargas",
+      "category": "Carrera",
+      "subjects": [
+        "analisis numerico y computacion cientifica",
+        "fisica 2 lab",
+        "fisica 2 mg",
+        "fisica 3 lab",
+        "fisica 3 mg",
+        "fundamentos de circuitos",
+        "fundamentos de electronica analoga",
+        "instrumentacion",
+        "procesamiento de senales",
+        "seminario de grado"
+      ]
+    },
+    {
+      "name": "José Augusto Galvis",
+      "category": "Carrera",
+      "subjects": [
+        "analisis numerico y computacion cientifica",
+        "fisica 2 lab",
+        "fisica 2 mg",
+        "fisica 3 lab",
+        "fisica 3 mg",
+        "instrumentacion",
+        "procesamiento de senales"
+      ]
+    },
+    {
+      "name": "Luis Seijas",
+      "category": "Carrera",
+      "subjects": [
+        "algoritmos y estructura de datos",
+        "programacion de computadores"
+      ]
+    },
+    {
+      "name": "María Fernanda Gómez",
+      "category": "Carrera",
+      "subjects": [
+        "energia y medio ambiente",
+        "probabilidad y estadistica 1",
+        "probabilidad y estadistica 2"
+      ]
+    },
+    {
+      "name": "Mario Fernando Jiménez Hernández",
+      "category": "Carrera",
+      "subjects": [
+        "control",
+        "fundamentos de sistemas digitales teorica",
+        "modeling of dynamical systems"
+      ]
+    },
+    {
+      "name": "Mauricio Becerra",
+      "category": "Carrera",
+      "subjects": [
+        "sistemas de produccion y servicios"
+      ]
+    },
+    {
+      "name": "Mauro Artigiani",
+      "category": "Carrera",
+      "subjects": [
+        "algebra abstracta y codificacion",
+        "teoria de la medida"
+      ]
+    },
+    {
+      "name": "Nelly Cantillo",
+      "category": "Carrera",
+      "subjects": [
+        "fundamentos de energias renovables"
+      ]
+    },
+    {
+      "name": "Norma Constanza Sarmiento Benavides",
+      "category": "Docencia",
+      "subjects": [
+        "algebra lineal",
+        "calculo 1",
+        "calculo 2"
+      ]
+    },
+    {
+      "name": "Pedro Mario Wigthman Rojas",
+      "category": "Carrera",
+      "subjects": [
+        "algoritmos y estructura de datos",
+        "control",
+        "fundamentos de sistemas digitales teorica",
+        "modeling of dynamical systems",
+        "operating systems",
+        "programacion de computadores"
+      ]
+    },
+    {
+      "name": "Rafael Alberto Méndez Romero",
+      "category": "Carrera",
+      "subjects": [
+        "calculo 1",
+        "modeling of dynamical systems",
+        "opcion de grado 1"
+      ]
+    }
+  ],
+  "rooms": [
+    {
+      "code": "L_001",
+      "name": "BARDEEN",
+      "type": "LABORATORIO",
+      "computers": 10,
+      "capacity": 20
+    },
+    {
+      "code": "L_002",
+      "name": "DA VINCI",
+      "type": "LABORATORIO",
+      "computers": 10,
+      "capacity": 20
+    },
+    {
+      "code": "L_003",
+      "name": "BERNOULLI",
+      "type": "LABORATORIO",
+      "computers": 0,
+      "capacity": 10
+    },
+    {
+      "code": "L_004",
+      "name": "TESLA",
+      "type": "LABORATORIO",
+      "computers": 10,
+      "capacity": 20
+    },
+    {
+      "code": "L_005",
+      "name": "ENERGÍAS RENOVABLES",
+      "type": "LABORATORIO",
+      "computers": 2,
+      "capacity": 6
+    },
+    {
+      "code": "S_001",
+      "name": "BOOLE",
+      "type": "SALAS",
+      "computers": 24,
+      "capacity": 24
+    },
+    {
+      "code": "S_002",
+      "name": "NOETHER",
+      "type": "SALAS",
+      "computers": 24,
+      "capacity": 24
+    },
+    {
+      "code": "S_003",
+      "name": "HINNT",
+      "type": "SALAS",
+      "computers": 12,
+      "capacity": 12
+    },
+    {
+      "code": "S_004",
+      "name": "TURING",
+      "type": "SALAS",
+      "computers": 27,
+      "capacity": 27
+    },
+    {
+      "code": "S_005",
+      "name": "HIPATIA",
+      "type": "SALAS",
+      "computers": 28,
+      "capacity": 28
+    },
+    {
+      "code": "S_006",
+      "name": "LOVELACE",
+      "type": "SALAS",
+      "computers": 28,
+      "capacity": 28
+    },
+    {
+      "code": "S_007",
+      "name": "208 CASUR",
+      "type": "SALAS",
+      "computers": 28,
+      "capacity": 32
+    }
+  ],
+  "relations": [
+    {
+      "program": "ISE1",
+      "code": "11310003",
+      "related": "11310044",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310004",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310012",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310012",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310029",
+      "related": "11310041",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310029",
+      "related": "32710007",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310030",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310032",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310032",
+      "related": "32510001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310032",
+      "related": "32610001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310032",
+      "related": "32710001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310036",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310041",
+      "related": "11310012",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310041",
+      "related": "11310032",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310041",
+      "related": "32710003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310054",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310055",
+      "related": "11310054",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310081",
+      "related": "11310010",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32610001",
+      "related": "11310044",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710002",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710002",
+      "related": "32610001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710003",
+      "related": "32710001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710004",
+      "related": "32710001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710005",
+      "related": "73210065",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710006",
+      "related": "11010003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710006",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710006",
+      "related": "73210065",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710007",
+      "related": "32710002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710007",
+      "related": "73210066",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710008",
+      "related": "73210066",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710009",
+      "related": "32710005",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710009",
+      "related": "32710006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710010",
+      "related": "32710007",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710011",
+      "related": "32710009",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "73210064",
+      "related": "11310044",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "73210065",
+      "related": "73210064",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "73210066",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "73210066",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "73210066",
+      "related": "73210064",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "73210067",
+      "related": "73210065",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "89510003",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "89510004",
+      "related": "89510003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310003",
+      "related": "11310044",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310004",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310012",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310012",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310029",
+      "related": "11310041",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310029",
+      "related": "32610005",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310030",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310032",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310032",
+      "related": "11310011",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310032",
+      "related": "32510001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310032",
+      "related": "32610001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310036",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310038",
+      "related": "11310036",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310041",
+      "related": "11310032",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310041",
+      "related": "11310052",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310041",
+      "related": "32610002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310041",
+      "related": "32610003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310051",
+      "related": "11310031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310051",
+      "related": "11310038",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310052",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310052",
+      "related": "11310031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310054",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310055",
+      "related": "11310054",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310081",
+      "related": "11310010",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610001",
+      "related": "11310044",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610002",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610002",
+      "related": "32610001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610002",
+      "related": "73210064",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610003",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610003",
+      "related": "11310011",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610003",
+      "related": "32610001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610004",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610004",
+      "related": "11310031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610004",
+      "related": "32610002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610005",
+      "related": "73210066",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610006",
+      "related": "11310051",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610006",
+      "related": "32610003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "32610006",
+      "related": "32610004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "73210064",
+      "related": "11310044",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "73210065",
+      "related": "73210064",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "73210066",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "73210066",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "73210066",
+      "related": "73210064",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "73210067",
+      "related": "73210065",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "89510003",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IET1",
+      "code": "89510004",
+      "related": "89510003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310003",
+      "related": "11310044",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310004",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310012",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310012",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310013",
+      "related": "11310033",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310017",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310029",
+      "related": "11310041",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310029",
+      "related": "32510005",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310029",
+      "related": "32510006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310030",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310032",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310032",
+      "related": "32510001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310032",
+      "related": "32510002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310032",
+      "related": "32510003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310033",
+      "related": "11310031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310036",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310041",
+      "related": "11310012",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310041",
+      "related": "11310017",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310041",
+      "related": "11310032",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310054",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310055",
+      "related": "11310054",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310081",
+      "related": "11310010",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "13210175",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "32510003",
+      "related": "11310044",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "32510004",
+      "related": "11310012",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "32510005",
+      "related": "32510002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "32510006",
+      "related": "11310013",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "32510007",
+      "related": "13210175",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "32510008",
+      "related": "11310012",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "73210064",
+      "related": "11310044",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "73210065",
+      "related": "73210064",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "73210066",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "73210066",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "73210066",
+      "related": "73210064",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "89510003",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "89510004",
+      "related": "89510003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11010040",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11010040",
+      "related": "11310040",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11010040",
+      "related": "11310031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310003",
+      "related": "11310044",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310003",
+      "related": "11310044",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310004",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310004",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310006",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310006",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310007",
+      "related": "11310001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310007",
+      "related": "11310035",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310007",
+      "related": "11310035",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310010",
+      "related": "11310001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310010",
+      "related": "11310001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310010",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310010",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310010",
+      "related": "11310025",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310010",
+      "related": "11310025",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310012",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310012",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310012",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310012",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310013",
+      "related": "11310017",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310013",
+      "related": "11310033",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310013",
+      "related": "11320006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310014",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310014",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310015",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310017",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310017",
+      "related": "11310006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310018",
+      "related": "11310001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310018",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310018",
+      "related": "11310025",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310020",
+      "related": "11310010",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310021",
+      "related": "11310006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310021",
+      "related": "11310006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310021",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310021",
+      "related": "11310034",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310021",
+      "related": "11310034",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310021",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310029",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310029",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310029",
+      "related": "11310040",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310029",
+      "related": "11310041",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310029",
+      "related": "11310041",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310029",
+      "related": "11320008",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310030",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310030",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310031",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310032",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310032",
+      "related": "11310003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310032",
+      "related": "11310006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310032",
+      "related": "11310006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310032",
+      "related": "11310011",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310032",
+      "related": "11310035",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310032",
+      "related": "11320001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310033",
+      "related": "11310031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310034",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310034",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310034",
+      "related": "11310036",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310034",
+      "related": "11320003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310035",
+      "related": "11310001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310036",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310038",
+      "related": "11310036",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310040",
+      "related": "11310034",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310041",
+      "related": "11310012",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310041",
+      "related": "11310012",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310041",
+      "related": "11310014",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310041",
+      "related": "11310014",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310041",
+      "related": "11310017",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310041",
+      "related": "11310017",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310041",
+      "related": "11310032",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310041",
+      "related": "11310032",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310041",
+      "related": "11310033",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310041",
+      "related": "11320006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310046",
+      "related": "11310006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310047",
+      "related": "11310017",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310049",
+      "related": "11310017",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310050",
+      "related": "11310006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310051",
+      "related": "11310038",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310051",
+      "related": "11310031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310051",
+      "related": "11310037",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310052",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310052",
+      "related": "11310031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310053",
+      "related": "11310006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310053",
+      "related": "11310012",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310053",
+      "related": "11310014",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310053",
+      "related": "11310033",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310054",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310054",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310055",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310055",
+      "related": "11310054",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310055",
+      "related": "11310054",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310057",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310057",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310058",
+      "related": "11310017",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310059",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310059",
+      "related": "11310005",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310059",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310060",
+      "related": "11310052",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310061",
+      "related": "11310017",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310062",
+      "related": "11310009",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310062",
+      "related": "11310031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310062",
+      "related": "11310007",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310063",
+      "related": "11310005",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310063",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310063",
+      "related": "11310031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310064",
+      "related": "11310063",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310065",
+      "related": "11310063",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310066",
+      "related": "11310013",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310067",
+      "related": "11310013",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310067",
+      "related": "11310052",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310068",
+      "related": "11310052",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310069",
+      "related": "11310005",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310069",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310069",
+      "related": "11310007",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310069",
+      "related": "11310015",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310069",
+      "related": "11310009",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310069",
+      "related": "11310033",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310070",
+      "related": "11310017",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310071",
+      "related": "11310005",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310071",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310078",
+      "related": "11310001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310078",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310079",
+      "related": "11310006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310079",
+      "related": "11320002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310081",
+      "related": "11310010",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11310081",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320001",
+      "related": "11310001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320002",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320003",
+      "related": "11310004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320004",
+      "related": "11310007",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320005",
+      "related": "11320003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320006",
+      "related": "11310031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320007",
+      "related": "11310014",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320008",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320008",
+      "related": "11310034",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320008",
+      "related": "73210064",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320008",
+      "related": "11310031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320009",
+      "related": "11310001",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320009",
+      "related": "11310025",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320009",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320010",
+      "related": "11310020",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320010",
+      "related": "11310034",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320011",
+      "related": "11310079",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320011",
+      "related": "11320007",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320012",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320012",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320013",
+      "related": "11310017",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320013",
+      "related": "11320004",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320014",
+      "related": "11320007",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320015",
+      "related": "11310013",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320016",
+      "related": "11310013",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320016",
+      "related": "11320007",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320017",
+      "related": "11320007",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320018",
+      "related": "11310012",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320018",
+      "related": "11310030",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320019",
+      "related": "11310007",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320019",
+      "related": "11310031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320021",
+      "related": "11320018",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320022",
+      "related": "11310017",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320023",
+      "related": "11310006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320023",
+      "related": "11310017",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320024",
+      "related": "11310017",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320025",
+      "related": "11320006",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320025",
+      "related": "11320008",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320026",
+      "related": "11310020",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320030",
+      "related": "11320018",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "11320031",
+      "related": "11320018",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "18610304",
+      "related": "18610031",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "18610304",
+      "related": "18610302",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "65510133",
+      "related": "15210003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "73210063",
+      "related": "11310002",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "73210063",
+      "related": "73210024",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "73210063",
+      "related": "73210037",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "73210063",
+      "related": "73210050",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "73210064",
+      "related": "11310044",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "89510003",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "89510003",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "89510004",
+      "related": "11310028",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "89510004",
+      "related": "89510003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA03",
+      "code": "89510004",
+      "related": "89510003",
+      "type": "Prerrequisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310031",
+      "related": "11310004",
+      "type": "Correquisito"
+    },
+    {
+      "program": "MA02",
+      "code": "11310053",
+      "related": "11310020",
+      "type": "Correquisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310029",
+      "related": "32610006",
+      "type": "Correquisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310031",
+      "related": "11310004",
+      "type": "Correquisito"
+    },
+    {
+      "program": "IET1",
+      "code": "11310011",
+      "related": "11310002",
+      "type": "Correquisito"
+    },
+    {
+      "program": "IIN1",
+      "code": "11310031",
+      "related": "11310004",
+      "type": "Correquisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "11310031",
+      "related": "11310004",
+      "type": "Correquisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710002",
+      "related": "11310030",
+      "type": "Correquisito"
+    },
+    {
+      "program": "ISE1",
+      "code": "32710005",
+      "related": "73210066",
+      "type": "Correquisito"
+    }
+  ],
+  "roomMap": {
+    "algoritmos y estructura de datos": "SALAS",
+    "analisis avanzado de datos": "SALAS",
+    "analisis de sistemas de potencia": "BERNOULLI",
+    "analisis estadistico de datos": "SALAS",
+    "analisis forense y gestion de incidentes": "SALAS",
+    "analisis numerico y computacion cientifica": "SALAS",
+    "analisis y diseno de algoritmos": "SALAS",
+    "aprendizaje automatico de maquinas": "SALAS",
+    "arquitectura del computador": "SALAS",
+    "cadenas de suministro colaborativas y resilientes": "HINNT, TESLA",
+    "cadenas de suministro sostenibles": "HINNT, TESLA",
+    "capstone project": "SALAS",
+    "computacion en la nube": "SALAS",
+    "contabilidad y matematicas financieras": "HINNT, TESLA",
+    "control": "DAVINCI, BARDEEN",
+    "cornerstone project": "SALAS",
+    "desarrollo web": "SALAS",
+    "diseno de sistemas digitales": "DAVINCI, BARDEEN",
+    "electronica de control": "BARDEEN, DAVINCI, BERNOULLI",
+    "estadistica avanzada para la toma de decisiones": "HINNT, TESLA",
+    "fisica 1 laboratorio": "BARDEEN",
+    "fisica 2 laboratorio": "BARDEEN",
+    "fisica 3 laboratorio": "BARDEEN",
+    "fundamentos de circuitos": "BARDEEN, DAVINCI, BERNOULLI",
+    "fundamentos de electronica analoga": "BARDEEN, DAVINCI, BERNOULLI",
+    "hacking etico": "SALAS",
+    "ingenieria de datos": "SALAS",
+    "instrumentacion": "BARDEEN, DAVINCI, BERNOULLI",
+    "inteligencia de negocios": "SALAS O LABORATORIOS",
+    "interaccion humano robot": "DAVINCI",
+    "introduccion al aprendizaje profundo": "SALAS",
+    "introduccion a la criptografia": "SALAS",
+    "introduccion a la ingenieria ciencia y tecnologia": "SALAS",
+    "keystone project": "SALAS",
+    "logica para ciencias de la computacion": "SALAS",
+    "logistica industrial": "HINNT, TESLA",
+    "mecanica de fluidos": "BERNOULLI",
+    "modelado con dinamica de sistemas": "HINNT, TESLA",
+    "modelamiento de turbinas eolicas": "BERNOULLI",
+    "modelos matematicos aplicados en cadenas de suministro": "HINNT, TESLA",
+    "optimizacion": "SALAS",
+    "probabilidad y estadistica 1": "SALAS",
+    "probabilidad y estadistica 2": "SALAS",
+    "procesamiento de senales": "SALAS O LABORATORIOS",
+    "distributed energy research management systems derms": "TESLA",
+    "programacion de computadores": "SALAS",
+    "realidad extendida": "DAVINCI",
+    "redes de computadores": "SALAS",
+    "redes de transporte y distribucion": "LABORATORIOS O HINNT",
+    "representacion y solucion automatica de problemas": "SALAS",
+    "simulacion": "HINNT, TESLA",
+    "sistemas de conversion de energia": "LABORATORIOS O HINNT",
+    "sistemas embebidos": "BARDEEN, DAVINCI",
+    "transferecia de calor": "TESLA, BERNOULLI"
+  }
+}

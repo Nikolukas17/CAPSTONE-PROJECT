@@ -8,4 +8,5 @@ public class Salon
     public int Equipos { get; set; }
     public int Capacidad { get; set; }
     public bool Activo { get; set; } = true;
+    public List<EstadoFranja> Disponibilidad { get; set; } = DisponibilidadSemanal.Base();
 }

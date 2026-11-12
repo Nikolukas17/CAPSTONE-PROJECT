@@ -26,6 +26,10 @@ public class ProfesorFormViewModel
     [Required(ErrorMessage = "Selecciona el tipo de profesor.")]
     [Display(Name = "Tipo")]
     public string Tipo { get; set; } = "";
+    [Range(0, 30)] public int CursosMinimos { get; set; } = 0;
+    [Range(1, 200)] public int CursosMaximos { get; set; } = 5;
+    [Range(0, 80)] public int HorasMinimas { get; set; } = 0;
+    [Range(1, 200)] public int HorasMaximas { get; set; } = 200;
 
     [StringLength(300, ErrorMessage = "La descripción admite hasta 300 caracteres.")]
     [Display(Name = "Descripción")]

@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OfertaAcademica.Web.ViewModels.Dashboard;
 
 namespace OfertaAcademica.Web.Controllers;
 
+[Authorize]
 public class DashboardController : Controller
 {
     public IActionResult Index()
@@ -10,7 +12,7 @@ public class DashboardController : Controller
         var vm = new DashboardViewModel
         {
             // TODO: reemplazar por el usuario autenticado (p. ej. User.FindFirst("nombre")?.Value)
-            NombreUsuario = User.Identity?.IsAuthenticated == true ? User.Identity!.Name! : "Jeimy Alexandra",
+            NombreUsuario = User.Identity?.IsAuthenticated == true ? User.Identity!.Name! : "",
             Pasos = new()
             {
                 new("bi-database",     "tono-rojo",    "El sistema utiliza la información académica", "En la Facultad de Ciencias e Ingeniería para gestionar la oferta académica."),

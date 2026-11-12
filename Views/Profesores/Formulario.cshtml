@@ -73,6 +73,28 @@
                     </td>
                 </tr>
                 <tr>
+                    <th scope="row">Cursos mínimos / máximos</th>
+                    <td>
+                        <div class="fila-botones">
+                            <input asp-for="CursosMinimos" type="number" min="0" max="30" class="input" aria-label="Cursos mínimos" />
+                            <input asp-for="CursosMaximos" type="number" min="1" max="200" class="input" aria-label="Cursos máximos" />
+                        </div>
+                        <span asp-validation-for="CursosMinimos" class="campo__error"></span>
+                        <span asp-validation-for="CursosMaximos" class="campo__error"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Horas semanales mínimas / máximas</th>
+                    <td>
+                        <div class="fila-botones">
+                            <input asp-for="HorasMinimas" type="number" min="0" max="80" class="input" aria-label="Horas mínimas" />
+                            <input asp-for="HorasMaximas" type="number" min="1" max="200" class="input" aria-label="Horas máximas" />
+                        </div>
+                        <span asp-validation-for="HorasMinimas" class="campo__error"></span>
+                        <span asp-validation-for="HorasMaximas" class="campo__error"></span>
+                    </td>
+                </tr>
+                <tr>
                     <th scope="row"><label asp-for="Descripcion"></label></th>
                     <td>
                         <textarea asp-for="Descripcion" class="input" rows="3" placeholder="Opcional"></textarea>
@@ -140,4 +162,19 @@
 
 @section Scripts {
     <script src="~/js/catalogos.js" asp-append-version="true"></script>
+    <script>
+        document.getElementById("Tipo")?.addEventListener("change", function () {
+            const reglas = {
+                "Carrera": [2, 4, 0, 12],
+                "Docencia": [4, 5, 0, 200],
+                "Doctorado": [0, 30, 6, 200]
+            };
+            const r = reglas[this.value];
+            if (!r) return;
+            ["CursosMinimos", "CursosMaximos", "HorasMinimas", "HorasMaximas"].forEach((id, i) => {
+                const campo = document.getElementById(id);
+                if (campo) campo.value = r[i];
+            });
+        });
+    </script>
 }

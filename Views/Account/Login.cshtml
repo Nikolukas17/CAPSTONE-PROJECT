@@ -1,4 +1,4 @@
-﻿@model OfertaAcademica.Web.ViewModels.Account.LoginViewModel
+@model OfertaAcademica.Web.ViewModels.Account.LoginViewModel
 @{
     Layout = "~/Views/Shared/_LayoutAuth.cshtml";
     ViewData["Title"] = "Iniciar sesión";
@@ -8,13 +8,14 @@
     <section class="auth__panel">
         <form class="auth__card" asp-action="Login" method="post" novalidate>
             <h1>Bienvenido</h1>
+            @if (TempData["Exito"] is string exito) { <div class="alerta" role="status">@exito</div> }
             <p class="auth__sub">El Sistema de Gestión Académica<br />Escuela de Ciencias e Ingeniería</p>
 
             <div asp-validation-summary="ModelOnly" class="alerta"></div>
 
             <div class="campo">
                 <label asp-for="Correo"></label>
-                <input asp-for="Correo" type="Correo" placeholder="nombre@urosario.edu.co" autocomplete="username" />
+                <input asp-for="Correo" type="email" placeholder="nombre@urosario.edu.co" autocomplete="username" />
                 <span asp-validation-for="Correo" class="campo__error"></span>
             </div>
             <div class="campo">

@@ -1,0 +1,17 @@
+@model OfertaAcademica.Web.ViewModels.Account.RestablecerPasswordViewModel
+@{ Layout = "~/Views/Shared/_LayoutAuth.cshtml"; ViewData["Title"] = "Restablecer contraseña"; }
+<div class="auth">
+    <aside class="auth__foto"><img src="~/img/logo-rosario-blanco.svg" alt="Universidad del Rosario" /></aside>
+    <section class="auth__panel">
+        <form class="auth__card" asp-action="Restablecer" method="post">
+            <h1>Nueva contraseña</h1>
+            <p class="auth__sub">Define una nueva contraseña para tu cuenta institucional.</p>
+            <div asp-validation-summary="ModelOnly" class="alerta"></div>
+            <input asp-for="Token" type="hidden" />
+            <input asp-for="Correo" type="hidden" />
+            <div class="campo"><label asp-for="NuevaContrasena">Nueva contraseña</label><input asp-for="NuevaContrasena" autocomplete="new-password" /><span asp-validation-for="NuevaContrasena" class="campo__error"></span></div>
+            <div class="campo"><label asp-for="ConfirmarContrasena">Confirmar contraseña</label><input asp-for="ConfirmarContrasena" autocomplete="new-password" /><span asp-validation-for="ConfirmarContrasena" class="campo__error"></span></div>
+            <button type="submit" class="btn btn--primario auth__enviar">Cambiar contraseña</button>
+        </form>
+    </section>
+</div>

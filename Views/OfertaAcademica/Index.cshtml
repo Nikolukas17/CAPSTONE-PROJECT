@@ -8,8 +8,40 @@
 }
 
 <section>
-    <h1 class="titulo-pagina">Oferta Académica</h1>
+    <div class="cabecera-detalle">
+        <div>
+            <h1 class="titulo-pagina">Oferta Académica</h1>
+            @if (Model.ProyeccionId.HasValue)
+            {
+                <p class="muted">Proyección: <strong>@Model.NombreProyeccion</strong> · Estado: @Model.EstadoProyeccion · @Model.TotalGruposProgramados de @Model.TotalGruposSolicitados grupos programados</p>
+            }
+        </div>
+        <a asp-action="Generar" class="btn btn--primario"><i class="bi bi-magic"></i> Generar oferta</a>
+    </div>
 
+    @if (Model.Historial.Count > 0)
+    {
+        <details class="card seccion" style="padding:1rem;margin-bottom:1rem">
+            <summary><strong>Historial de proyecciones</strong> <span class="muted">(@Model.Historial.Count)</span></summary>
+            <ul class="lista-simple">
+                @foreach (var item in Model.Historial)
+                {
+                    <li><a asp-action="Index" asp-route-id="@item.Id">@item.Nombre</a> · @item.FechaCreacion.ToLocalTime().ToString("dd/MM/yyyy HH:mm") · @item.Estado</li>
+                }
+            </ul>
+        </details>
+    }
+    @if (TempData["Exito"] is string ok) { <div class="alerta alerta--ok" role="status">@ok</div> }
+    @if (TempData["Error"] is string err) { <div class="alerta" role="alert">@err</div> }
+    @if (!string.IsNullOrWhiteSpace(Model.MensajeProyeccion) && Model.ProyeccionId.HasValue)
+    {
+        <div class="alerta" role="status" style="white-space:pre-line">@Model.MensajeProyeccion</div>
+    }
+
+    @if (!Model.ProyeccionId.HasValue)
+    {
+        <div class="card seccion"><div class="card__cuerpo"><h2>Aún no hay una oferta generada</h2><p>Selecciona las asignaturas, define los grupos y cupos, y deja que el sistema busque una distribución compatible.</p><a asp-action="Generar" class="btn btn--primario">Comenzar generación</a></div></div>
+    }
     <div class="card cal-card">
         <header class="cal-head">
             <div>
@@ -17,9 +49,9 @@
                 <p>Semana @Model.Semana - Del @Model.InicioSemana.Day al @Fecha(DayOfWeek.Saturday).ToString("d 'de' MMMM, yyyy", es)</p>
             </div>
             <div class="cal-semana">
-                <a class="cal-nav @(Model.Semana <= 1 ? "is-disabled" : "")" asp-action="Index" asp-route-semana="@(Model.Semana - 1)" aria-label="Semana anterior"><i class="bi bi-chevron-left"></i></a>
+                <a class="cal-nav @(Model.Semana <= 1 ? "is-disabled" : "")" asp-action="Index" asp-route-semana="@(Model.Semana - 1)" asp-route-id="@Model.ProyeccionId" aria-label="Semana anterior"><i class="bi bi-chevron-left"></i></a>
                 <span>Semana @Model.Semana</span>
-                <a class="cal-nav @(Model.Semana >= Model.TotalSemanas ? "is-disabled" : "")" asp-action="Index" asp-route-semana="@(Model.Semana + 1)" aria-label="Semana siguiente"><i class="bi bi-chevron-right"></i></a>
+                <a class="cal-nav @(Model.Semana >= Model.TotalSemanas ? "is-disabled" : "")" asp-action="Index" asp-route-semana="@(Model.Semana + 1)" asp-route-id="@Model.ProyeccionId" aria-label="Semana siguiente"><i class="bi bi-chevron-right"></i></a>
             </div>
         </header>
 
@@ -31,18 +63,19 @@
                     <div class="cal-dia"><span>@Fecha(d).ToString("ddd", es)</span><strong>@Fecha(d).Day</strong></div>
                 }
 
-                @foreach (var h in Model.Franjas)
+                @foreach (var inicioMinutos in Model.Franjas)
                 {
-                    <div class="cal-hora">@($"{h}:00")</div>
+                    var hora = TimeSpan.FromMinutes(inicioMinutos);
+                    <div class="cal-hora">@hora.ToString(@"hh\:mm")</div>
                     @foreach (var d in dias)
                     {
-                        var ses = Model.EnFranja(d, h);
+                        var ses = Model.EnFranja(d, inicioMinutos);
                         <div class="cal-celda">
                             @if (ses.Count > 0)
                             {
                                 var p = ses[0];
                                 <button type="button" class="franja @p.Color"
-                                        data-dia="@((int)d)" data-hora="@h" data-fecha="@Fecha(d).ToString("yyyy-MM-dd")">
+                                        data-dia="@((int)d)" data-hora="@inicioMinutos" data-fecha="@Fecha(d).ToString("yyyy-MM-dd")">
                                     <strong>@p.Nombre</strong>
                                     <span>@p.Salon</span>
                                     @if (ses.Count > 1)
@@ -57,7 +90,16 @@
             </div>
         </div>
 
-        <footer class="cal-foot"><button type="button" class="btn-link">Generar Excel <i class="bi bi-arrow-right"></i></button></footer>
+        <footer class="cal-foot">
+            @if (Model.ProyeccionId.HasValue)
+            {
+                <a asp-action="ExportarExcel" asp-route-id="@Model.ProyeccionId" class="btn-link">Generar Excel <i class="bi bi-arrow-right"></i></a>
+            }
+            else
+            {
+                <span class="muted">Genera una proyección para habilitar la descarga de Excel.</span>
+            }
+        </footer>
     </div>
 </section>
 

@@ -14,6 +14,7 @@
 
 @if (TempData["Exito"] is string ok) { <div class="alerta alerta--ok" role="status">@ok</div> }
 @if (TempData["Error"] is string err) { <div class="alerta" role="alert">@err</div> }
+<div asp-validation-summary="All" class="alerta" role="alert"></div>
 
 <form asp-action="Guardar" method="post" id="formAsignatura" class="form-asig" data-modo="@(Model.ModoEdicion ? "editar" : "ver")">
     <input type="hidden" asp-for="Id" />
@@ -69,12 +70,57 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row"><label asp-for="ProgramaCodigo"></label></th>
+                        <th scope="row"><label asp-for="ProgramasSeleccionados"></label></th>
                         <td>
-                            <select asp-for="ProgramaCodigo" asp-items="Model.Programas" class="input">
-                                <option value="">Selecciona un programa</option>
+                            <select asp-for="ProgramasSeleccionados" asp-items="Model.Programas" class="input" multiple size="6"></select>
+                            <small class="muted">Puedes seleccionar varios programas. La asignatura se guardará una sola vez y compartirá el mismo código.</small>
+                            <span asp-validation-for="ProgramasSeleccionados" class="campo__error"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label asp-for="Semestre"></label></th>
+                        <td>
+                            <input asp-for="Semestre" class="input" placeholder="Ej. 1, 2, 3 o dejar vacío si es electiva" />
+                            <small class="muted">Puedes escribir un número de semestre o dejarlo vacío para una electiva sin semestre fijo.</small>
+                            <span asp-validation-for="Semestre" class="campo__error"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tipo de asignatura</th>
+                        <td>
+                            <select asp-for="TipoAsignatura" class="input">
+                                <option>Teórica</option>
+                                <option>Teórico-práctica</option>
+                                <option>Laboratorio</option>
+                                <option>Física teórica</option>
+                                <option>Física laboratorio</option>
                             </select>
-                            <span asp-validation-for="ProgramaCodigo" class="campo__error"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tipo de salón requerido</th>
+                        <td>
+                            <select asp-for="TipoSalonRequerido" class="input">
+                                <option>Cualquiera</option>
+                                <option>SALAS</option>
+                                <option>LABORATORIO</option>
+                                <option>CONVENCIONAL</option>
+                                <option>CÓMPUTO</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Prerrequisitos</th>
+                        <td>
+                            <select asp-for="PrerrequisitosSeleccionados" asp-items="Model.AsignaturasRelacionables" class="input" multiple size="5"></select>
+                            <small class="muted">Selecciona todas las asignaturas que deben aprobarse antes.</small>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Correquisitos</th>
+                        <td>
+                            <select asp-for="CorrequisitosSeleccionados" asp-items="Model.AsignaturasRelacionables" class="input" multiple size="5"></select>
+                            <small class="muted">Selecciona las asignaturas que deben cursarse durante el mismo periodo.</small>
                         </td>
                     </tr>
                     <tr>
@@ -103,18 +149,31 @@
             </table>
         </section>
 
-        <section class="card seccion" aria-labelledby="tituloDisp">
-            <div class="card__cab">
-                <h2 id="tituloDisp">Disponibilidad semanal</h2>
-                <div class="leyenda" aria-hidden="true">
-                    <span class="l-disp"><i></i>Disponible</span>
-                    <span class="l-ocup"><i></i>Ocupado</span>
-                    <span class="l-nodisp"><i></i>No disponible</span>
-                </div>
-            </div>
+        <section class="card seccion" aria-labelledby="tituloGrupos">
+            <div class="card__cab"><h2 id="tituloGrupos">Grupos y disponibilidad</h2></div>
             <div class="card__cuerpo">
-                <partial name="_DisponibilidadGrid" model="new DisponibilidadGridViewModel { NombreCampo = nameof(Model.Disponibilidad), Estados = Model.Disponibilidad, Editable = true }" />
-                <p class="nota solo-edicion">Toca una franja para alternarla entre disponible y no disponible. Las franjas ocupadas ya están en la oferta académica y no se pueden cambiar aquí.</p>
+                <label asp-for="CantidadGrupos"></label>
+                <input asp-for="CantidadGrupos" type="number" min="1" max="30" class="input" />
+                <span asp-validation-for="CantidadGrupos" class="campo__error"></span>
+                <p class="nota">Cada grupo conserva su propia disponibilidad horaria, aunque todos pertenecen a la misma asignatura y comparten su código. Si cambias la cantidad, guarda primero; al volver a editar aparecerá la cuadrícula de cada grupo.</p>
+                @for (var g = 0; g < Math.Clamp(Model.CantidadGrupos, 1, 30); g++)
+                {
+                    var estados = g < Model.DisponibilidadesGrupos.Count ? Model.DisponibilidadesGrupos[g] : Model.Disponibilidad;
+                    <div class="seccion">
+                        <h3>Grupo @(g + 1)</h3>
+                        <div class="leyenda" aria-hidden="true">
+                            <span class="l-disp"><i></i>Disponible</span>
+                            <span class="l-ocup"><i></i>Ocupado</span>
+                            <span class="l-nodisp"><i></i>No disponible</span>
+                        </div>
+                        @await Html.PartialAsync("_DisponibilidadGrid", new DisponibilidadGridViewModel {
+                            NombreCampo = $"DisponibilidadesGrupos[{g}]",
+                            Estados = estados,
+                            Editable = true
+                        })
+                    </div>
+                }
+                <p class="nota solo-edicion">Toca una franja para alternarla entre disponible y no disponible.</p>
             </div>
         </section>
     </fieldset>

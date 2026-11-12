@@ -24,7 +24,7 @@ h1, h2, h3 { color: var(--tinta); margin: 0; }
 /* ---------- Barra superior ---------- */
 .topbar { background: var(--superficie); position: sticky; top: 0; z-index: 10; }
 .topbar__inner { max-width: 1280px; margin: 0 auto; padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.brand img { height: 36px; display: block; }
+.brand img { height: 48px; display: block; }
 .nav { display: flex; align-items: center; gap: 40px; }
 .nav__link { color: var(--tinta); font-weight: 600; font-size: 15px; padding: 6px 0; border-bottom: 2px solid transparent; }
 .nav__link:hover { color: var(--rojo); }

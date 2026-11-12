@@ -11,7 +11,7 @@ public interface IAsignaturaService
 {
     (IReadOnlyList<Asignatura> Items, int Total) Buscar(string? texto, int pagina, int tamanoPagina);
     Asignatura? Obtener(int id);
-    bool ExisteCodigo(string codigo, int idExcluido = 0);
+    bool ExisteCodigo(string codigo, int idExcluido = 0, string? programaCodigo = null);
     Asignatura Guardar(Asignatura asignatura);
     bool Inactivar(int id);
     IReadOnlyList<Programa> ObtenerProgramas();

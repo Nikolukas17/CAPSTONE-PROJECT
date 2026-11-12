@@ -40,7 +40,7 @@ public class ProfesorDetalleViewModel
     public List<MateriaProfesorViewModel> Materias { get; set; } = new();
 
     public static readonly string[] Dias = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
-    public static readonly string[] Franjas = { "7–9", "9–11", "11–1", "1–3", "3–5", "5–7" };
+    public static readonly string[] Franjas = OfertaAcademica.Web.Models.Entities.DisponibilidadSemanal.Franjas;
 
     /// <summary>Disponibilidad[franja][dia]: true = disponible.</summary>
     public bool[][] Disponibilidad { get; set; } =

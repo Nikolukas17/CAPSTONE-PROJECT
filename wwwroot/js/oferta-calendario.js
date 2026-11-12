@@ -8,9 +8,12 @@
 
   const dlgFranja = $('dlg-franja');
   const dlgDetalle = $('dlg-detalle');
-  const duracion = parseInt(dlgFranja.dataset.duracion || '2', 10);
+  const duracion = parseInt(dlgFranja.dataset.duracion || '30', 10);
 
-  const horaInicio = (s) => parseInt(s.inicio.slice(0, 2), 10);
+  const aMinutos = (valor) => { const [h, m] = valor.split(':').map(Number); return h * 60 + (m || 0); };
+  const horaInicio = (s) => aMinutos(s.inicio);
+  const horaFin = (s) => aMinutos(s.fin);
+  const etiquetaHora = (minutos) => `${String(Math.floor(minutos / 60)).padStart(2, '0')}:${String(minutos % 60).padStart(2, '0')}`;
   const icono = (clase) => { const i = document.createElement('i'); i.className = 'bi ' + clase; return i; };
 
   function abrirDetalle(s) {
@@ -28,12 +31,12 @@
     dlgDetalle.showModal();
   }
 
-  function abrirFranja(dia, hora, fecha) {
+  function abrirFranja(dia, inicioMinutos, fecha) {
     const [, m, d] = fecha.split('-').map(Number);
-    const lista = sesiones.filter((s) => s.dia === dia && horaInicio(s) >= hora && horaInicio(s) < hora + duracion);
+    const lista = sesiones.filter((s) => s.dia === dia && horaInicio(s) < inicioMinutos + duracion && horaFin(s) > inicioMinutos);
 
     $('fr-fecha').textContent = diasLargo[dia] + ' ' + d + ' DE ' + meses[m - 1];
-    $('fr-titulo').textContent = 'Franja ' + hora + ':00 – ' + (hora + duracion) + ':00';
+    $('fr-titulo').textContent = 'Franja ' + etiquetaHora(inicioMinutos) + ' – ' + etiquetaHora(inicioMinutos + duracion);
     $('fr-sub').textContent = lista.length + (lista.length === 1 ? ' asignatura programada' : ' asignaturas programadas') + ' en esta franja';
 
     const ul = $('fr-lista');

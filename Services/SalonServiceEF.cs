@@ -42,6 +42,11 @@ public class SalonServiceEF(AppDbContext db) : ISalonService
             return salon;
         }
 
+        var disponibilidad = salon.Disponibilidad.ToList();
+        for (var i = 0; i < disponibilidad.Count && i < existente.Disponibilidad.Count; i++)
+            if (disponibilidad[i] == EstadoFranja.Ocupado)
+                disponibilidad[i] = existente.Disponibilidad[i];
+        salon.Disponibilidad = disponibilidad;
         db.Entry(existente).CurrentValues.SetValues(salon);
         db.SaveChanges();
         return existente;

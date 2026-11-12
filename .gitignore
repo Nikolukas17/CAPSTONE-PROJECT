@@ -16,3 +16,6 @@ obj/
 # Secretos de configuración local
 appsettings.Local.json
 appsettings.*.local.json
+
+# Base de datos persistente local
+App_Data/

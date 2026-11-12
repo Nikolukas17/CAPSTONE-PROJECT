@@ -1,140 +1,153 @@
+using System.Globalization;
+using System.Text;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 using OfertaAcademica.Web.Models.Entities;
 
 namespace OfertaAcademica.Web.Data;
 
 public static class SeedData
 {
+    private sealed class ImportData
+    {
+        public List<ProgramaImport> Programs { get; set; } = [];
+        public List<CursoImport> Courses { get; set; } = [];
+        public List<ProfesorImport> Teachers { get; set; } = [];
+        public List<SalonImport> Rooms { get; set; } = [];
+        public List<RelacionImport> Relations { get; set; } = [];
+        public Dictionary<string, string> RoomMap { get; set; } = [];
+    }
+    private sealed class ProgramaImport { public string Code { get; set; } = ""; public string Name { get; set; } = ""; }
+    private sealed class CursoImport
+    {
+        public string Program { get; set; } = ""; public string Code { get; set; } = "";
+        public string Name { get; set; } = ""; public string? Semester { get; set; } public string SharedCode { get; set; } = "";
+        public string Typology { get; set; } = "T"; public int Credits { get; set; }
+        public int Hours { get; set; } public int Theory { get; set; } public int Practice { get; set; } public int ComputersRequired { get; set; }
+    }
+    private sealed class ProfesorImport { public string Name { get; set; } = ""; public string Category { get; set; } = ""; public List<string> Subjects { get; set; } = []; }
+    private sealed class SalonImport { public string Code { get; set; } = ""; public string Name { get; set; } = ""; public string Type { get; set; } = ""; public int Computers { get; set; } public int Capacity { get; set; } }
+    private sealed class RelacionImport { public string Program { get; set; } = ""; public string Code { get; set; } = ""; public string Related { get; set; } = ""; public string Type { get; set; } = ""; }
+
     public static void Initialize(AppDbContext db)
     {
         if (db.Programas.Any()) return;
+        var ruta = Path.Combine(AppContext.BaseDirectory, "Data", "ImportacionExcel.json");
+        if (!File.Exists(ruta))
+            throw new FileNotFoundException("No se encontró Data/ImportacionExcel.json. Verifica que el archivo se copie al directorio de salida.", ruta);
 
-        // ---- Programas ----
-        db.Programas.AddRange(
-            new Programa { Codigo = "MACC", Nombre = "Matemáticas Aplicadas y Ciencias de la Computación" },
-            new Programa { Codigo = "MA02", Nombre = "Matemáticas" },
-            new Programa { Codigo = "IS01", Nombre = "Ingeniería de Sistemas" },
-            new Programa { Codigo = "IM01", Nombre = "Ingeniería Matemática" }
-        );
+        var datos = JsonSerializer.Deserialize<ImportData>(File.ReadAllText(ruta, Encoding.UTF8),
+            new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
+            ?? throw new InvalidDataException("El archivo de importación no tiene un formato válido.");
 
-        // ---- Asignaturas ----
-        var filasAsig = new (string Codigo, string CodigoCompartido, string Nombre, Tipologia Tipologia, string Programa, int Creditos, int Horas)[]
+        db.Programas.AddRange(datos.Programs.Select(p => new Programa { Codigo = p.Code, Nombre = p.Name }));
+        var mapaSalones = datos.RoomMap.ToDictionary(k => Normalizar(k.Key), v => v.Value);
+        var entidades = new Dictionary<(string Programa, string Codigo), Asignatura>();
+        var id = 1;
+        foreach (var grupoCursos in datos.Courses.GroupBy(c => c.Code, StringComparer.OrdinalIgnoreCase))
         {
-            ("10000002233", "38000002233",  "ALGORITMOS Y ESTRUCTURA DE DATOS",   Tipologia.Obligatoria,    "MA02", 3, 5),
-            ("10000004812", "380078253721", "FUNDAMENTOS DE SISTEMAS DIGITALES",  Tipologia.Obligatoria,    "MACC", 3, 4),
-            ("10000000001", "390210001232", "COMPUTACIÓN EN LA NUBE",             Tipologia.Complementaria, "MACC", 3, 4),
-            ("10100000123", "382120000001", "OPTIMIZACIÓN",                       Tipologia.Obligatoria,    "MACC", 3, 4),
-            ("10024453210", "380004567887", "ÁLGEBRA LINEAL",                     Tipologia.Obligatoria,    "MA02", 3, 4),
-            ("10005320100", "380038239112", "CONTROL",                            Tipologia.Obligatoria,    "IS01", 1, 2),
-            ("11148300000", "384567876543", "MICROECONOMÍA",                      Tipologia.Obligatoria,    "IM01", 2, 3),
-            ("11310003",    "3811310003",   "CÁLCULO I",                          Tipologia.Obligatoria,    "MA02", 4, 6),
-            ("11310004",    "3811310004",   "CÁLCULO II",                         Tipologia.Obligatoria,    "MA02", 4, 6),
-            ("11320003",    "11310036",     "CÁLCULO III",                        Tipologia.Obligatoria,    "MA02", 4, 6),
-            ("11310010",    "3811310010",   "ANÁLISIS REAL",                      Tipologia.Obligatoria,    "MA02", 3, 4),
-            ("11310020",    "3811310020",   "TOPOLOGÍA",                          Tipologia.Obligatoria,    "MA02", 3, 4),
-            ("11310018",    "11320009",     "ÁLGEBRA ABSTRACTA",                  Tipologia.Obligatoria,    "MA02", 3, 4),
-            ("11320005",    "3811320005",   "VARIABLE COMPLEJA",                  Tipologia.Obligatoria,    "MACC", 3, 4),
-            ("11320010",    "3811320010",   "GEOMETRÍA",                          Tipologia.Electiva,       "MA02", 3, 4),
-            ("11310021",    "3811310021",   "ANÁLISIS NUMÉRICO",                  Tipologia.Obligatoria,    "MACC", 3, 4),
-            ("11330001",    "3811330001",   "TEORÍA DE SISTEMAS",                 Tipologia.Obligatoria,    "IS01", 3, 4),
-            ("11340001",    "3811340001",   "FÍSICA I",                           Tipologia.Obligatoria,    "IM01", 3, 5),
-            ("11340002",    "3811340002",   "FÍSICA II",                          Tipologia.Obligatoria,    "IM01", 3, 5),
-            ("11340003",    "3811340003",   "LABORATORIO DE FÍSICA",              Tipologia.Obligatoria,    "IM01", 1, 2),
-            ("11350001",    "3811350001",   "INGLÉS IV",                          Tipologia.Complementaria, "MACC", 2, 4),
-            ("11360001",    "3811360001",   "PROBABILIDAD Y ESTADÍSTICA",         Tipologia.Obligatoria,    "MACC", 3, 4),
-            ("11360002",    "3811360002",   "BASES DE DATOS",                     Tipologia.Obligatoria,    "IS01", 3, 4),
-            ("11360003",    "3811360003",   "INTELIGENCIA ARTIFICIAL",            Tipologia.Electiva,       "MACC", 3, 4),
-            ("11360004",    "3811360004",   "APRENDIZAJE DE MÁQUINA",             Tipologia.Electiva,       "MACC", 3, 4),
-            ("11360005",    "3811360005",   "ECUACIONES DIFERENCIALES",           Tipologia.Obligatoria,    "MA02", 3, 4),
-            ("11360006",    "3811360006",   "SEGURIDAD INFORMÁTICA",              Tipologia.Complementaria, "IS01", 3, 4),
-            ("11360007",    "3811360007",   "INGENIERÍA DE SOFTWARE",             Tipologia.Obligatoria,    "IS01", 3, 5),
-        };
-
-        for (var i = 0; i < filasAsig.Length; i++)
-        {
-            var (codigo, compartido, nombre, tipologia, programa, creditos, horas) = filasAsig[i];
-            var id = i + 1;
-            var disp = DisponibilidadSemanal.Base();
-            var franja = id % 3;
-            foreach (var dia in new[] { 0, 2, 4 })
-                if (id % 2 == 1) disp[DisponibilidadSemanal.Indice(franja, dia)] = EstadoFranja.Ocupado;
-
-            db.Asignaturas.Add(new Asignatura
+            var c = grupoCursos.First();
+            var tipo = c.Typology.Trim().ToUpperInvariant() switch
             {
-                Id = id,
-                Codigo = codigo,
-                CodigoCompartido = compartido,
-                Nombre = nombre,
-                Tipologia = tipologia,
-                ProgramaCodigo = programa,
-                Creditos = creditos,
-                IntensidadHoraria = horas,
-                Activa = true,
-                Disponibilidad = disp
-            });
+                "T" => Tipologia.Obligatoria,
+                "C" => Tipologia.Complementaria,
+                _ => Tipologia.Electiva
+            };
+            mapaSalones.TryGetValue(Normalizar(c.Name), out var ubicacion);
+            var sugeridos = (ubicacion ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            var pideSalas = sugeridos.Any(x => Normalizar(x).Contains("SALAS"));
+            var pideLaboratorios = sugeridos.Any(x => Normalizar(x).Contains("LABORATORIO"));
+            var tipoSalon = pideSalas && pideLaboratorios ? "Cualquiera" :
+                pideSalas ? "SALAS" : pideLaboratorios ? "LABORATORIO" : "Cualquiera";
+            var ubicacionNormalizada = Normalizar(ubicacion);
+            var permitidos = sugeridos.Where(x => !Normalizar(x).Contains("SALA") && !Normalizar(x).Contains("LABORATORIO"))
+                .Select(x => datos.Rooms.FirstOrDefault(r => Normalizar(r.Name).Replace(" ", "") == Normalizar(x).Replace(" ", ""))?.Name)
+                .Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
+            if (ubicacionNormalizada.Contains("LABORATORIOS O HINNT"))
+            {
+                tipoSalon = "Cualquiera";
+                permitidos = datos.Rooms.Where(r => r.Type.Contains("LABORATORIO", StringComparison.OrdinalIgnoreCase) || r.Name.Equals("HINNT", StringComparison.OrdinalIgnoreCase))
+                    .Select(r => r.Name).ToList();
+            }
+            if (ubicacionNormalizada.Contains("SALAS O LABORATORIOS"))
+                tipoSalon = "Cualquiera";
+            var tipoAsig = Normalizar(c.Name).Contains("FISICA") && Normalizar(c.Name).Contains("LABORATORIO") ? "Física laboratorio" :
+                Normalizar(c.Name).Contains("FISICA") ? "Física teórica" :
+                Normalizar(c.Name).Contains("LABORATORIO") ? "Laboratorio" :
+                c.Practice > 0 ? "Teórico-práctica" : "Teórica";
+            var curso = new Asignatura
+            {
+                Id = id++, Codigo = c.Code, CodigoCompartido = c.SharedCode, Nombre = c.Name, ProgramaCodigo = c.Program,
+                ProgramasCodigosCsv = string.Join(",", grupoCursos.Select(x => x.Program).Distinct(StringComparer.OrdinalIgnoreCase)),
+                Semestre = tipo == Tipologia.Electiva ? "6+" : c.Semester, Tipologia = tipo, Creditos = c.Credits,
+                IntensidadHoraria = Math.Max(1, c.Hours), Activa = true,
+                TipoSalonRequerido = tipoSalon, TipoAsignatura = tipoAsig,
+                SalonesPermitidosCsv = string.Join(",", permitidos)
+            };
+            foreach (var cursoPrograma in grupoCursos)
+                entidades[(cursoPrograma.Program, cursoPrograma.Code)] = curso;
+            db.Asignaturas.Add(curso);
         }
 
-        // ---- Salones ----
-        db.Salones.AddRange(
-            new Salon { Codigo = "L_001", Nombre = "BARDEEN",             Tipo = "Laboratorio", Equipos = 10, Capacidad = 20 },
-            new Salon { Codigo = "L_002", Nombre = "FARADAY",             Tipo = "Laboratorio", Equipos = 8,  Capacidad = 16 },
-            new Salon { Codigo = "L_003", Nombre = "BERNOULLI",           Tipo = "Laboratorio", Equipos = 0,  Capacidad = 10 },
-            new Salon { Codigo = "L_004", Nombre = "HOPPER",              Tipo = "Laboratorio", Equipos = 20, Capacidad = 20 },
-            new Salon { Codigo = "L_005", Nombre = "ENERGÍAS RENOVABLES", Tipo = "Laboratorio", Equipos = 2,  Capacidad = 6  },
-            new Salon { Codigo = "S_001", Nombre = "BOOLE",               Tipo = "Sala",        Equipos = 24, Capacidad = 24 },
-            new Salon { Codigo = "S_002", Nombre = "HIPATIA",             Tipo = "Sala",        Equipos = 0,  Capacidad = 35 },
-            new Salon { Codigo = "S_003", Nombre = "LOVELACE",            Tipo = "Sala",        Equipos = 30, Capacidad = 30 },
-            new Salon { Codigo = "S_004", Nombre = "TURING",              Tipo = "Sala",        Equipos = 27, Capacidad = 27 },
-            new Salon { Codigo = "S_005", Nombre = "NEUMANN",             Tipo = "Sala",        Equipos = 0,  Capacidad = 40 },
-            new Salon { Codigo = "S_006", Nombre = "306 CASUR",           Tipo = "Sala",        Equipos = 0,  Capacidad = 36 },
-            new Salon { Codigo = "S_007", Nombre = "208 CASUR",           Tipo = "Sala",        Equipos = 28, Capacidad = 32 }
-        );
-
-        // ---- Profesores ----
-        var materiasAndrade = new List<MateriaProfesor>
+        db.Salones.AddRange(datos.Rooms.Select(r => new Salon
         {
-            new("11310003", "N/A", "Cálculo I"),
-            new("11310004", "N/A", "Cálculo II"),
-            new("11320003", "11310036", "Cálculo III"),
-            new("11310010", "N/A", "Análisis Real"),
-            new("11310020", "N/A", "Topología"),
-            new("11310018", "11320009", "Álgebra Abstracta"),
-        };
+            Codigo = r.Code, Nombre = r.Name, Tipo = r.Type,
+            Equipos = r.Computers, Capacidad = r.Capacity,
+            Disponibilidad = DisponibilidadSemanal.Base(), Activo = true
+        }));
 
-        var nombresProf = new (string Nombre, string Correo, string Tipo)[]
+        var profesores = new List<Profesor>();
+        var profId = 1;
+        foreach (var t in datos.Teachers)
         {
-            ("David Eugenio Andrade",          "david.andrade",     "Docencia"),
-            ("Nicolás Guillermo Avilán Vargas", "nicolas.avilan",    "Docencia"),
-            ("Norma Constanza Sarmiento",      "norma.sarmiento",   "Carrera"),
-            ("Daniel Alfonso Bojacá",          "daniel.bojaca",     "Carrera"),
-            ("José Alejandro Guerrero",        "jose.guerrero",     "Docencia"),
-            ("David Nicolás Castiblanco",      "david.castiblanco", "Carrera"),
-            ("Marcela Patricia Rojas",         "marcela.rojas",     "Docencia"),
-            ("Camilo Ernesto Vargas",          "camilo.vargas",     "Carrera"),
-            ("Laura Cristina Pardo",           "laura.pardo",       "Docencia"),
-            ("Andrés Mauricio Neira",          "andres.neira",      "Docencia"),
-            ("Sofía Elena Quintero",           "sofia.quintero",    "Carrera"),
-            ("Julián Esteban Ortiz",           "julian.ortiz",      "Docencia"),
-        };
-
-        for (var i = 0; i < nombresProf.Length; i++)
-        {
-            var (nombre, correo, tipo) = nombresProf[i];
-            db.Profesores.Add(new Profesor
+            var category = t.Category.Trim();
+            var doctorado = category.Contains("Doctor", StringComparison.OrdinalIgnoreCase);
+            var carrera = category.Equals("Carrera", StringComparison.OrdinalIgnoreCase);
+            var subjects = t.Subjects.Select(Normalizar).ToHashSet();
+            var materias = datos.Courses.Where(c => subjects.Contains(Normalizar(c.Name)))
+                .Select(c => new MateriaProfesor(c.Code, "N/A", c.Name))
+                .DistinctBy(m => m.Codigo).ToList();
+            var profesor = new Profesor
             {
-                Id = i + 1,
-                Nombre = nombre,
-                Correo = $"{correo}@urosario.edu.co",
-                Tipo = tipo,
-                Telefono = $"+57 300 123 {4567 + i * 11}",
-                Perfil = i == 0
-                    ? "Doctorado en Matemáticas con énfasis en Análisis y Álgebra, Magíster en Ciencias Matemáticas y Licenciatura en Matemáticas."
-                    : "Profesor de la Escuela de Ciencias e Ingeniería.",
-                Activo = true,
-                Materias = i == 0 ? materiasAndrade : [],
+                Id = profId++, Nombre = t.Name,
+                Correo = $"{Normalizar(t.Name).Replace(" ", ".")}@urosario.edu.co",
+                Tipo = doctorado ? "Doctorado" : carrera ? "Carrera" : "Docencia",
+                CursosMinimos = doctorado ? 0 : carrera ? 2 : 4,
+                CursosMaximos = doctorado ? 99 : carrera ? 4 : 5,
+                HorasMinimas = doctorado ? 6 : 0,
+                HorasMaximas = carrera ? 12 : 200,
+                Perfil = doctorado ? "Profesor con doctorado" : $"Profesor de {category}",
+                Activo = true, Materias = materias,
                 Disponibilidad = DisponibilidadSemanal.Base()
+            };
+            profesores.Add(profesor);
+        }
+        db.Profesores.AddRange(profesores);
+        db.SaveChanges();
+
+        var relacionesAgregadas = new HashSet<(int Asignatura, int Relacionada, TipoRelacionAsignatura Tipo)>();
+        foreach (var r in datos.Relations)
+        {
+            if (!entidades.TryGetValue((r.Program, r.Code), out var a) ||
+                !entidades.TryGetValue((r.Program, r.Related), out var b) || a.Id == b.Id) continue;
+            var tipoRelacion = r.Type.Equals("Correquisito", StringComparison.OrdinalIgnoreCase)
+                ? TipoRelacionAsignatura.Correquisito : TipoRelacionAsignatura.Prerrequisito;
+            if (!relacionesAgregadas.Add((a.Id, b.Id, tipoRelacion))) continue;
+            db.RelacionesAsignatura.Add(new RelacionAsignatura
+            {
+                AsignaturaId = a.Id, RelacionadaId = b.Id, Tipo = tipoRelacion
             });
         }
-
         db.SaveChanges();
+    }
+
+    private static string Normalizar(string? texto)
+    {
+        if (string.IsNullOrWhiteSpace(texto)) return "";
+        var descompuesto = texto.Normalize(NormalizationForm.FormD);
+        var sb = new StringBuilder();
+        foreach (var ch in descompuesto)
+            if (CharUnicodeInfo.GetUnicodeCategory(ch) != UnicodeCategory.NonSpacingMark) sb.Append(ch);
+        return Regex.Replace(sb.ToString().ToUpperInvariant(), @"[^A-Z0-9]+", " ").Trim();
     }
 }

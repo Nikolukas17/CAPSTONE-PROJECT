@@ -16,9 +16,10 @@ public class AsignaturaServiceEF(AppDbContext db) : IAsignaturaService
             consulta = consulta.Where(a => EF.Property<string>(a, TextoBusqueda.Columna).Contains(t));
         }
 
-        var total = consulta.Count();
-        var items = consulta
-            .OrderBy(a => a.Id)
+        var unicas = consulta.ToList().GroupBy(a => a.Codigo, StringComparer.OrdinalIgnoreCase)
+            .Select(g => g.OrderBy(a => a.Id).First()).OrderBy(a => a.Id).ToList();
+        var total = unicas.Count;
+        var items = unicas
             .Skip((Math.Max(pagina, 1) - 1) * tamanoPagina)
             .Take(tamanoPagina)
             .ToList();
@@ -29,7 +30,7 @@ public class AsignaturaServiceEF(AppDbContext db) : IAsignaturaService
     public Asignatura? Obtener(int id) =>
         db.Asignaturas.AsNoTracking().FirstOrDefault(a => a.Id == id && a.Activa);
 
-    public bool ExisteCodigo(string codigo, int idExcluido = 0)
+    public bool ExisteCodigo(string codigo, int idExcluido = 0, string? programaCodigo = null)
     {
         var c = codigo.Trim().ToUpperInvariant();
         return db.Asignaturas.Any(a => a.Activa && a.Id != idExcluido && a.Codigo.ToUpper() == c);

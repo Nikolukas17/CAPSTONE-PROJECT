@@ -1,4 +1,4 @@
-﻿@model OfertaAcademica.Web.ViewModels.Account.OlvideViewModel
+@model OfertaAcademica.Web.ViewModels.Account.OlvideViewModel
 @{
     Layout = "~/Views/Shared/_LayoutAuth.cshtml";
     ViewData["Title"] = "Olvidé mi contraseña";
@@ -15,9 +15,11 @@
                 <div class="alerta" role="status">Listo, te enviamos el enlace a tu correo.</div>
             }
 
+            <div asp-validation-summary="ModelOnly" class="alerta"></div>
+
             <div class="campo">
                 <label asp-for="Correo"></label>
-                <input asp-for="Correo" type="Correo" placeholder="nombre@urosario.edu.co" autocomplete="username" />
+                <input asp-for="Correo" type="email" placeholder="nombre@urosario.edu.co" autocomplete="username" />
                 <span asp-validation-for="Correo" class="campo__error"></span>
             </div>
 

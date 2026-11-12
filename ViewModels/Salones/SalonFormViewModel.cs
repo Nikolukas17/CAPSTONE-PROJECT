@@ -33,6 +33,8 @@ public class SalonFormViewModel
     [Display(Name = "Capacidad")]
     public int Capacidad { get; set; } = 20;
 
+    public List<EstadoFranja> Disponibilidad { get; set; } = DisponibilidadSemanal.Base();
+
     [BindNever] public List<SelectListItem> Tipos { get; set; } = [];
 
     public static SalonFormViewModel DesdeEntidad(Salon s) => new()
@@ -42,7 +44,8 @@ public class SalonFormViewModel
         Nombre = s.Nombre,
         Tipo = s.Tipo,
         Equipos = s.Equipos,
-        Capacidad = s.Capacidad
+        Capacidad = s.Capacidad,
+        Disponibilidad = s.Disponibilidad.ToList()
     };
 
     public Salon ComoEntidad() => new()
@@ -52,6 +55,7 @@ public class SalonFormViewModel
         Tipo = Tipo,
         Equipos = Equipos,
         Capacidad = Capacidad,
+        Disponibilidad = Disponibilidad.Count == DisponibilidadSemanal.Total ? Disponibilidad : DisponibilidadSemanal.Base(),
         Activo = true
     };
 }

@@ -1,4 +1,4 @@
-﻿@model OfertaAcademica.Web.ViewModels.Account.RegistroViewModel
+@model OfertaAcademica.Web.ViewModels.Account.RegistroViewModel
 @{
     Layout = "~/Views/Shared/_LayoutAuth.cshtml";
     ViewData["Title"] = "Regístrate";
@@ -24,16 +24,22 @@
             </div>
             <div class="campo">
                 <label asp-for="Correo"></label>
-                <input asp-for="Correo" type="Correo" placeholder="nombre@urosario.edu.co" autocomplete="username" />
+                <input asp-for="Correo" type="email" placeholder="nombre@urosario.edu.co" autocomplete="username" />
                 <span asp-validation-for="Correo" class="campo__error"></span>
             </div>
             <div class="campo">
                 <label asp-for="Contrasena"></label>
                 <div class="campo__pass">
-                    <input asp-for="Contrasena" placeholder="Mínimo 8 caracteres" autocomplete="new-password" />
+                    <input asp-for="Contrasena" placeholder="Mínimo 10 caracteres" autocomplete="new-password" />
                     <button type="button" class="campo__ojo" data-toggle-pass="Contrasena" aria-label="Mostrar contraseña"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
                 </div>
                 <span asp-validation-for="Contrasena" class="campo__error"></span>
+            </div>
+
+            <div class="campo">
+                <label asp-for="ConfirmarContrasena">Confirmar contraseña</label>
+                <input asp-for="ConfirmarContrasena" placeholder="Repite tu contraseña" autocomplete="new-password" />
+                <span asp-validation-for="ConfirmarContrasena" class="campo__error"></span>
             </div>
 
             <button type="submit" class="btn btn--primario auth__enviar">Registrarse</button>

@@ -38,7 +38,7 @@
                        aria-current="@(ctrl == i.Key ? "page" : null)">@i.Texto</a>
                 }
                 <a asp-controller="Account" asp-action="Perfil" class="nav__avatar" aria-label="Mi cuenta">
-                    <i class="bi bi-person"></i>
+                    @((User.Identity?.Name ?? "U").Trim().Length > 0 ? (User.Identity?.Name ?? "U").Trim()[0].ToString().ToUpperInvariant() : "U")
                 </a>
             </nav>
         </div>

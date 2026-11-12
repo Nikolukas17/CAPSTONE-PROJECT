@@ -1,0 +1,74 @@
+@model OfertaAcademica.Web.ViewModels.Oferta.GenerarOfertaViewModel
+@{
+    ViewData["Title"] = "Generar oferta académica";
+}
+
+<nav class="migas" aria-label="Ruta de navegación">
+    <a asp-action="Index">Oferta académica</a>
+    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+    <span aria-current="page">Generar proyección</span>
+</nav>
+
+<section>
+    <div class="cabecera-detalle">
+        <div>
+            <h1 class="titulo-pagina">Generar oferta académica</h1>
+            <p class="muted">Selecciona las asignaturas que deseas programar. El sistema buscará automáticamente profesores, salones y horarios.</p>
+        </div>
+        <a asp-action="Index" class="btn btn--secundario">Volver al calendario</a>
+    </div>
+
+    <form asp-action="Generar" method="post">
+        <div asp-validation-summary="ModelOnly" class="alerta"></div>
+        <section class="card seccion">
+            <div class="card__cab"><h2>Datos de la proyección</h2></div>
+            <div class="card__cuerpo">
+                <label asp-for="NombreProyeccion" class="form-label">Nombre de la proyección</label>
+                <input asp-for="NombreProyeccion" class="input" />
+                <span asp-validation-for="NombreProyeccion" class="campo__error"></span>
+            </div>
+        </section>
+
+        <section class="card seccion">
+            <div class="card__cab">
+                <h2>Asignaturas a ofertar</h2>
+                <p class="muted">La cantidad de grupos y el cupo por grupo se calculan con el Modelo Planificación Oferta (Pregrado).</p>
+            </div>
+            <div class="cal-scroll">
+                <table class="tabla">
+                    <thead>
+                        <tr><th>Incluir</th><th>Código</th><th>Asignatura</th><th>Programa</th><th>Semestre</th><th>Tipo</th><th>Horas/semana</th><th>Grupos (modelo)</th><th>Cupo estimado</th></tr>
+                    </thead>
+                    <tbody>
+                    @for (var i = 0; i < Model.Asignaturas.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                <input asp-for="Asignaturas[i].Incluir" type="checkbox" />
+                                <input asp-for="Asignaturas[i].AsignaturaId" type="hidden" />
+                            </td>
+                            <td>@Model.Asignaturas[i].Codigo</td>
+                            <td>@Model.Asignaturas[i].Nombre</td>
+                            <td>@Model.Asignaturas[i].Programa</td>
+                            <td>@(string.IsNullOrWhiteSpace(Model.Asignaturas[i].Semestre) ? "Electiva" : Model.Asignaturas[i].Semestre)</td>
+                            <td>@Model.Asignaturas[i].TipoAsignatura</td>
+                            <td>@Model.Asignaturas[i].IntensidadHoraria</td>
+                            <td>@Model.Asignaturas[i].CantidadGrupos</td>
+                            <td>@Model.Asignaturas[i].Cupo</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+            @if (Model.Asignaturas.Count == 0)
+            {
+                <div class="card__cuerpo">No hay asignaturas activas. Registra asignaturas antes de generar una oferta.</div>
+            }
+        </section>
+
+        <div class="fila-botones">
+            <a asp-action="Index" class="btn btn--secundario">Cancelar</a>
+            <button type="submit" class="btn btn--primario" disabled="@(Model.Asignaturas.Count == 0)"><i class="bi bi-magic"></i> Generar automáticamente</button>
+        </div>
+    </form>
+</section>
