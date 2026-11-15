@@ -15,6 +15,11 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $proyecto = Resolve-Path (Join-Path $PSScriptRoot '..\..')
+# Si ya hay algo escuchando en el puerto (p. ej. una simulación anterior con -DejarAbierta), la simulación
+# se conectaría a esa app y no a la nueva: se detiene antes de crear nada.
+if (Get-NetTCPConnection -LocalPort $Puerto -State Listen -ErrorAction SilentlyContinue) {
+    throw "El puerto $Puerto está ocupado (¿una simulación anterior sigue abierta?). Ciérrala o usa -Puerto <otro>."
+}
 $carpeta = Join-Path $proyecto ("simulacion-salida\" + (Get-Date -Format 'yyyyMMdd_HHmm'))
 New-Item -ItemType Directory -Force (Join-Path $carpeta 'root'), (Join-Path $carpeta 'salida') | Out-Null
 
@@ -41,7 +46,7 @@ try {
     Write-Host "3/4 Generando los escenarios A, B y C (tarda unos segundos)..."
     $env:PYTHONIOENCODING = 'utf-8'
     [Console]::OutputEncoding = [Text.Encoding]::UTF8
-    python -I (Join-Path $PSScriptRoot 'simular_oferta.py') "$carpeta"
+    python -I (Join-Path $PSScriptRoot 'simular_oferta.py') "$carpeta" $Puerto
     if ($LASTEXITCODE -ne 0) { throw "La simulación falló (ver el error arriba)." }
 }
 finally {

@@ -1,7 +1,7 @@
 """Simulación de la oferta académica en tres escenarios.
 
 Se ejecuta con simular.ps1, que levanta la app con una base de datos NUEVA y aparte (no toca la base real).
-Uso directo:  python simular_oferta.py <carpeta_simulacion>   (la app debe estar corriendo en 127.0.0.1:5898
+Uso directo:  python simular_oferta.py <carpeta_simulacion> [puerto]   (la app debe estar corriendo en 127.0.0.1:<puerto>, 5898 por defecto,
 con --contentRoot <carpeta_simulacion>/root).
 
 Escenarios:
@@ -13,8 +13,8 @@ Salida: un Excel por escenario y resultados.json en <carpeta_simulacion>/salida.
 """
 import http.cookiejar, json, math, re, sqlite3, sys, urllib.parse, urllib.request, collections, os
 
-BASE = 'http://127.0.0.1:5898'
 SIM = sys.argv[1]
+BASE = f"http://127.0.0.1:{sys.argv[2] if len(sys.argv) > 2 else 5898}"
 DB = os.path.join(SIM, 'root', 'App_Data', 'oferta_academica.db')
 OUT = os.path.join(SIM, 'salida')
 jar = http.cookiejar.CookieJar()

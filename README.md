@@ -65,6 +65,9 @@ Excel por escenario en `simulacion-salida/<fecha>/salida/`. No toca la base real
 Si PowerShell bloquea el script:
 `powershell -ExecutionPolicy Bypass -File .\herramientas\simulacion\simular.ps1`
 
+**Paso a paso completo** (requisitos, escenarios, cómo revisarla, valores de referencia e interpretación):
+[herramientas/simulacion/README.md](herramientas/simulacion/README.md).
+
 ## Problemas frecuentes
 
 | Problema | Solución |
