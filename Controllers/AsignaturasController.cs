@@ -161,8 +161,21 @@ public class AsignaturasController(IAsignaturaService servicio, AppDbContext db,
             .Select(t => new SelectListItem(t.ToString().ToUpperInvariant(), t.ToString()))
             .ToList();
 
+        var salones = db.Salones.AsNoTracking().Where(x => x.Activo).OrderBy(x => x.Tipo).ThenBy(x => x.Nombre).ToList();
+        vm.Salones = salones
+            .Select(x => new SelectListItem($"{x.Nombre} · {x.Tipo} · cap. {x.Capacidad}{(x.Equipos > 0 ? $" · {x.Equipos} equipos" : "")}", x.Nombre,
+                vm.SalonesSeleccionados.Contains(x.Nombre, StringComparer.OrdinalIgnoreCase)))
+            .ToList();
+        // Conserva salones seleccionados que ya no existen o están inactivos, para no perderlos al guardar.
+        foreach (var faltante in vm.SalonesSeleccionados.Where(n => salones.All(x => !string.Equals(x.Nombre, n, StringComparison.OrdinalIgnoreCase))))
+            vm.Salones.Add(new SelectListItem($"{faltante} (no encontrado / inactivo)", faltante, true));
+        vm.TiposSalon = TiposSalonRequerido.Todos
+            .Select(t => new SelectListItem(TiposSalonRequerido.Etiqueta(t), t)).ToList();
+        if (!TiposSalonRequerido.Todos.Contains(vm.TipoSalonRequerido))
+            vm.TiposSalon.Add(new SelectListItem(vm.TipoSalonRequerido, vm.TipoSalonRequerido));
+
         if (vm.Disponibilidad.Count != DisponibilidadSemanal.Total)
-            vm.Disponibilidad = DisponibilidadSemanal.Base();
+            vm.Disponibilidad = DisponibilidadSemanal.PorAsignatura(vm.Nombre);
         if (vm.DisponibilidadesGrupos.Count != vm.CantidadGrupos)
             vm.DisponibilidadesGrupos = Enumerable.Range(0, Math.Clamp(vm.CantidadGrupos, 1, 30))
                 .Select(i => i < vm.DisponibilidadesGrupos.Count ? vm.DisponibilidadesGrupos[i] : vm.Disponibilidad.ToList()).ToList();

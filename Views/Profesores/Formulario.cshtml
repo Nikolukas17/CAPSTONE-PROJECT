@@ -151,24 +151,33 @@
                 <span class="l-disp"><i></i>Disponible</span>
                 <span class="l-ocup"><i></i>Ocupado</span>
                 <span class="l-nodisp"><i></i>No disponible</span>
+                <span class="l-parcial" title="Solo parte del bloque está disponible (datos registrados en franjas de 30 min)"><i></i>Parcial</span>
             </div>
         </div>
         <div class="card__cuerpo">
-            <partial name="_DisponibilidadGrid" model="new DisponibilidadGridViewModel { NombreCampo = nameof(Model.Disponibilidad), Estados = Model.Disponibilidad, Editable = true }" />
-            <p class="nota">Toca una franja para alternarla entre disponible y no disponible. Las franjas ocupadas ya están en la oferta académica y no se pueden cambiar aquí.</p>
+            <partial name="_DisponibilidadAtajos" />
+            <partial name="_DisponibilidadGrid" model="new DisponibilidadGridViewModel { NombreCampo = nameof(Model.Disponibilidad), Estados = Model.Disponibilidad, Editable = true, BloquesDosHoras = true }" />
+            <p class="nota">La disponibilidad se marca en bloques de 2 horas: toca un bloque para alternarlo entre disponible y no disponible. Carrera, docencia y doctorado tienen jornada fija de 7:00 a 17:00 (el sábado solo se usa para Capstone). Cátedra empieza sin disponibilidad: márcala según lo que indique el profesor, o envíale el enlace desde su ficha para que la registre él mismo.</p>
         </div>
     </section>
 </form>
 
 @section Scripts {
     <script src="~/js/catalogos.js" asp-append-version="true"></script>
+    <script src="~/js/disponibilidad-atajos.js" asp-append-version="true"></script>
     <script>
         document.getElementById("Tipo")?.addEventListener("change", function () {
             const reglas = {
                 "Carrera": [2, 4, 0, 12],
                 "Docencia": [4, 5, 0, 200],
-                "Doctorado": [0, 30, 6, 200]
+                "Doctorado": [0, 30, 6, 200],
+                "Cátedra": [0, 4, 0, 200]
             };
+            // Profesor nuevo: la disponibilidad inicial depende del tipo.
+            if (@(Model.EsNuevo ? "true" : "false")) {
+                const grid = document.querySelector('#formProfesor [data-grid-editable]');
+                if (grid) window.DisponibilidadAtajos.aplicar(grid, this.value === "Cátedra" ? "limpiar" : "jornada", true);
+            }
             const r = reglas[this.value];
             if (!r) return;
             ["CursosMinimos", "CursosMaximos", "HorasMinimas", "HorasMaximas"].forEach((id, i) => {

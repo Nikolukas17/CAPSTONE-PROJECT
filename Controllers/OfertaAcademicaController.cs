@@ -35,12 +35,13 @@ public class OfertaAcademicaController(AppDbContext db, GeneradorOfertaService g
             NombreProyeccion = proyeccion?.Nombre ?? "",
             EstadoProyeccion = proyeccion?.Estado ?? "Sin proyección",
             MensajeProyeccion = proyeccion?.Mensaje ?? "Aún no has generado una proyección. Crea una para visualizar los horarios.",
+            Resumen = ResumenProyeccion.Desde(proyeccion?.Mensaje),
             TotalGruposProgramados = proyeccion?.TotalGruposProgramados ?? 0,
             TotalGruposSolicitados = proyeccion?.TotalGruposSolicitados ?? 0,
             Historial = db.ProyeccionesOferta.AsNoTracking().OrderByDescending(p => p.FechaCreacion)
                 .Select(p => new ProyeccionResumenVM { Id = p.Id, Nombre = p.Nombre, FechaCreacion = p.FechaCreacion, Estado = p.Estado }).ToList(),
             Sesiones = proyeccion?.Grupos
-                .Where(g => g.Asignatura != null && g.Profesor != null && g.Salon != null)
+                .Where(g => g.Asignatura != null && g.Profesor != null)
                 .SelectMany((g, indice) => g.Sesiones.Select(s => new SesionClaseVM
                 {
                     Id = s.Id,
@@ -48,7 +49,7 @@ public class OfertaAcademicaController(AppDbContext db, GeneradorOfertaService g
                     Codigo = g.Asignatura!.Codigo,
                     Nombre = g.Asignatura.Nombre,
                     Profesor = g.Profesor!.Nombre,
-                    Salon = g.Salon!.Nombre,
+                    Salon = g.Salon?.Nombre ?? "Aula general (por asignar)",
                     Programa = g.Asignatura.ProgramasCodigosCsv.Length > 0 ? g.Asignatura.ProgramasCodigosCsv : g.Asignatura.ProgramaCodigo,
                     Grupo = g.NumeroGrupo.ToString(),
                     Cupo = g.Cupo,
@@ -67,7 +68,13 @@ public class OfertaAcademicaController(AppDbContext db, GeneradorOfertaService g
     [HttpPost, ValidateAntiForgeryToken]
     public IActionResult Generar(GenerarOfertaViewModel vm)
     {
-        AplicarPlanificacionPregrado(vm);
+        // El formulario solo envía qué asignaturas incluir: grupos y cupos se recalculan en el servidor
+        // (los mismos que muestra la página). Antes se usaban los valores por defecto del modelo
+        // (1 grupo, cupo 30), lo que hacía fallar la regla de capacidad de las teórico-prácticas.
+        var incluidas = vm.Asignaturas.Where(a => a.Incluir).Select(a => a.AsignaturaId).ToHashSet();
+        vm.Asignaturas = PrepararGeneracion(new GenerarOfertaViewModel()).Asignaturas;
+        foreach (var opcion in vm.Asignaturas)
+            opcion.Incluir = incluidas.Contains(opcion.AsignaturaId);
         var seleccionadas = vm.Asignaturas.Where(a => a.Incluir).ToList();
         if (seleccionadas.Count == 0)
             ModelState.AddModelError(nameof(vm.Asignaturas), "Selecciona al menos una asignatura.");
@@ -81,8 +88,9 @@ public class OfertaAcademicaController(AppDbContext db, GeneradorOfertaService g
         var solicitudes = vm.Asignaturas.Select(a => new SolicitudOfertaInput(
             a.AsignaturaId, a.Incluir, a.CantidadGrupos, a.Cupo)).ToList();
         var proyeccion = generador.Generar(vm.NombreProyeccion, solicitudes);
-        TempData[proyeccion.Estado.StartsWith("Completa", StringComparison.Ordinal) ? "Exito" : "Error"] =
-            $"Proyección '{proyeccion.Nombre}': {proyeccion.TotalGruposProgramados} de {proyeccion.TotalGruposSolicitados} grupos programados. {proyeccion.Mensaje}";
+        // El detalle de pendientes se muestra agrupado en la página; aquí solo un aviso breve.
+        TempData[proyeccion.TotalGruposProgramados > 0 ? "Exito" : "Error"] =
+            $"Proyección '{proyeccion.Nombre}' generada: {proyeccion.TotalGruposProgramados} de {proyeccion.TotalGruposSolicitados} grupos programados.";
         return RedirectToAction(nameof(Index), new { id = proyeccion.Id });
     }
 

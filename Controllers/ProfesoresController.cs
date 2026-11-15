@@ -1,6 +1,9 @@
+using System.Security.Cryptography;
+using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using OfertaAcademica.Web.Data;
 using OfertaAcademica.Web.Models.Entities;
 using OfertaAcademica.Web.Services;
 using OfertaAcademica.Web.ViewModels.Profesores;
@@ -8,10 +11,12 @@ using OfertaAcademica.Web.ViewModels.Profesores;
 namespace OfertaAcademica.Web.Controllers;
 
 [Authorize]
-public class ProfesoresController(IProfesorService profesores, IAsignaturaService asignaturas, GeneradorOfertaService generador) : Controller
+public class ProfesoresController(IProfesorService profesores, IAsignaturaService asignaturas, GeneradorOfertaService generador,
+    AppDbContext db, ICorreoInstitucionalService correo, ILogger<ProfesoresController> logger) : Controller
 {
     private const int PorPagina = 6;
-    private static readonly string[] TiposProfesor = ["Carrera", "Docencia", "Doctorado"];
+    private const int DiasVigenciaEnlace = 14;
+    private static readonly string[] TiposProfesor = ["Carrera", "Docencia", "Doctorado", "Cátedra"];
 
     public IActionResult Index(string? q, int pagina = 1)
     {
@@ -42,6 +47,11 @@ public class ProfesoresController(IProfesorService profesores, IAsignaturaServic
             Tipo     = "Profesor de " + p.Tipo,
             Descripcion = p.Perfil,
             Activo   = p.Activo,
+            Correo   = p.Correo,
+            EsCatedra = DisponibilidadSemanal.EsCatedra(p.Tipo),
+            TieneDisponibilidad = DisponibilidadSemanal.TieneFranjasDisponibles(p.Disponibilidad),
+            DisponibilidadActualizadaUtc = p.DisponibilidadActualizadaUtc,
+            EnlaceDisponibilidadVenceUtc = p.TokenDisponibilidadExpiraUtc > DateTime.UtcNow ? p.TokenDisponibilidadExpiraUtc : null,
             Materias = p.Materias.GroupBy(m => m.Codigo, StringComparer.OrdinalIgnoreCase)
                 .Select(g => g.First()).Select(m => new MateriaProfesorViewModel
                 {
@@ -102,7 +112,9 @@ public class ProfesoresController(IProfesorService profesores, IAsignaturaServic
             ModelState.AddModelError(nameof(vm.Correo), "Ya existe un profesor con este correo.");
 
         if (vm.Disponibilidad.Count != DisponibilidadSemanal.Total)
-            vm.Disponibilidad = DisponibilidadSemanal.Base();
+            vm.Disponibilidad = DisponibilidadSemanal.PorTipoProfesor(vm.Tipo);
+        if (!TiposProfesor.Contains(vm.Tipo) && !DisponibilidadSemanal.EsCatedra(vm.Tipo))
+            ModelState.AddModelError(nameof(vm.Tipo), "Selecciona un tipo de profesor válido.");
 
         if (!ModelState.IsValid)
             return View("Formulario", Preparar(vm));
@@ -152,15 +164,64 @@ public class ProfesoresController(IProfesorService profesores, IAsignaturaServic
         return RedirectToAction(nameof(Index));
     }
 
+    /// <summary>
+    /// Genera un enlace personal (vigente 14 días) para que el profesor marque su disponibilidad sin tener cuenta.
+    /// Se intenta enviar por correo y, en cualquier caso, se muestra a la coordinación para que pueda compartirlo.
+    /// Generar un enlace nuevo invalida el anterior.
+    /// </summary>
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> EnlaceDisponibilidad(int id)
+    {
+        var p = db.Profesores.FirstOrDefault(x => x.Id == id);
+        if (p is null) return NotFound();
+        if (!p.Activo)
+        {
+            TempData["Error"] = "El profesor está inactivo.";
+            return RedirectToAction(nameof(Detalle), new { id });
+        }
+
+        var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32)).TrimEnd('=').Replace('+', '-').Replace('/', '_');
+        p.TokenDisponibilidadHash = HashToken(token);
+        p.TokenDisponibilidadExpiraUtc = DateTime.UtcNow.AddDays(DiasVigenciaEnlace);
+        db.SaveChanges();
+
+        var enlace = Url.Action("Registrar", "DisponibilidadProfesor", new { token }, Request.Scheme)!;
+        TempData["EnlaceDisponibilidad"] = enlace;
+
+        if (string.IsNullOrWhiteSpace(p.Correo) || p.Correo.EndsWith(".invalid", StringComparison.OrdinalIgnoreCase))
+        {
+            TempData["Error"] = "El profesor no tiene un correo válido: copia el enlace y compártelo por otro medio.";
+            return RedirectToAction(nameof(Detalle), new { id });
+        }
+        try
+        {
+            var resultado = await correo.EnviarEnlaceDisponibilidadAsync(p.Correo, p.Nombre, enlace, p.TokenDisponibilidadExpiraUtc.Value);
+            TempData["Exito"] = resultado == ResultadoEnvioCorreo.Enviado
+                ? $"Enviamos el enlace a {p.Correo}. También puedes copiarlo y compartirlo por otro medio."
+                : "Modo desarrollo: el correo se guardó en App_Data/correos-desarrollo. Copia el enlace para probarlo.";
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "No se pudo enviar el enlace de disponibilidad al profesor {Id}.", id);
+            TempData["Error"] = "No se pudo enviar el correo (revisa la configuración SMTP). Copia el enlace y compártelo por otro medio.";
+        }
+        return RedirectToAction(nameof(Detalle), new { id });
+    }
+
+    internal static string HashToken(string token) =>
+        Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(token)));
+
     // ---------- helpers ----------
 
     private ProfesorFormViewModel Preparar(ProfesorFormViewModel vm)
     {
         vm.Tipos = TiposProfesor.Select(t => new SelectListItem(t, t)).ToList();
+        if (DisponibilidadSemanal.EsCatedra(vm.Tipo) && !TiposProfesor.Contains(vm.Tipo))
+            vm.Tipos.Add(new SelectListItem(vm.Tipo, vm.Tipo)); // p. ej. "Cátedra simulado"
         if (vm.EsNuevo && vm.CursosMinimos == 0 && vm.CursosMaximos == 5)
         {
             vm.CursosMinimos = vm.Tipo == "Carrera" ? 2 : vm.Tipo == "Docencia" ? 4 : 0;
-            vm.CursosMaximos = vm.Tipo == "Carrera" ? 4 : vm.Tipo == "Docencia" ? 5 : 30;
+            vm.CursosMaximos = vm.Tipo == "Carrera" ? 4 : vm.Tipo == "Docencia" ? 5 : DisponibilidadSemanal.EsCatedra(vm.Tipo) ? 4 : 30;
             vm.HorasMinimas = vm.Tipo == "Doctorado" ? 6 : 0;
             vm.HorasMaximas = vm.Tipo == "Carrera" ? 12 : 200;
         }
@@ -169,7 +230,7 @@ public class ProfesoresController(IProfesorService profesores, IAsignaturaServic
             .Select(a => new MateriaOpcionVM { Id = a.Id, Codigo = a.Codigo, Nombre = a.Nombre })
             .ToList();
         if (vm.Disponibilidad.Count != DisponibilidadSemanal.Total)
-            vm.Disponibilidad = DisponibilidadSemanal.Base();
+            vm.Disponibilidad = DisponibilidadSemanal.PorTipoProfesor(vm.Tipo);
         return vm;
     }
 }

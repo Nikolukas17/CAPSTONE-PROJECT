@@ -40,10 +40,19 @@ public class ProfesorServiceEF(AppDbContext db) : IProfesorService
         var existente = profesor.Id == 0 ? null : db.Profesores.FirstOrDefault(p => p.Id == profesor.Id);
         if (existente is null)
         {
+            if (DisponibilidadSemanal.TieneFranjasDisponibles(profesor.Disponibilidad))
+                profesor.DisponibilidadActualizadaUtc ??= DateTime.UtcNow;
             db.Profesores.Add(profesor);
             db.SaveChanges();
             return profesor;
         }
+
+        // El formulario no maneja el enlace de disponibilidad: se conserva el vigente.
+        profesor.TokenDisponibilidadHash = existente.TokenDisponibilidadHash;
+        profesor.TokenDisponibilidadExpiraUtc = existente.TokenDisponibilidadExpiraUtc;
+        profesor.DisponibilidadActualizadaUtc = existente.Disponibilidad.SequenceEqual(profesor.Disponibilidad)
+            ? existente.DisponibilidadActualizadaUtc
+            : DateTime.UtcNow;
 
         // Cargar la entidad rastreada y reemplazar la colección hace que EF
         // borre las filas de ProfesorMaterias que ya no están e inserte las nuevas.

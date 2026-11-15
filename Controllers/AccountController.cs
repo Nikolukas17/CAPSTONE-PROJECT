@@ -13,7 +13,7 @@ using OfertaAcademica.Web.ViewModels.Account;
 
 namespace OfertaAcademica.Web.Controllers;
 
-public class AccountController(AppDbContext db, ICorreoInstitucionalService correo, IConfiguration configuration) : Controller
+public class AccountController(AppDbContext db, ICorreoInstitucionalService correo, ILogger<AccountController> logger) : Controller
 {
     private const string DominioInstitucional = "@urosario.edu.co";
     private readonly PasswordHasher<UsuarioAplicacion> _hasher = new();
@@ -78,8 +78,17 @@ public class AccountController(AppDbContext db, ICorreoInstitucionalService corr
             db.TokensRecuperacion.Add(new TokenRecuperacionPassword { UsuarioAplicacionId = user.Id, TokenHash = hash, ExpiraUtc = DateTime.UtcNow.AddMinutes(30) });
             await db.SaveChangesAsync();
             var link = Url.Action(nameof(Restablecer), "Account", new { token = raw, correo = user.Correo }, Request.Scheme)!;
-            try { await correo.EnviarRecuperacionAsync(user.Correo, user.NombreCompleto, link); }
-            catch (Exception) { ModelState.AddModelError(string.Empty, "No fue posible enviar el correo de recuperación. Verifica la configuración SMTP o contacta al administrador."); return View(vm); }
+            try
+            {
+                if (await correo.EnviarRecuperacionAsync(user.Correo, user.NombreCompleto, link) == ResultadoEnvioCorreo.GuardadoLocalmente)
+                    ViewData["ModoDesarrollo"] = "Modo desarrollo: no hay SMTP configurado, así que el correo se guardó en App_Data/correos-desarrollo y el enlace quedó en la consola.";
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "No se pudo enviar el correo de recuperación.");
+                ModelState.AddModelError(string.Empty, "No fue posible enviar el correo de recuperación. Verifica la configuración SMTP o contacta al administrador.");
+                return View(vm);
+            }
         }
         ViewData["Enviado"] = true;
         return View(new OlvideViewModel { Correo = vm.Correo });

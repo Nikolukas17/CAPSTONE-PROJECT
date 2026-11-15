@@ -52,6 +52,35 @@
 
 <section class="card seccion">
     <h2 class="card__titulo">Disponibilidad semanal</h2>
+    <div class="estado-disp">
+        @if (!Model.TieneDisponibilidad)
+        {
+            <div class="alerta" role="status"><i class="bi bi-exclamation-triangle"></i> Sin disponibilidad registrada: el generador no le asignará cursos.</div>
+        }
+        else if (Model.DisponibilidadActualizadaUtc is DateTime actualizada)
+        {
+            <span class="muted">Última actualización: @actualizada.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</span>
+        }
+        @if (Model.EnlaceDisponibilidadVenceUtc is DateTime vence)
+        {
+            <span class="muted">· Enlace personal vigente hasta el @vence.ToLocalTime().ToString("dd/MM/yyyy")</span>
+        }
+    </div>
+    @if (Model.Activo)
+    {
+        <form asp-action="EnlaceDisponibilidad" asp-route-id="@Model.Id" method="post" style="margin-bottom:14px">
+            <button type="submit" class="btn btn--secundario"><i class="bi bi-envelope"></i> @(Model.EnlaceDisponibilidadVenceUtc is null ? "Enviar enlace para que registre su disponibilidad" : "Generar y enviar un enlace nuevo")</button>
+            <small class="muted">@(Model.EsCatedra ? "Recomendado para profesores de cátedra." : "") El enlace dura 14 días y no requiere cuenta.</small>
+        </form>
+        @if (TempData["EnlaceDisponibilidad"] is string enlace)
+        {
+            <div class="enlace-copiar">
+                <input type="text" id="enlaceDisp" value="@enlace" readonly aria-label="Enlace de disponibilidad" />
+                <button type="button" class="btn btn--secundario btn--sm" onclick="navigator.clipboard.writeText(document.getElementById('enlaceDisp').value).then(() => this.textContent = 'Copiado')">Copiar</button>
+            </div>
+            <p class="nota">Este enlace solo se muestra ahora. Si lo pierdes, genera uno nuevo (el anterior deja de funcionar).</p>
+        }
+    }
     <div class="disp">
         <div class="disp__grid">
             <div class="celda celda--cab">HORARIO</div>
@@ -59,13 +88,17 @@
             {
                 <div class="celda celda--cab">@d.ToUpperInvariant()</div>
             }
-            @for (var f = 0; f < ProfesorDetalleViewModel.Franjas.Length; f++)
+            @for (var b = 0; b < OfertaAcademica.Web.Models.Entities.DisponibilidadSemanal.Bloques.Length; b++)
             {
-                <div class="celda celda--cab">@ProfesorDetalleViewModel.Franjas[f]</div>
+                var primera = b * OfertaAcademica.Web.Models.Entities.DisponibilidadSemanal.FranjasPorBloque;
+                <div class="celda celda--cab">@OfertaAcademica.Web.Models.Entities.DisponibilidadSemanal.Bloques[b]</div>
                 @for (var d = 0; d < ProfesorDetalleViewModel.Dias.Length; d++)
                 {
-                    var ok = Model.Disponibilidad[f][d];
-                    <div class="celda @(ok ? "celda--si" : "")">@(ok ? "Disponible" : "No disponible")</div>
+                    var libres = Enumerable.Range(primera, OfertaAcademica.Web.Models.Entities.DisponibilidadSemanal.FranjasPorBloque)
+                        .Count(f => Model.Disponibilidad[f][d]);
+                    var (clase, texto) = libres == OfertaAcademica.Web.Models.Entities.DisponibilidadSemanal.FranjasPorBloque ? ("celda--si", "Disponible")
+                        : libres > 0 ? ("celda--parcial", "Parcial") : ("", "No disponible");
+                    <div class="celda @clase">@texto</div>
                 }
             }
         </div>

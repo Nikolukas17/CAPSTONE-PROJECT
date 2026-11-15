@@ -4,6 +4,8 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Datos locales y salidas de la simulación: no forman parte del proyecto ni se copian al compilar. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);App_Data/**;simulacion-salida/**</DefaultItemExcludes>
   </PropertyGroup>
 
   <ItemGroup>

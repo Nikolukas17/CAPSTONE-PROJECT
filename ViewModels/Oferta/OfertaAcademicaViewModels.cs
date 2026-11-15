@@ -27,6 +27,8 @@ public class OfertaAcademicaViewModel
     public string NombreProyeccion { get; set; } = "";
     public string EstadoProyeccion { get; set; } = "Sin proyección";
     public string MensajeProyeccion { get; set; } = "";
+    /// <summary>Pendientes y avisos de la proyección agrupados por causa (a partir del mensaje del generador).</summary>
+    public OfertaAcademica.Web.Services.ResumenProyeccion Resumen { get; set; } = new([], []);
     public int TotalGruposProgramados { get; set; }
     public int TotalGruposSolicitados { get; set; }
     public List<ProyeccionResumenVM> Historial { get; set; } = [];

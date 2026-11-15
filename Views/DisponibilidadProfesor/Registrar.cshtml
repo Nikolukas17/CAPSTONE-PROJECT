@@ -1,0 +1,30 @@
+@using OfertaAcademica.Web.ViewModels.Shared
+@model OfertaAcademica.Web.Controllers.DisponibilidadProfesorController.RegistroDisponibilidadViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+    ViewData["Title"] = "Registrar disponibilidad";
+}
+<div class="disp-publica">
+    <section class="card seccion">
+        <h1 class="card__titulo">Disponibilidad horaria · @Model.NombreProfesor</h1>
+        <p>Marca los bloques de 2 horas en los que <strong>puedes</strong> dictar clase el próximo periodo. Toca un bloque para alternarlo, o usa los atajos. Los sábados solo se programa Capstone Project.</p>
+        <p class="muted">Este enlace es personal y vence el @Model.VenceUtc.ToLocalTime().ToString("dd/MM/yyyy"). Puedes volver a abrirlo para corregir tu disponibilidad mientras esté vigente.</p>
+
+        @if (Model.Guardado)
+        {
+            <div class="alerta alerta--ok" role="status"><i class="bi bi-check-circle"></i> Guardamos tu disponibilidad. ¡Gracias! Puedes cerrar esta página o seguir ajustándola.</div>
+        }
+
+        <form asp-action="Registrar" asp-route-token="@Model.Token" method="post" data-grid-autonomo>
+            <partial name="_DisponibilidadAtajos" />
+            <partial name="_DisponibilidadGrid" model='new DisponibilidadGridViewModel { NombreCampo = "disponibilidad", Estados = Model.Disponibilidad, Editable = true, BloquesDosHoras = true }' />
+            <div style="margin-top:16px">
+                <button type="submit" class="btn btn--primario">Guardar mi disponibilidad</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/disponibilidad-atajos.js" asp-append-version="true"></script>
+}

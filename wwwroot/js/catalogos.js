@@ -67,8 +67,8 @@
       slot.dataset.estado = nuevo;
       slot.textContent = textos[nuevo];
       slot.setAttribute('aria-label', slot.dataset.dia + ' ' + slot.dataset.franja + ': ' + textos[nuevo]);
-      const oculto = slot.parentElement.querySelector('input[type="hidden"]');
-      if (oculto) oculto.value = nuevo;
+      // En modo bloques de 2 horas la celda tiene varias franjas ocultas: se actualizan todas.
+      slot.parentElement.querySelectorAll('input[type="hidden"]').forEach((oculto) => { oculto.value = nuevo; });
     }));
 
   // Materias del profesor: filtro y contador

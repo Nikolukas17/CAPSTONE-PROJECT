@@ -19,3 +19,6 @@ appsettings.*.local.json
 
 # Base de datos persistente local
 App_Data/
+
+# Resultados de herramientas/simulacion
+simulacion-salida/
