@@ -46,7 +46,7 @@ public class ExcelOfertaService
                 fila.Add(sesion is null ? "" : Hora(sesion.InicioMinutos));
                 fila.Add(sesion is null ? "" : Hora(sesion.FinMinutos));
             }
-            fila.Add(grupo.Salon!.Nombre);
+            fila.Add(grupo.Salon?.Nombre ?? "AULA GENERAL (POR ASIGNAR)");
             filas.Add(fila);
         }
 

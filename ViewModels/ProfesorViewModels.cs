@@ -38,6 +38,11 @@ public class ProfesorDetalleViewModel
     public string? FotoUrl { get; set; }
     public bool Activo { get; set; } = true;
     public List<MateriaProfesorViewModel> Materias { get; set; } = new();
+    public string Correo { get; set; } = "";
+    public bool EsCatedra { get; set; }
+    public bool TieneDisponibilidad { get; set; }
+    public DateTime? DisponibilidadActualizadaUtc { get; set; }
+    public DateTime? EnlaceDisponibilidadVenceUtc { get; set; }
 
     public static readonly string[] Dias = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
     public static readonly string[] Franjas = OfertaAcademica.Web.Models.Entities.DisponibilidadSemanal.Franjas;

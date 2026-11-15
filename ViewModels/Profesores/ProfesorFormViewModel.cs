@@ -43,7 +43,7 @@ public class ProfesorFormViewModel
     public List<int> MateriasSeleccionadas { get; set; } = [];
 
     /// <summary>Misma rejilla que usa Asignaturas (franjas x días).</summary>
-    public List<EstadoFranja> Disponibilidad { get; set; } = DisponibilidadSemanal.Base();
+    public List<EstadoFranja> Disponibilidad { get; set; } = DisponibilidadSemanal.JornadaFija();
 
     // ----- Solo para pintar la vista -----
     [BindNever] public List<SelectListItem> Tipos { get; set; } = [];

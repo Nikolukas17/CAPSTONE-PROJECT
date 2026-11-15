@@ -23,6 +23,18 @@ Configura estas variables de entorno antes de ejecutar:
 - `Email__Username`: usuario SMTP, si aplica.
 - `Email__Password`: contraseña o token SMTP, si aplica.
 
+### Opción recomendada: Gmail con contraseña de aplicación
+
+1. Usa una cuenta Gmail del equipo con verificación en dos pasos activada.
+2. En https://myaccount.google.com/apppasswords crea una "contraseña de aplicación" (16 letras).
+3. Copia `appsettings.Local.example.json` como `appsettings.Local.json` (está en `.gitignore`) y completa `From`, `Username` y `Password`. La aplicación lo lee automáticamente al iniciar.
+
+`Email__FromName` (opcional) define el nombre visible del remitente.
+
+### Modo desarrollo sin SMTP
+
+Si se ejecuta en `Development` y no hay SMTP configurado, los correos (recuperación de contraseña y enlaces de disponibilidad) se guardan como `.html` en `App_Data/correos-desarrollo/` y el enlace se escribe en la consola. En cualquier otro entorno, sin SMTP, el envío falla con un error visible: nunca se simula un envío.
+
 No guardes la contraseña SMTP en el repositorio ni en `appsettings.json`. Si la institución no facilita SMTP, usa un proveedor transaccional que autorice el dominio institucional y configura sus credenciales como variables de entorno.
 
 ## Datos de planeación

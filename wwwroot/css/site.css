@@ -103,6 +103,7 @@ h1, h2, h3 { color: var(--tinta); margin: 0; }
 .celda { border-radius: 6px; padding: 7px 4px; text-align: center; font-size: 11px; font-weight: 600; border: 1px solid var(--borde); background: #f4f5f7; color: var(--gris); }
 .celda--cab { background: #f1f2f5; color: var(--texto); border-color: #e3e6ec; }
 .celda--si { background: var(--verde-fondo); color: var(--verde); border-color: #8fd1ad; }
+.celda--parcial, .slot[data-estado="Parcial"] { background: #fff6e0; color: #8a5a00; border-color: #f0c96a; }
 
 /* ---------- Modal ---------- */
 dialog.modal { border: 0; border-radius: 10px; padding: 28px 32px 22px; width: min(420px, 92vw); text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,.25); }
@@ -283,6 +284,7 @@ select.input:disabled { appearance: none; -webkit-appearance: none; }
 .l-disp i { background: var(--verde-fondo); border-color: #8fd1ad; }
 .l-ocup i { background: var(--rojo-suave); border-color: var(--rojo); }
 .l-nodisp i { background: #f4f5f7; border-color: var(--borde); }
+.l-parcial i { background: #fff6e0; border-color: #f0c96a; }
 
 .slots-wrap { overflow-x: auto; }
 .slots { border-collapse: separate; border-spacing: 10px; width: 100%; min-width: 760px; margin: -10px; width: calc(100% + 20px); }
@@ -292,6 +294,7 @@ select.input:disabled { appearance: none; -webkit-appearance: none; }
 .slot[data-estado="Disponible"] { background: var(--verde-fondo); color: var(--verde); border-color: #8fd1ad; }
 .slot[data-estado="Ocupado"] { background: var(--rojo-suave); color: var(--rojo); border-color: var(--rojo); }
 button.slot { cursor: pointer; }
+.slots--bloques .slot { padding: 14px 4px; font-size: 12px; }
 button.slot:hover:not(:disabled) { filter: brightness(.96); }
 button.slot:disabled { cursor: default; }
 .nota { margin: 14px 0 0; font-size: 11px; color: var(--gris); }
@@ -336,4 +339,53 @@ textarea.input { min-height: 84px; resize: vertical; line-height: 1.5; }
 @media (max-width: 760px) {
   .cuenta { flex-direction: column; text-align: center; padding: 28px 20px; }
   .cuenta__salir-form { align-self: center; }
+}
+
+/* ---------- Disponibilidad: atajos, estado y enlace del profesor ---------- */
+.btn--sm { padding: 6px 10px; font-size: 12px; }
+.atajos-disp { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 14px; font-size: 12px; }
+.estado-disp { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 14px; font-size: 13px; }
+.estado-disp .alerta { margin: 0; }
+.enlace-copiar { display: flex; gap: 8px; align-items: center; margin-top: 10px; }
+.enlace-copiar input { flex: 1; min-width: 0; font-size: 12px; padding: 8px; border: 1px solid #d9dce3; border-radius: 6px; }
+.disp-publica { max-width: 1100px; margin: 24px auto; padding: 0 16px; }
+
+/* ---------- Resumen de la proyección (Oferta académica) ---------- */
+.resumen-oferta { padding: 18px 20px; }
+.resumen-oferta__cab { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.resumen-oferta__cifra { font-size: 28px; font-weight: 800; color: var(--tinta); margin-right: 4px; }
+.resumen-oferta__intro { margin: 14px 0 10px; font-size: 13px; }
+.resumen-oferta__intro .bi-check-circle { color: var(--verde); }
+.estado-chip { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+.estado-chip--ok { background: var(--verde-fondo); color: #1f7a47; }
+.estado-chip--parcial { background: #fff6e0; color: #8a5a00; }
+.estado-chip--error { background: var(--rojo-suave); color: var(--rojo-oscuro); }
+.barra-avance { height: 8px; background: #eef0f3; border-radius: 999px; overflow: hidden; margin-top: 10px; }
+.barra-avance__relleno { display: block; height: 100%; border-radius: 999px; }
+.barra-avance__relleno--ok { background: var(--verde); }
+.barra-avance__relleno--parcial { background: #e0a526; }
+.barra-avance__relleno--error { background: var(--rojo); }
+.pendientes { display: grid; gap: 8px; }
+.pendiente { border: 1px solid var(--borde); border-radius: var(--radio); background: var(--superficie); }
+.pendiente[open] { border-color: #d4d8e0; }
+.pendiente summary { display: flex; align-items: center; gap: 10px; padding: 11px 14px; cursor: pointer; list-style: none; }
+.pendiente summary::-webkit-details-marker { display: none; }
+.pendiente summary:hover { background: #fafafb; }
+.pendiente__icono { font-size: 16px; color: #8a5a00; background: #fff6e0; width: 30px; height: 30px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.pendiente__titulo { font-weight: 700; color: var(--tinta); }
+.pendiente__cuenta { margin-left: auto; font-size: 12px; color: var(--gris); white-space: nowrap; }
+.pendiente__flecha { color: var(--gris); transition: transform .15s; }
+.pendiente[open] .pendiente__flecha { transform: rotate(180deg); }
+.pendiente__cuerpo { border-top: 1px solid var(--borde); overflow-x: auto; }
+.pendiente__ayuda { margin: 0; padding: 10px 14px; font-size: 12px; color: var(--texto); background: #fafbfc; }
+.pendiente__ayuda .bi { color: #e0a526; }
+.tabla--compacta th { padding: 8px 14px; color: var(--gris); }
+.tabla--compacta td { padding: 8px 14px; font-size: 12px; }
+.avisos-oferta { margin-top: 12px; font-size: 12px; color: var(--gris); }
+.avisos-oferta summary { cursor: pointer; font-weight: 600; }
+.avisos-oferta h3 { font-size: 12px; margin: 10px 0 4px; color: var(--texto); }
+.avisos-oferta ul { margin: 0; padding-left: 18px; columns: 2 260px; }
+@media (max-width: 640px) {
+  .pendiente summary { flex-wrap: wrap; }
+  .pendiente__cuenta { margin-left: 40px; width: 100%; }
 }

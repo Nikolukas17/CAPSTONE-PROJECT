@@ -100,13 +100,15 @@
                     <tr>
                         <th scope="row">Tipo de salón requerido</th>
                         <td>
-                            <select asp-for="TipoSalonRequerido" class="input">
-                                <option>Cualquiera</option>
-                                <option>SALAS</option>
-                                <option>LABORATORIO</option>
-                                <option>CONVENCIONAL</option>
-                                <option>CÓMPUTO</option>
-                            </select>
+                            <select asp-for="TipoSalonRequerido" asp-items="Model.TiposSalon" class="input"></select>
+                            <small class="muted">"Aula general": el horario se programa sin ocupar las salas ni los laboratorios de la facultad; el aula la asigna la universidad.</small>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Salones específicos</th>
+                        <td>
+                            <select asp-for="SalonesSeleccionados" asp-items="Model.Salones" class="input" multiple size="6"></select>
+                            <small class="muted">Opcional. Si eliges salones, la asignatura solo se programa en ellos (tiene prioridad sobre el tipo de salón).</small>
                         </td>
                     </tr>
                     <tr>

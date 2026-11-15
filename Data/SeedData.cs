@@ -41,7 +41,7 @@ public static class SeedData
             ?? throw new InvalidDataException("El archivo de importación no tiene un formato válido.");
 
         db.Programas.AddRange(datos.Programs.Select(p => new Programa { Codigo = p.Code, Nombre = p.Name }));
-        var mapaSalones = datos.RoomMap.ToDictionary(k => Normalizar(k.Key), v => v.Value);
+        var mapaSalones = datos.RoomMap.ToDictionary(k => CorregirNombreHojaUbicacion(Normalizar(k.Key)), v => v.Value);
         var entidades = new Dictionary<(string Programa, string Codigo), Asignatura>();
         var id = 1;
         foreach (var grupoCursos in datos.Courses.GroupBy(c => c.Code, StringComparer.OrdinalIgnoreCase))
@@ -57,30 +57,40 @@ public static class SeedData
             var sugeridos = (ubicacion ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
             var pideSalas = sugeridos.Any(x => Normalizar(x).Contains("SALAS"));
             var pideLaboratorios = sugeridos.Any(x => Normalizar(x).Contains("LABORATORIO"));
-            var tipoSalon = pideSalas && pideLaboratorios ? "Cualquiera" :
-                pideSalas ? "SALAS" : pideLaboratorios ? "LABORATORIO" : "Cualquiera";
+            var tipoSalon = pideSalas && pideLaboratorios ? TiposSalonRequerido.Cualquiera :
+                pideSalas ? TiposSalonRequerido.Salas : pideLaboratorios ? TiposSalonRequerido.Laboratorio : TiposSalonRequerido.AulaGeneral;
             var ubicacionNormalizada = Normalizar(ubicacion);
             var permitidos = sugeridos.Where(x => !Normalizar(x).Contains("SALA") && !Normalizar(x).Contains("LABORATORIO"))
                 .Select(x => datos.Rooms.FirstOrDefault(r => Normalizar(r.Name).Replace(" ", "") == Normalizar(x).Replace(" ", ""))?.Name)
                 .Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
             if (ubicacionNormalizada.Contains("LABORATORIOS O HINNT"))
             {
-                tipoSalon = "Cualquiera";
+                tipoSalon = TiposSalonRequerido.Cualquiera;
                 permitidos = datos.Rooms.Where(r => r.Type.Contains("LABORATORIO", StringComparison.OrdinalIgnoreCase) || r.Name.Equals("HINNT", StringComparison.OrdinalIgnoreCase))
                     .Select(r => r.Name).ToList();
             }
             if (ubicacionNormalizada.Contains("SALAS O LABORATORIOS"))
-                tipoSalon = "Cualquiera";
+                tipoSalon = TiposSalonRequerido.Cualquiera;
+            // Con salones específicos en la hoja, el tipo deja de ser "aula general".
+            if (permitidos.Count > 0 && tipoSalon == TiposSalonRequerido.AulaGeneral)
+                tipoSalon = TiposSalonRequerido.Cualquiera;
             var tipoAsig = Normalizar(c.Name).Contains("FISICA") && Normalizar(c.Name).Contains("LABORATORIO") ? "Física laboratorio" :
                 Normalizar(c.Name).Contains("FISICA") ? "Física teórica" :
                 Normalizar(c.Name).Contains("LABORATORIO") ? "Laboratorio" :
                 c.Practice > 0 ? "Teórico-práctica" : "Teórica";
+            // Sin indicación en la hoja de ubicación: laboratorios y programación siguen necesitando espacio especializado.
+            if (tipoSalon == TiposSalonRequerido.AulaGeneral && tipoAsig.Contains("laboratorio", StringComparison.OrdinalIgnoreCase))
+                tipoSalon = TiposSalonRequerido.Laboratorio;
+            else if (tipoSalon == TiposSalonRequerido.AulaGeneral &&
+                     (Normalizar(c.Name).Contains("PROGRAMACION") || Normalizar(c.Name).Contains("COMPUTACION")))
+                tipoSalon = TiposSalonRequerido.Salas;
             var curso = new Asignatura
             {
                 Id = id++, Codigo = c.Code, CodigoCompartido = c.SharedCode, Nombre = c.Name, ProgramaCodigo = c.Program,
                 ProgramasCodigosCsv = string.Join(",", grupoCursos.Select(x => x.Program).Distinct(StringComparer.OrdinalIgnoreCase)),
                 Semestre = tipo == Tipologia.Electiva ? "6+" : c.Semester, Tipologia = tipo, Creditos = c.Credits,
                 IntensidadHoraria = Math.Max(1, c.Hours), Activa = true,
+                Disponibilidad = DisponibilidadSemanal.PorAsignatura(c.Name),
                 TipoSalonRequerido = tipoSalon, TipoAsignatura = tipoAsig,
                 SalonesPermitidosCsv = string.Join(",", permitidos)
             };
@@ -118,7 +128,7 @@ public static class SeedData
                 HorasMaximas = carrera ? 12 : 200,
                 Perfil = doctorado ? "Profesor con doctorado" : $"Profesor de {category}",
                 Activo = true, Materias = materias,
-                Disponibilidad = DisponibilidadSemanal.Base()
+                Disponibilidad = DisponibilidadSemanal.JornadaFija()
             };
             profesores.Add(profesor);
         }
@@ -140,6 +150,20 @@ public static class SeedData
         }
         db.SaveChanges();
     }
+
+    /// <summary>
+    /// La hoja "Espacio x asignatura" escribe algunos nombres distinto al pensum.
+    /// Solo se corrigen equivalencias evidentes; el resto se deja sin enlazar para validarlo con la coordinación.
+    /// </summary>
+    private static readonly Dictionary<string, string> NombresHojaUbicacion = new()
+    {
+        ["TRANSFERECIA DE CALOR"] = "TRANSFERENCIA DE CALOR",
+        ["ALGORITMOS Y ESTRUCTURA DE DATOS"] = "ALGORITMOS Y ESTRUCTURAS DE DATOS",
+        ["ANALISIS Y DISENO DE ALGORITMOS"] = "DISENO Y ANALISIS DE ALGORITMOS",
+    };
+
+    private static string CorregirNombreHojaUbicacion(string nombreNormalizado) =>
+        NombresHojaUbicacion.GetValueOrDefault(nombreNormalizado, nombreNormalizado);
 
     private static string Normalizar(string? texto)
     {

@@ -20,7 +20,8 @@ public class GrupoOferta
     public int ProyeccionOfertaId { get; set; }
     public int AsignaturaId { get; set; }
     public int ProfesorId { get; set; }
-    public string SalonCodigo { get; set; } = "";
+    /// <summary>Null cuando la asignatura usa aula general: el salón lo asigna la universidad.</summary>
+    public string? SalonCodigo { get; set; }
     public int NumeroGrupo { get; set; }
     public int Cupo { get; set; }
     public ProyeccionOferta? Proyeccion { get; set; }

@@ -13,7 +13,7 @@ public class GeneradorOfertaService(AppDbContext db)
     private const int FinDia = 19 * 60;
     private const int MinutosBloque = 30;
 
-    private sealed record Colocacion(int ProfesorId, string SalonCodigo, DayOfWeek Dia, int Inicio, int Fin, int AsignaturaId, string Programa, string? Semestre, bool Obligatoria);
+    private sealed record Colocacion(int ProfesorId, string? SalonCodigo, DayOfWeek Dia, int Inicio, int Fin, int AsignaturaId, string Programa, string? Semestre, bool Obligatoria);
 
     public ProyeccionOferta Generar(string nombre, IReadOnlyList<SolicitudOfertaInput> solicitudes)
     {
@@ -51,6 +51,12 @@ public class GeneradorOfertaService(AppDbContext db)
             var nombreAsignatura = asignaturas.TryGetValue(relacion.AsignaturaId, out var asig) ? asig.Nombre : relacion.AsignaturaId.ToString();
             errores.Add($"Advertencia: el correquisito asociado a '{nombreAsignatura}' no está incluido en esta proyección.");
         }
+        var catedraSinDisponibilidad = profesores
+            .Where(p => !DisponibilidadSemanal.TieneFranjasDisponibles(p.Disponibilidad))
+            .Select(p => p.Nombre).OrderBy(n => n).ToList();
+        if (catedraSinDisponibilidad.Count > 0)
+            errores.Add($"Advertencia: {catedraSinDisponibilidad.Count} profesor(es) no tienen disponibilidad registrada y no se les asignó ningún curso: {string.Join(", ", catedraSinDisponibilidad)}.");
+
         foreach (var solicitud in seleccionadas.Where(s => !asignaturas.ContainsKey(s.AsignaturaId)))
             errores.Add($"La asignatura con identificador {solicitud.AsignaturaId} ya no existe.");
         foreach (var solicitud in seleccionadas.Where(s => asignaturas.ContainsKey(s.AsignaturaId) && !asignaturas[s.AsignaturaId].Activa))
@@ -69,6 +75,7 @@ public class GeneradorOfertaService(AppDbContext db)
         {
             var asignatura = asignaturas[solicitud.AsignaturaId];
             var docentes = profesores.Where(p => PuedeDictar(p, asignatura) &&
+                DisponibilidadSemanal.TieneFranjasDisponibles(p.Disponibilidad) &&
                 cursosDocente.Count(x => x.ProfesorId == p.Id) < p.CursosMaximos &&
                 horasDocente.GetValueOrDefault(p.Id) + asignatura.IntensidadHoraria <= p.HorasMaximas)
                 .OrderBy(p => cursosDocente.Count(x => x.ProfesorId == p.Id))
@@ -76,7 +83,9 @@ public class GeneradorOfertaService(AppDbContext db)
                 .ThenBy(p => p.Nombre).ToList();
             if (docentes.Count == 0)
             {
-                errores.Add($"{asignatura.Codigo} - {asignatura.Nombre}: no tiene profesores activos asociados en su ficha.");
+                errores.Add(profesores.Any(p => PuedeDictar(p, asignatura))
+                    ? $"{asignatura.Codigo} - {asignatura.Nombre}: sus profesores no tienen disponibilidad registrada o ya alcanzaron su carga máxima."
+                    : $"{asignatura.Codigo} - {asignatura.Nombre}: no tiene profesores activos asociados en su ficha.");
                 continue;
             }
 
@@ -92,28 +101,15 @@ public class GeneradorOfertaService(AppDbContext db)
             if (solicitud.Cupo > cupoMaximo ||
                 (asignatura.TipoAsignatura == "Laboratorio" && solicitud.Cupo < 20))
             {
-                errores.Add($"{asignatura.Codigo}: el cupo {solicitud.Cupo} incumple la regla de capacidad para {asignatura.TipoAsignatura} (permitido: {(asignatura.TipoAsignatura == "Laboratorio" ? "20 a 40" : $"máximo {cupoMaximo}")}).");
+                errores.Add($"{asignatura.Codigo} - {asignatura.Nombre}: el cupo {solicitud.Cupo} incumple la regla de capacidad para {asignatura.TipoAsignatura} (permitido: {(asignatura.TipoAsignatura == "Laboratorio" ? "20 a 40" : $"máximo {cupoMaximo}")}).");
                 continue;
             }
 
-            var nombresPermitidos = asignatura.SalonesPermitidosCsv.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-            var salonesValidos = salones.Where(s =>
-                s.Capacidad >= solicitud.Cupo &&
-                (asignatura.TipoSalonRequerido == "Cualquiera" ||
-                 string.Equals(s.Tipo, asignatura.TipoSalonRequerido, StringComparison.OrdinalIgnoreCase)) &&
-                (nombresPermitidos.Length == 0 || nombresPermitidos.Any(n => string.Equals(n, s.Nombre, StringComparison.OrdinalIgnoreCase))) &&
-                (!asignatura.Nombre.Contains("PROGRAMACIÓN", StringComparison.OrdinalIgnoreCase) &&
-                 !asignatura.Nombre.Contains("COMPUTACIÓN", StringComparison.OrdinalIgnoreCase) ||
-                 s.Equipos > 0)).ToList();
-            if (asignatura.TipoAsignatura.Contains("Laboratorio", StringComparison.OrdinalIgnoreCase) ||
-                asignatura.Nombre.Contains("LABORATORIO", StringComparison.OrdinalIgnoreCase))
-                salonesValidos = salonesValidos.Where(s => s.Tipo.Contains("laboratorio", StringComparison.OrdinalIgnoreCase)).ToList();
-            else
-                salonesValidos = salonesValidos.OrderBy(s => s.Tipo.Contains("sala", StringComparison.OrdinalIgnoreCase) ? 0 : 1).ToList();
-
+            var salonesValidos = SalonesCompatibles(asignatura, solicitud.Cupo, salones);
             if (salonesValidos.Count == 0)
             {
-                errores.Add($"{asignatura.Codigo} - {asignatura.Nombre}: no hay salones compatibles con un cupo de {solicitud.Cupo}.");
+                errores.Add($"{asignatura.Codigo} - {asignatura.Nombre}: no hay salones compatibles con un cupo de {solicitud.Cupo}" +
+                    (string.IsNullOrWhiteSpace(asignatura.SalonesPermitidosCsv) ? $" ({TiposSalonRequerido.Etiqueta(asignatura.TipoSalonRequerido)})." : $" (salones requeridos: {asignatura.SalonesPermitidosCsv})."));
                 continue;
             }
 
@@ -126,7 +122,11 @@ public class GeneradorOfertaService(AppDbContext db)
             {
                 foreach (var salon in salonesValidos)
                 {
-                    foreach (var patron in ObtenerPatrones(asignatura.IntensidadHoraria, patronesPregrado.GetValueOrDefault(Normalizar(asignatura.Nombre))))
+                    var patrones = ObtenerPatrones(asignatura.IntensidadHoraria, patronesPregrado.GetValueOrDefault(Normalizar(asignatura.Nombre)));
+                    // Capstone solo tiene un día disponible (sábado): una única sesión semanal.
+                    if (DisponibilidadSemanal.EsCapstone(asignatura.Nombre))
+                        patrones = patrones.Where(p => p.Length == 1).DefaultIfEmpty([Math.Min(asignatura.IntensidadHoraria * 2, 24)]).ToList();
+                    foreach (var patron in patrones)
                     {
                         var sesiones = new List<Colocacion>();
                         if (!UbicarSesiones(asignatura, disponibilidadGrupo, docente, salon, patron, solicitud.NumeroGrupo, 0, sesiones, ocupadas, paresCorrequisito))
@@ -137,7 +137,7 @@ public class GeneradorOfertaService(AppDbContext db)
                             Proyeccion = proyeccion,
                             AsignaturaId = asignatura.Id,
                             ProfesorId = docente.Id,
-                            SalonCodigo = salon.Codigo,
+                            SalonCodigo = salon?.Codigo,
                             NumeroGrupo = solicitud.NumeroGrupo,
                             Cupo = solicitud.Cupo,
                             Sesiones = sesiones.Select(c => new SesionOferta
@@ -204,6 +204,39 @@ public class GeneradorOfertaService(AppDbContext db)
         entradas.AddRange(nuevas.Select(a => new SolicitudOfertaInput(a.Id, true, a.CantidadGrupos, 30)));
 
         return Generar($"{anterior.Nombre} · actualización {DateTime.Now:dd/MM HH:mm}", entradas);
+    }
+
+    /// <summary>
+    /// Salones en los que puede dictarse la asignatura. Para "Aula general" devuelve un único
+    /// elemento null: el grupo se programa sin consumir los salones especializados de la facultad.
+    /// Los salones específicos indicados por la coordinación (SalonesPermitidosCsv) son obligatorios.
+    /// </summary>
+    private static List<Salon?> SalonesCompatibles(Asignatura asignatura, int cupo, List<Salon> salones)
+    {
+        var permitidos = asignatura.SalonesPermitidosCsv.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (permitidos.Length == 0 && asignatura.TipoSalonRequerido == TiposSalonRequerido.AulaGeneral)
+            return [null];
+
+        IEnumerable<Salon> candidatos = salones.Where(s => s.Capacidad >= cupo);
+        if (permitidos.Length > 0)
+            candidatos = candidatos.Where(s => permitidos.Any(n =>
+                string.Equals(Compactar(n), Compactar(s.Nombre), StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(n, s.Codigo, StringComparison.OrdinalIgnoreCase)));
+        else if (asignatura.TipoSalonRequerido == TiposSalonRequerido.Cualquiera)
+            candidatos = candidatos.Where(s => EsTipo(s, TiposSalonRequerido.Salas) || EsTipo(s, TiposSalonRequerido.Laboratorio));
+        else
+            candidatos = candidatos.Where(s => EsTipo(s, asignatura.TipoSalonRequerido));
+
+        // Asignaturas de programación/computación necesitan computadores.
+        if (asignatura.Nombre.Contains("PROGRAMACIÓN", StringComparison.OrdinalIgnoreCase) ||
+            asignatura.Nombre.Contains("COMPUTACIÓN", StringComparison.OrdinalIgnoreCase))
+            candidatos = candidatos.Where(s => s.Equipos > 0);
+
+        // Primero el salón más ajustado al cupo, para no desperdiciar los grandes.
+        return candidatos.OrderBy(s => s.Capacidad).Cast<Salon?>().ToList();
+
+        static bool EsTipo(Salon s, string tipo) => s.Tipo.Contains(tipo, StringComparison.OrdinalIgnoreCase);
+        static string Compactar(string v) => Normalizar(v).Replace(" ", "");
     }
 
     private static List<List<EstadoFranja>> LeerDisponibilidades(Asignatura asignatura)
@@ -282,13 +315,13 @@ public class GeneradorOfertaService(AppDbContext db)
         }
     }
 
-    private static bool UbicarSesiones(Asignatura asignatura, List<EstadoFranja> disponibilidadGrupo, Profesor profesor, Salon salon, int[] patron,
+    private static bool UbicarSesiones(Asignatura asignatura, List<EstadoFranja> disponibilidadGrupo, Profesor profesor, Salon? salon, int[] patron,
         int numeroGrupo, int indice, List<Colocacion> provisionales, List<Colocacion> ocupadas, HashSet<(int, int)> paresCorrequisito)
     {
         if (indice == patron.Length) return true;
         var duracion = patron[indice] * MinutosBloque;
-        var esCapstone = asignatura.Nombre.Contains("CAPSTONE", StringComparison.OrdinalIgnoreCase);
-        var dias = esCapstone && numeroGrupo == 2
+        // Regla institucional: Capstone Project se dicta únicamente los sábados; el resto, de lunes a viernes.
+        var dias = DisponibilidadSemanal.EsCapstone(asignatura.Nombre)
             ? new List<DayOfWeek> { DayOfWeek.Saturday }
             : patron.Length == 2
                 ? new List<DayOfWeek> { DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday }
@@ -305,10 +338,10 @@ public class GeneradorOfertaService(AppDbContext db)
                 var fin = inicio + duracion;
                 if (!Disponible(disponibilidadGrupo, dia, inicio, fin) ||
                     !Disponible(profesor.Disponibilidad, dia, inicio, fin) ||
-                    !Disponible(salon.Disponibilidad, dia, inicio, fin))
+                    (salon is not null && !Disponible(salon.Disponibilidad, dia, inicio, fin)))
                     continue;
 
-                var candidata = new Colocacion(profesor.Id, salon.Codigo, dia, inicio, fin, asignatura.Id, asignatura.ProgramasCodigosCsv.Length > 0 ? asignatura.ProgramasCodigosCsv : asignatura.ProgramaCodigo, asignatura.Semestre, asignatura.Tipologia == Tipologia.Obligatoria);
+                var candidata = new Colocacion(profesor.Id, salon?.Codigo, dia, inicio, fin, asignatura.Id, asignatura.ProgramasCodigosCsv.Length > 0 ? asignatura.ProgramasCodigosCsv : asignatura.ProgramaCodigo, asignatura.Semestre, asignatura.Tipologia == Tipologia.Obligatoria);
                 if (Conflicta(candidata, ocupadas, paresCorrequisito) || Conflicta(candidata, provisionales, paresCorrequisito)) continue;
 
                 provisionales.Add(candidata);
@@ -345,7 +378,8 @@ public class GeneradorOfertaService(AppDbContext db)
         foreach (var otra in existentes)
         {
             if (otra.Dia != candidata.Dia || candidata.Inicio >= otra.Fin || otra.Inicio >= candidata.Fin) continue;
-            if (otra.ProfesorId == candidata.ProfesorId || otra.SalonCodigo == candidata.SalonCodigo) return true;
+            if (otra.ProfesorId == candidata.ProfesorId ||
+                (candidata.SalonCodigo is not null && otra.SalonCodigo == candidata.SalonCodigo)) return true;
             if (otra.AsignaturaId == candidata.AsignaturaId) continue; // Los grupos paralelos son alternativas.
             var par = otra.AsignaturaId < candidata.AsignaturaId
                 ? (otra.AsignaturaId, candidata.AsignaturaId)

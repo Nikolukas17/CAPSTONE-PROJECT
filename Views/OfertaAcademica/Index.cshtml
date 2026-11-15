@@ -13,7 +13,7 @@
             <h1 class="titulo-pagina">Oferta Académica</h1>
             @if (Model.ProyeccionId.HasValue)
             {
-                <p class="muted">Proyección: <strong>@Model.NombreProyeccion</strong> · Estado: @Model.EstadoProyeccion · @Model.TotalGruposProgramados de @Model.TotalGruposSolicitados grupos programados</p>
+                <p class="muted">Proyección: <strong>@Model.NombreProyeccion</strong></p>
             }
         </div>
         <a asp-action="Generar" class="btn btn--primario"><i class="bi bi-magic"></i> Generar oferta</a>
@@ -33,9 +33,75 @@
     }
     @if (TempData["Exito"] is string ok) { <div class="alerta alerta--ok" role="status">@ok</div> }
     @if (TempData["Error"] is string err) { <div class="alerta" role="alert">@err</div> }
-    @if (!string.IsNullOrWhiteSpace(Model.MensajeProyeccion) && Model.ProyeccionId.HasValue)
+    @if (Model.ProyeccionId.HasValue)
     {
-        <div class="alerta" role="status" style="white-space:pre-line">@Model.MensajeProyeccion</div>
+        var resumen = Model.Resumen;
+        var porcentaje = Model.TotalGruposSolicitados == 0 ? 0 : (int)Math.Round(100.0 * Model.TotalGruposProgramados / Model.TotalGruposSolicitados);
+        var claseEstado = Model.EstadoProyeccion.StartsWith("Completa") ? "ok" : Model.TotalGruposProgramados == 0 ? "error" : "parcial";
+        <section class="card seccion resumen-oferta" aria-label="Resumen de la proyección">
+            <div class="resumen-oferta__cab">
+                <div>
+                    <span class="resumen-oferta__cifra">@Model.TotalGruposProgramados</span>
+                    <span class="muted">de @Model.TotalGruposSolicitados grupos programados (@porcentaje %)</span>
+                </div>
+                <span class="estado-chip estado-chip--@claseEstado">@Model.EstadoProyeccion</span>
+            </div>
+            <div class="barra-avance" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@porcentaje" aria-label="Grupos programados">
+                <span class="barra-avance__relleno barra-avance__relleno--@claseEstado" style="width:@porcentaje%"></span>
+            </div>
+
+            @if (resumen.Pendientes.Count > 0)
+            {
+                <p class="resumen-oferta__intro">Quedaron <strong>@resumen.GruposPendientes grupos sin programar</strong>. Abre cada causa para ver las asignaturas y cómo resolverlo:</p>
+                <div class="pendientes">
+                    @foreach (var cat in resumen.Pendientes)
+                    {
+                        <details class="pendiente">
+                            <summary>
+                                <i class="bi @cat.Icono pendiente__icono" aria-hidden="true"></i>
+                                <span class="pendiente__titulo">@cat.Titulo</span>
+                                <span class="pendiente__cuenta">@cat.TotalGrupos @(cat.TotalGrupos == 1 ? "grupo" : "grupos") · @cat.Asignaturas.Count @(cat.Asignaturas.Count == 1 ? "asignatura" : "asignaturas")</span>
+                                <i class="bi bi-chevron-down pendiente__flecha" aria-hidden="true"></i>
+                            </summary>
+                            <div class="pendiente__cuerpo">
+                                <p class="pendiente__ayuda"><i class="bi bi-lightbulb" aria-hidden="true"></i> @cat.Ayuda</p>
+                                <table class="tabla tabla--compacta">
+                                    <thead><tr><th scope="col">Asignatura</th><th scope="col" class="tc">Grupos</th><th scope="col">Detalle</th></tr></thead>
+                                    <tbody>
+                                        @foreach (var a in cat.Asignaturas)
+                                        {
+                                            <tr>
+                                                <td><strong>@(a.Nombre.Length > 0 ? a.Nombre : a.Codigo)</strong> <span class="muted">@(a.Nombre.Length > 0 ? a.Codigo : "")</span></td>
+                                                <td class="tc">@a.Grupos</td>
+                                                <td class="muted">@a.Detalle</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </details>
+                    }
+                </div>
+            }
+            else if (Model.TotalGruposSolicitados > 0 && Model.TotalGruposProgramados == Model.TotalGruposSolicitados)
+            {
+                <p class="resumen-oferta__intro"><i class="bi bi-check-circle" aria-hidden="true"></i> Todos los grupos solicitados fueron programados.</p>
+            }
+
+            @if (resumen.Avisos.Count > 0)
+            {
+                <details class="avisos-oferta">
+                    <summary><i class="bi bi-info-circle" aria-hidden="true"></i> Avisos que no impidieron programar (@resumen.Avisos.Sum(a => a.Detalles.Count))</summary>
+                    @foreach (var aviso in resumen.Avisos)
+                    {
+                        <h3>@aviso.Titulo</h3>
+                        <ul>
+                            @foreach (var d in aviso.Detalles) { <li>@d</li> }
+                        </ul>
+                    }
+                </details>
+            }
+        </section>
     }
 
     @if (!Model.ProyeccionId.HasValue)

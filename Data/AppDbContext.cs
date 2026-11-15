@@ -30,6 +30,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         mb.Entity<TokenRecuperacionPassword>().HasIndex(t => t.TokenHash).IsUnique();
         mb.Entity<TokenRecuperacionPassword>().HasOne(t => t.UsuarioAplicacion).WithMany().HasForeignKey(t => t.UsuarioAplicacionId).OnDelete(DeleteBehavior.Cascade);
         mb.Entity<PlanificacionPregrado>().HasIndex(p => p.NombreAsignatura);
+        mb.Entity<Profesor>().HasIndex(p => p.TokenDisponibilidadHash);
         mb.Entity<Programa>().HasKey(p => p.Codigo);
 
         mb.Entity<RelacionAsignatura>()

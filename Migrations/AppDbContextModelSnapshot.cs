@@ -116,7 +116,6 @@ namespace OfertaAcademica.Web.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("SalonCodigo")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -176,6 +175,9 @@ namespace OfertaAcademica.Web.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime?>("DisponibilidadActualizadaUtc")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("HorasMaximas")
                         .HasColumnType("INTEGER");
 
@@ -204,7 +206,15 @@ namespace OfertaAcademica.Web.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime?>("TokenDisponibilidadExpiraUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TokenDisponibilidadHash")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TokenDisponibilidadHash");
 
                     b.ToTable("Profesores");
                 });
@@ -472,8 +482,7 @@ namespace OfertaAcademica.Web.Migrations
                     b.HasOne("OfertaAcademica.Web.Models.Entities.Salon", "Salon")
                         .WithMany()
                         .HasForeignKey("SalonCodigo")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Asignatura");
 

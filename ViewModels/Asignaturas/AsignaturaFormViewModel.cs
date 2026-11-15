@@ -49,10 +49,11 @@ public class AsignaturaFormViewModel
     [Display(Name = "Intensidad horaria semanal (hrs)")]
     public int IntensidadHoraria { get; set; } = 4;
 
-    public List<EstadoFranja> Disponibilidad { get; set; } = DisponibilidadSemanal.Base();
-    public string TipoSalonRequerido { get; set; } = "Cualquiera";
+    public List<EstadoFranja> Disponibilidad { get; set; } = DisponibilidadSemanal.AsignaturaEstandar();
+    public string TipoSalonRequerido { get; set; } = TiposSalonRequerido.AulaGeneral;
     public string TipoAsignatura { get; set; } = "Teórica";
-    public string? SalonesPermitidosCsv { get; set; }
+    /// <summary>Nombres de los salones específicos en los que debe dictarse (vacío = según el tipo de salón).</summary>
+    public List<string> SalonesSeleccionados { get; set; } = [];
     [Range(1, 30, ErrorMessage = "La cantidad de grupos debe estar entre 1 y 30.")]
     [Display(Name = "Cantidad de grupos")] public int CantidadGrupos { get; set; } = 1;
     public List<List<EstadoFranja>> DisponibilidadesGrupos { get; set; } = [];
@@ -61,6 +62,8 @@ public class AsignaturaFormViewModel
     [BindNever] public bool ModoEdicion { get; set; }
     [BindNever] public List<SelectListItem> Programas { get; set; } = [];
     [BindNever] public List<SelectListItem> Tipologias { get; set; } = [];
+    [BindNever] public List<SelectListItem> Salones { get; set; } = [];
+    [BindNever] public List<SelectListItem> TiposSalon { get; set; } = [];
     [BindNever] public bool EsNueva => Id == 0;
 
     public static AsignaturaFormViewModel Desde(Asignatura a) => new()
@@ -79,7 +82,8 @@ public class AsignaturaFormViewModel
         TipoAsignatura = a.TipoAsignatura,
         CantidadGrupos = a.CantidadGrupos,
         DisponibilidadesGrupos = LeerDisponibilidades(a),
-        SalonesPermitidosCsv = a.SalonesPermitidosCsv
+        SalonesSeleccionados = a.SalonesPermitidosCsv
+            .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList()
     };
 
     private static List<List<EstadoFranja>> LeerDisponibilidades(Asignatura a)
@@ -110,10 +114,11 @@ public class AsignaturaFormViewModel
         IntensidadHoraria = IntensidadHoraria,
         Disponibilidad = DisponibilidadesGrupos.FirstOrDefault()?.Count == DisponibilidadSemanal.Total
             ? [.. DisponibilidadesGrupos[0]]
-            : Disponibilidad.Count == DisponibilidadSemanal.Total ? [.. Disponibilidad] : DisponibilidadSemanal.Base(),
+            : Disponibilidad.Count == DisponibilidadSemanal.Total ? [.. Disponibilidad] : DisponibilidadSemanal.PorAsignatura(Nombre),
         TipoSalonRequerido = TipoSalonRequerido,
         TipoAsignatura = TipoAsignatura,
-        SalonesPermitidosCsv = SalonesPermitidosCsv?.Trim() ?? ""
+        SalonesPermitidosCsv = string.Join(",", SalonesSeleccionados
+            .Where(n => !string.IsNullOrWhiteSpace(n)).Select(n => n.Trim()).Distinct(StringComparer.OrdinalIgnoreCase))
     };
 
     private List<List<EstadoFranja>> NormalizarDisponibilidades(int cantidad)
@@ -121,7 +126,7 @@ public class AsignaturaFormViewModel
         return Enumerable.Range(0, Math.Clamp(cantidad, 1, 30)).Select(i =>
         {
             var origen = i < DisponibilidadesGrupos.Count ? DisponibilidadesGrupos[i] : Disponibilidad;
-            return origen.Count == DisponibilidadSemanal.Total ? origen.ToList() : DisponibilidadSemanal.Base();
+            return origen.Count == DisponibilidadSemanal.Total ? origen.ToList() : DisponibilidadSemanal.PorAsignatura(Nombre);
         }).ToList();
     }
 }

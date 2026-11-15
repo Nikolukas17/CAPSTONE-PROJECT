@@ -2,16 +2,22 @@
 @using OfertaAcademica.Web.ViewModels.Shared
 @model DisponibilidadGridViewModel
 @{
-    string Etiqueta(EstadoFranja e) => e switch
+    string Etiqueta(string e) => e switch
     {
-        EstadoFranja.Disponible => "Disponible",
-        EstadoFranja.Ocupado => "Ocupado",
+        nameof(EstadoFranja.Disponible) => "Disponible",
+        nameof(EstadoFranja.Ocupado) => "Ocupado",
+        "Parcial" => "Parcial",
         _ => "No disponible"
     };
+    EstadoFranja EstadoEn(int idx) => idx < Model.Estados.Count ? Model.Estados[idx] : EstadoFranja.NoDisponible;
+
+    // En modo bloques cada fila agrupa 4 franjas de 30 min; si no, cada fila es una franja.
+    var porFila = Model.BloquesDosHoras ? DisponibilidadSemanal.FranjasPorBloque : 1;
+    var filas = Model.BloquesDosHoras ? DisponibilidadSemanal.Bloques : DisponibilidadSemanal.Franjas;
 }
 <div class="slots-wrap">
-    <table class="slots" @(Model.Editable ? "data-grid-editable" : null)>
-        <caption class="sr-only">Disponibilidad semanal por franja horaria</caption>
+    <table class="slots @(Model.BloquesDosHoras ? "slots--bloques" : "")" @(Model.Editable ? "data-grid-editable" : null)>
+        <caption class="sr-only">Disponibilidad semanal por @(Model.BloquesDosHoras ? "bloques de 2 horas" : "franja horaria")</caption>
         <thead>
             <tr>
                 <th scope="col">Horario</th>
@@ -22,24 +28,30 @@
             </tr>
         </thead>
         <tbody>
-            @for (var f = 0; f < DisponibilidadSemanal.Franjas.Length; f++)
+            @for (var fila = 0; fila < filas.Length; fila++)
             {
+                var primera = fila * porFila;
                 <tr>
-                    <th scope="row">@DisponibilidadSemanal.Franjas[f]</th>
+                    <th scope="row">@filas[fila]</th>
                     @for (var d = 0; d < DisponibilidadSemanal.Dias.Length; d++)
                     {
-                        var idx = DisponibilidadSemanal.Indice(f, d);
-                        var estado = idx < Model.Estados.Count ? Model.Estados[idx] : EstadoFranja.NoDisponible;
-                        var etiqueta = $"{DisponibilidadSemanal.Dias[d]} {DisponibilidadSemanal.Franjas[f]}: {Etiqueta(estado)}";
+                        var estados = Enumerable.Range(primera, porFila).Select(f => EstadoEn(DisponibilidadSemanal.Indice(f, d))).ToList();
+                        var estado = estados.Distinct().Count() == 1 ? estados[0].ToString()
+                            : estados.Contains(EstadoFranja.Ocupado) ? nameof(EstadoFranja.Ocupado) : "Parcial";
+                        var etiqueta = $"{DisponibilidadSemanal.Dias[d]} {filas[fila]}: {Etiqueta(estado)}";
                         <td>
                             @if (Model.Editable)
                             {
-                                <input type="hidden" name="@($"{Model.NombreCampo}[{idx}]")" value="@estado" />
+                                for (var f = primera; f < primera + porFila; f++)
+                                {
+                                    var idx = DisponibilidadSemanal.Indice(f, d);
+                                    <input type="hidden" name="@($"{Model.NombreCampo}[{idx}]")" value="@EstadoEn(idx)" />
+                                }
                             }
-                            @if (Model.Editable && estado != EstadoFranja.Ocupado)
+                            @if (Model.Editable && estado != nameof(EstadoFranja.Ocupado))
                             {
                                 <button type="button" class="slot" data-estado="@estado" aria-label="@etiqueta"
-                                        data-dia="@DisponibilidadSemanal.Dias[d]" data-franja="@DisponibilidadSemanal.Franjas[f]">@Etiqueta(estado)</button>
+                                        data-dia="@DisponibilidadSemanal.Dias[d]" data-franja="@filas[fila]" data-d="@d" data-f="@primera">@Etiqueta(estado)</button>
                             }
                             else
                             {
